@@ -21,18 +21,16 @@
 </head>
 
 <body>
-    <div id="app">
-        
-        @include('mazer_template.layouts.sidebar')
-
-        <div id="main">
-            @include('mazer_template.layouts.header')
-
-            @yield('content')
-
-            @include('mazer_template.layouts.footer')
-        </div>
+    @include('mazer_template.layouts_dilanpolres.header')
+    
+    
+    <div class="container">
+        @include('mazer_template.layouts_dilanpolres.carousel')
+        @yield('content')
+        @include('mazer_template.layouts_dilanpolres.footer')
     </div>
+    
+
     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 

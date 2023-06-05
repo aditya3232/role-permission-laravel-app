@@ -20,6 +20,9 @@
                         {{ __('Admin') }}
                     </x-nav-link>
                     @endif
+                    <x-nav-link :href="route('dilanpolres.index')" :active="request()->routeIs('dilanpolres.index')">
+                        {{ __('Dilan Polres Malang') }}
+                    </x-nav-link>
                 </div>
             </div>
 

@@ -53,26 +53,60 @@
 
                         <li class="sidebar-item  ">
                             <a href="ui-file-uploader.html" class='sidebar-link'>
-                                <i class="bi bi-cloud-arrow-up-fill"></i>
+                                <i class="bi bi-hexagon-fill"></i>
                                 <span>SKCK Online</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
                             <a href="ui-file-uploader.html" class='sidebar-link'>
-                                <i class="bi bi-cloud-arrow-up-fill"></i>
+                                <i class="bi bi-hexagon-fill"></i>
                                 <span>SP2HP</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
                             <a href="ui-file-uploader.html" class='sidebar-link'>
-                                <i class="bi bi-cloud-arrow-up-fill"></i>
+                                <i class="bi bi-hexagon-fill"></i>
                                 <span>Laporan Provost</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
                             <a href="ui-file-uploader.html" class='sidebar-link'>
-                                <i class="bi bi-cloud-arrow-up-fill"></i>
+                                <i class="bi bi-hexagon-fill"></i>
                                 <span>Izin Keramaian</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="ui-file-uploader.html" class='sidebar-link'>
+                                <i class="bi bi-hexagon-fill"></i>
+                                <span>Pengaduan Masyarakat</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-hexagon-fill"></i>
+                                <span>Pengawalan</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="form-element-input.html">Pengawalan Benda Berharga</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="form-element-input-group.html">Pengawalan Tahanan</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="ui-file-uploader.html" class='sidebar-link'>
+                                <i class="bi bi-hexagon-fill"></i>
+                                <span>Laporan Polisi</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="ui-file-uploader.html" class='sidebar-link'>
+                                <i class="bi bi-hexagon-fill"></i>
+                                <span>Laporan Kehilangan</span>
                             </a>
                         </li>
 
