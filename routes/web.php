@@ -36,6 +36,7 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 
 Route::middleware('auth')->group(function() {
     Route::get('/dilanpolres', [DilanPolresController::class, 'index'])->name('dilanpolres.index');
+    Route::get('/dilanpolres/laporanprovost', [DilanPolresController::class, 'laporanProvost'])->name('dilanpolres.laporanprovost');
 });
 
 
