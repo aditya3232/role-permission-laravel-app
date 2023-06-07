@@ -21,12 +21,13 @@
 </head>
 
 <body>
-    @include('mazer_template.layouts_dilanpolres.header')
+    @include('mazer_template.layouts_dilanpolres_home.header')
 
 
-    <div class="app">
-        @yield('content_app_two')
-        @include('mazer_template.layouts_dilanpolres.footer')
+    <div class="container">
+        @include('mazer_template.layouts_dilanpolres_home.carousel')
+        @yield('content')
+        @include('mazer_template.layouts_dilanpolres_home.footer')
     </div>
 
 
