@@ -14,4 +14,8 @@ class DilanPolresController extends Controller
     public function laporanProvost() {
         return view('mazer_template.dilan_polres.laporan_provost.create');
     }
+
+    public function izinKeramaian() {
+        return view('mazer_template.dilan_polres.izin_keramaian.create');
+    }
 }
