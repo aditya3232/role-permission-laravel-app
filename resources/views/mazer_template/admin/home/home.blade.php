@@ -1,6 +1,6 @@
 @extends('mazer_template.layouts.app')
 @section('content')
-    
+
 <div class="page-heading">
     <h3>Dashboard Admin Polres Malang</h3>
 </div>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="card">
+            <div class="card">
                 <div class="card-header">
                     <h4>Recent Messages</h4>
                 </div>
@@ -130,17 +130,9 @@
                             Conversation</button>
                     </div>
                 </div>
-            </div> --}}
-
-            <div class="card">
-                <div class="card-header">
-                    <h4>Jumlah Visitor Website Polres Malang</h4>
-                </div>
-                <div class="card-body">
-                    <div id="chart-visitors-profile"></div>
-                </div>
             </div>
-            
+
+
         </div>
     </section>
 </div>

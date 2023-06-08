@@ -9,16 +9,8 @@
                     </a>
                 </div>
                 <div class="toggler">
-                    <a href="#" class="sidebar-hide d-xl-none d-none">
-                        <i class="bi bi-x bi-middle"></i>
-                    </a>
+                    <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                 </div>
-                <div>
-                    <a href="#" class="burger-btn-large-px d-block d-xl-block">
-                        <i class="bi bi-justify fs-3"></i>
-                    </a>
-                </div>
-
             </div>
         </div>
         <div class="sidebar-menu">

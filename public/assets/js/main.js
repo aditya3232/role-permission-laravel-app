@@ -30,36 +30,13 @@ window.addEventListener('resize', (event) => {
     }
 });
 
-// Sidebar Toggle when screen size is less than 1200px
 document.querySelector('.burger-btn').addEventListener('click', () => {
     document.getElementById('sidebar').classList.toggle('active');
-
-    // hide burger btn when sidebar active
-    var element = document.querySelector('.burger-btn');
-    element.classList.remove('d-xl-block');
-    element.classList.add('d-xl-none');
 })
 document.querySelector('.sidebar-hide').addEventListener('click', () => {
     document.getElementById('sidebar').classList.toggle('active');
 
 })
-
-// Sidebar Toggle when screen size is more than 1200px
-document.querySelector('.burger-btn-large-px').addEventListener('click', () => {
-    document.getElementById('sidebar').classList.toggle('active');
-    
-    var element = document.querySelector('.burger-btn');
-    element.classList.remove('d-xl-none');
-    element.classList.add('d-xl-block');
-
-})
-
-// when sidebar open, hidden burger in header
-if(document.getElementById('sidebar').classList.contains('active')) {
-    var element = document.querySelector('.burger-btn');
-    element.classList.remove('d-xl-block');
-    element.classList.add('d-xl-none');
-}
 
 
 // Perfect Scrollbar Init
