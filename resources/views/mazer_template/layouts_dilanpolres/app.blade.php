@@ -50,6 +50,8 @@
     <script src="/assets/js/pages/dashboard.js"></script>
 
     <script src="/assets/js/main.js"></script>
+
+    <script src="assets/vendors/simple-datatables/simple-datatables.js"></script>
 </body>
 
 </html>

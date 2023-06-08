@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function index() {
-        // return view('admin.index');
-        return view('mazer_template.admin.home');
-        
+        return view('mazer_template.admin.home.home');
+    }
+
+    public function daftarSkck() {
+        return view('mazer_template.admin.skck.daftar_skck');
     }
 }

@@ -16,7 +16,7 @@
                     </div>
                     <div class="user-img d-flex align-items-center">
                         <div class="avatar avatar-md">
-                            <img src="http://167.71.195.79/assets/compiled/jpg/1.jpg" alt="avatar-icon">
+                            <img src="/assets/images/faces/1.jpg" alt="avatar-icon">
                         </div>
                     </div>
                 </div>

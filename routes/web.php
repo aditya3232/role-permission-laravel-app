@@ -30,9 +30,14 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::middleware(['auth', 'role:admin'])->group(function() {
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function() {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/daftarskck', [AdminController::class, 'daftarSkck'])->name('admin.daftarskck');
+    // Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
+    // Route::get('/roles', [AdminController::class, 'roles'])->name('admin.roles');
+    // Route::get('/permissions', [AdminController::class, 'permissions'])->name('admin.permissions');
 });
+
 
 Route::group(['prefix' => 'dilanpolres'], function() {
     Route::get('/', [DilanPolresController::class, 'index'])->name('dilanpolres.index');
