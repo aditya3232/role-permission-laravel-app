@@ -28,8 +28,7 @@ return new class extends Migration
             $table->string('instansi');
             $table->string('nama_benda');
             $table->string('jumlah_benda');
-            $table->string('tanggal_pengawalan');
-            $table->string('jam_pengawalan');
+            $table->string('waktu_pengawalan');
             $table->string('rute_pengawalan');
             $table->string('keterangan');
             $table->string('turut_serta');

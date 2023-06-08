@@ -27,12 +27,10 @@ return new class extends Migration
             $table->string('email');
             $table->string('bentuk_keramaian');
             $table->string('jumlah_peserta');
-            $table->string('tanggal_pelaksanaan');
+            $table->string('waktu_pelaksanaan');
             $table->string('tempat_pelaksanaan');
-            $table->string('jam_pelaksanaan');
-            $table->string('tanggal_selesai');
-            $table->string('jam_selesai');
-            $table->string('keterangan');
+            $table->string('waktu_selesai');
+            $table->string('keterangan_tambahan');
             $table->string('rute');
             $table->timestamps();
         });

@@ -5,7 +5,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Izin Keramaian</h3>
+                <h3>Pengaduan Masyarakat</h3>
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Izin Keramaian</h4>
+                        <h4 class="card-title">Pengaduan Masyarakat</h4>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
@@ -114,44 +114,15 @@
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="first-name-column">Bentuk Keramaian</label>
-                                            <input type="text" id="city-column" class="form-control" placeholder="Bentuk keramaian" name="Nama">
+                                            <label for="first-name-column">Jenis Pengaduan</label>
+                                            <input type="text" id="city-column" class="form-control" placeholder="Jenis pengaduan" name="Nama">
                                         </div>
                                     </div>
                                     <div class="col-md-6 col-12">
                                         <div class="form-group">
-                                            <label for="first-name-column">Jumlah Peserta</label>
-                                            <input type="text" id="city-column" class="form-control" placeholder="Jumlah peserta" name="Nama">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">Waktu Pelaksanaan</label>
-                                            <input type="datetime-local" id="city-column" class="form-control" placeholder="Waktu pelaksanaan" name="Nama">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">Tempat Pelaksanaan</label>
-                                            <input type="text" id="city-column" class="form-control" placeholder="Tempat pelaksanaan" name="Nama">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">Waktu Selesai</label>
-                                            <input type="datetime-local" id="city-column" class="form-control" placeholder="Waktu selesai" name="Nama">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">Keterangan Tambahan</label>
-                                            <input type="text" id="city-column" class="form-control" placeholder="Keterangan tambahan" name="Nama">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-column">Rute</label>
-                                            <input type="text" id="city-column" class="form-control" placeholder="Rute keramaian yang dilalui" name="Nama">
+                                            <label for="first-name-column">Pesan pengaduan</label>
+                                            {{-- <input type="text" id="city-column" class="form-control" placeholder="Pesan pengaduan" name="Nama"> --}}
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Pesan pengaduan"></textarea>
                                         </div>
                                     </div>
                                 </div>

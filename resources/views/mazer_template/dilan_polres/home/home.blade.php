@@ -17,6 +17,7 @@
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cekSkck">
                                     Cek Data
                                 </button>
+                                <a type="button" class="btn btn-primary block mt-2" href="{{ route('dilanpolres.daftarskck') }}">Input Data</a type="button">
                             </div>
                         </div>
                     </div>
@@ -64,7 +65,7 @@
                             <img class="card-img-top img-fluid" src="assets/images/samples/origami.jpg" alt="Card image cap" style="height: 20rem" />
                             <div class="card-body d-flex flex-column">
                                 <h4 class="card-title">Laporan Pengaduan Masyarakat</h4>
-                                <button class="btn btn-primary block">Input Data</button>
+                                <a type="button" class="btn btn-primary block" href="{{ route('dilanpolres.pengaduanmasyarakat') }}">Input Data</a type="button">
                             </div>
                         </div>
                     </div>
@@ -75,7 +76,7 @@
                             <img class="card-img-top img-fluid" src="assets/images/samples/origami.jpg" alt="Card image cap" style="height: 20rem" />
                             <div class="card-body d-flex flex-column">
                                 <h4 class="card-title">Pengawalan Benda Berharga</h4>
-                                <button class="btn btn-primary block">Input Data</button>
+                                <a type="button" class="btn btn-primary block" href="{{ route('dilanpolres.pengawalanbendaberharga') }}">Input Data</a type="button">
                             </div>
                         </div>
                     </div>
@@ -88,7 +89,7 @@
                             <img class="card-img-top img-fluid" src="assets/images/samples/origami.jpg" alt="Card image cap" style="height: 20rem" />
                             <div class="card-body d-flex flex-column">
                                 <h4 class="card-title">Pengawalan Tahanan</h4>
-                                <button class="btn btn-primary block">Input Data</button>
+                                <a type="button" class="btn btn-primary block" href="{{ route('dilanpolres.pengawalantahanan') }}">Input Data</a type="button">
                             </div>
                         </div>
                     </div>

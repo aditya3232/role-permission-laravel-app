@@ -27,6 +27,9 @@ return new class extends Migration
             $table->string('email');
             $table->string('instansi');
             $table->string('nama_tahanan');
+            $table->string('Lokasi_tahanan');
+            $table->string('jumlah_tahanan');
+          
             $table->timestamps();
         });
     }
