@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="/assets/css/bootstrap.min.csss">
     <link rel="stylesheet" href="/assets/css/dataTables.bootstrap5.min.css">
 
-
     <link rel="stylesheet" href="/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
     <link rel="stylesheet" href="/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/css/app.css">
@@ -56,6 +55,17 @@
         });
 
     </script>
+
+    {{-- ck editor --}}
+    <script src="//cdn.ckeditor.com/4.21.0/full/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.ckeditor').ckeditor();
+        });
+
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
     <script src="/assets/js/main.js"></script>
 </body>

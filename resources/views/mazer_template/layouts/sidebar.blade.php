@@ -33,7 +33,7 @@
                     </a>
                     <ul class="submenu ">
                         <li class="submenu-item ">
-                            <a href="form-element-input.html">Post Berita</a>
+                            <a href="{{ route('admin.berita.create') }}">Post Berita</a>
                         </li>
                         <li class="submenu-item ">
                             <a href="form-element-input-group.html">Daftar Berita</a>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DilanPolresController;
+use App\Http\Controllers\BeritaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,12 +33,16 @@ Route::get('/dashboard', function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function() {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/berita/create', [AdminController::class, 'index'])->name('admin.berita.create');
     Route::get('/daftarskck', [AdminController::class, 'daftarSkck'])->name('admin.daftarskck');
     // Route::get('/users', [AdminController::class, 'users'])->name('admin.users');
     // Route::get('/roles', [AdminController::class, 'roles'])->name('admin.roles');
     // Route::get('/permissions', [AdminController::class, 'permissions'])->name('admin.permissions');
 });
 
+Route::group(['prefix' => 'admin/berita', 'middleware' => ['auth', 'role:admin']], function() {
+    Route::get('/create', [BeritaController::class, 'index'])->name('admin.berita.create');
+});
 
 Route::group(['prefix' => 'dilanpolres'], function() {
     Route::get('/', [DilanPolresController::class, 'index'])->name('dilanpolres.index');
