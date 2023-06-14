@@ -44,7 +44,7 @@
                 <li class="sidebar-title">Master Data</li>
 
                 <li class="sidebar-item  ">
-                    <a href="{{ route('admin.daftarskck') }}" class='sidebar-link'>
+                    <a href="{{ route('admin.skck.index') }}" class='sidebar-link'>
                         <i class="bi bi-hexagon-fill"></i>
                         <span>SKCK Online</span>
                     </a>

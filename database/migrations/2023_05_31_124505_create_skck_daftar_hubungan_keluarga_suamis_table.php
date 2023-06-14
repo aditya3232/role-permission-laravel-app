@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('skck_daftar_hubungan_keluarga_suamis', function (Blueprint $table) {
+        Schema::create('skck_daftar_suamis', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->string('tempat_lahir');
@@ -25,7 +25,7 @@ return new class extends Migration
             $table->longText('alamat');
             $table->string('no_telepon');
             $table->string('email');
-            $table->foreignId('skck_daftar_data_diri_id')->constrained('skck_daftar_data_diris')->onDelete('cascade');
+            $table->foreignId('skck_daftar_diri_id')->constrained('skck_daftar_diris')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('skck_daftar_hubungan_keluarga_suamis');
+        Schema::dropIfExists('skck_daftar_suamis');
     }
 };

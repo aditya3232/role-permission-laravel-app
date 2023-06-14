@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('skck_daftar_info_pelanggarans', function (Blueprint $table) {
+        Schema::create('skck_daftar_pelanggarans', function (Blueprint $table) {
             $table->id();
             $table->string('pelanggaran_apa');
             $table->string('sejauhmana_proseshukumnya');
-            $table->foreignId('skck_daftar_data_diri_id')->constrained('skck_daftar_data_diris')->onDelete('cascade');
+            $table->foreignId('skck_daftar_diri_id')->constrained('skck_daftar_diris')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('skck_daftar_info_pelanggarans');
+        Schema::dropIfExists('skck_daftar_pelanggarans');
     }
 };

@@ -11,7 +11,4 @@ class AdminController extends Controller
         return view('mazer_template.admin.home.home');
     }
 
-    public function daftarSkck() {
-        return view('mazer_template.admin.skck.daftar_skck');
-    }
 }

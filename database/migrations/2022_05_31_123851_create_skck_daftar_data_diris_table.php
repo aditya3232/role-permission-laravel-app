@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('skck_daftar_data_diris', function (Blueprint $table) {
+        Schema::create('skck_daftar_diris', function (Blueprint $table) {
             $table->id();
             $table->string('kode_daftar_skck_online');
             $table->string('nama');
@@ -50,6 +50,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('skck_daftar_data_diris');
+        Schema::dropIfExists('skck_daftar_diris');
     }
 };

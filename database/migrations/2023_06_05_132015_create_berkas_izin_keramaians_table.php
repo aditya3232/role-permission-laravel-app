@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('berkas_izin_keramaians', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('izin_keramaian_id')->constrained('izin_keramaian')->onDelete('cascade');
+            $table->foreignId('izin_keramaian_id')->constrained('izin_keramaians')->onDelete('cascade');
             $table->string('url');
             $table->timestamps();
         });

@@ -44,17 +44,14 @@
     <script src="/assets/vendors/simple-datatables/simple-datatables.js"></script>
 
     {{-- new datatable --}}
-    <script src="/assets/js/jquery-3.5.1.js"></script>
+    {{-- <script src="/assets/js/jquery-3.5.1.js"></script> --}}
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <script src="/assets/js/jquery.dataTables.min.js"></script>
     <script src="/assets/js/dataTables.bootstrap5.min.js"></script>
 
     {{-- script datatable mending dibkin 1 file --}}
-    <script>
-        $(document).ready(function () {
-            $('#table1').DataTable();
-        });
+    @include('mazer_template.layouts.script-datatable')
 
-    </script>
 
     {{-- ck editor --}}
     <script src="//cdn.ckeditor.com/4.21.0/full/ckeditor.js"></script>
@@ -65,7 +62,7 @@
 
     </script>
 
-    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> --}}
 
     <script src="/assets/js/main.js"></script>
 </body>
