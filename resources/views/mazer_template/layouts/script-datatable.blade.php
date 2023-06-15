@@ -22,36 +22,43 @@
 
     $(document).ready(function () {
         $('#skck').DataTable({
-            "processing": true,
-            "serverSide": true,
-            "ajax": {
-                "url": "{{ route('admin.skck.datatable') }}",
-                "dataType": "json",
-                "type": "POST",
-                "data": {
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "{{ route('admin.skck.datatable') }}",
+                dataType: "json",
+                type: "POST",
+                data: {
                     _token: "{{ csrf_token() }}"
                 }
             },
-            "columns": [{
-                    "data": "id"
+            columns: [{
+                    data: null,
+                    "sortable": false,
+                    render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
                 },
                 {
-                    "data": "nama"
+                    data: "id"
                 },
                 {
-                    "data": "no_telepon"
+                    data: "nama"
                 },
                 {
-                    "data": "alamat"
+                    data: "no_telepon"
                 },
                 {
-                    "data": "keperluan_skck"
+                    data: "alamat"
                 },
                 {
-                    "data": "created_at"
+                    data: "keperluan_skck"
                 },
                 {
-                    "data": "options"
+                    data: "created_at"
+                },
+                {
+                    data: "options"
                 }
             ]
 

@@ -184,7 +184,7 @@ class SkckOnlineController extends Controller
                 $nestedData['created_at'] = date('j M Y h:i a',strtotime($SkckDaftarDiri->created_at));
                 // $nestedData['options'] = "&emsp;<a href='{$show}' title='SHOW' ><span class='glyphicon glyphicon-list'></span></a>
                 //                           &emsp;<a href='{$edit}' title='EDIT' ><span class='glyphicon glyphicon-edit'></span></a>";
-                $nestedData['options'] = "&emsp;<a href='' title='SHOW' ><span class='glyphicon glyphicon-list'></span>Detail</a>";
+                $nestedData['options'] = "&emsp;<a href='' title='SHOW' class='btn btn-info'>Detail</a>";
                 $data[] = $nestedData;
 
             }
