@@ -3,130 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\SkckDaftarDiri;
-use DataTables;
+use App\Models\SkckDaftarBapak;
+use App\Models\SkckDaftarIbu;
+use App\Models\SkckDaftarIstri;
+use App\Models\SkckDaftarSuami;
+use App\Models\SkckDaftarPelanggaran;
+use App\Models\SkckDaftarPidana;
+use App\Models\SkckDaftarSaudara;
+
 
 class SkckOnlineController extends Controller
 {
     
-    public function index(Request $request) {
-        // ## ini adalah contoh untuk menampilkan data dari database serverside nya laravel
-        // $keyword = $request->search;
-        // $paginate = $request->per_page;
-
-        // if($keyword) {
-        //     $daftar_skck = SkckDaftarDiri::where('id', 'like', "%" . $keyword . "%")
-        //                                     ->orWhere('nama', 'like', "%" . $keyword . "%")
-        //                                     ->orWhere('no_telepon', 'like', "%" . $keyword . "%")
-        //                                     ->orWhere('alamat', 'like', "%" . $keyword . "%")
-        //                                     ->orWhere('keperluan_skck', 'like', "%" . $keyword . "%")
-        //                                     ->orderBy('id', 'DESC')
-        //                                     ->paginate($paginate);
-
-        //     $length = SkckDaftarDiri::where('id', 'like', "%" . $keyword . "%")
-        //     ->orWhere('nama', 'like', "%" . $keyword . "%")
-        //     ->orWhere('no_telepon', 'like', "%" . $keyword . "%")
-        //     ->orWhere('alamat', 'like', "%" . $keyword . "%")
-        //     ->orWhere('keperluan_skck', 'like', "%" . $keyword . "%")
-        //     ->orderBy('id', 'DESC')->get();
-
-        // } else {
-        //     $daftar_skck = SkckDaftarDiri::orderBy('id', 'DESC')->paginate($paginate);
-        //     $length = SkckDaftarDiri::orderBy('id', 'DESC')->get();
-        // }
-        
+    public function index(Request $request) { 
         return view('mazer_template.admin.skck.daftar_skck');
     }
-
-    // # ini adalaah controller datable. bisa tapi g bisa ngatur column nya
-    // public function dataTable() {
-    //     $total = SkckDaftarDiri::get()->count();
-    //     $length = intval($_REQUEST['length']);
-    //     $length = $length < 0 ? $total : $length;
-    //     $start = intval($_REQUEST['start']);
-    //     $draw = intval($_REQUEST['draw']);
-    //     $search = $_REQUEST['search']['value'];
-
-    //     $output = array();
-    //     $output['data'] = array();
-
-    //     $end = $start + $length;
-    //     $end = $end > $total ? $total : $end;
-
-    //     if($search != '') {
-    //         $query = SkckDaftarDiri::where(function($filter) use ($search){
-    //             $filter->orWhere('id', 'like', "%" . $search . "%");
-    //             $filter->orWhere('nama', 'like', "%" . $search . "%");
-    //             $filter->orWhere('no_telepon', 'like', "%" . $search . "%");
-    //             $filter->orWhere('alamat', 'like', "%" . $search . "%");
-    //             $filter->orWhere('keperluan_skck', 'like', "%" . $search . "%");
-    //         })
-    //         ->take($length)
-    //         ->skip($start)
-    //         ->get();
-
-    //         $no = $start + 1;
-    //         foreach ($query as $val) {
-    //             $output['data'][] = 
-    //                 array(
-    //                     $no,
-    //                     $val->nama,
-    //                     $val->no_telepon,
-    //                     $val->alamat,
-    //                     $val->keperluan_skck,
-    //                     $val->created_at
-    //                 );
-    //             $no++;
-    //         }
-
-    //         $rows = SkckDaftarDiri::where(function($filter) use ($search){
-    //             $filter->orWhere('id', 'like', "%" . $search . "%");
-    //             $filter->orWhere('nama', 'like', "%" . $search . "%");
-    //             $filter->orWhere('no_telepon', 'like', "%" . $search . "%");
-    //             $filter->orWhere('alamat', 'like', "%" . $search . "%");
-    //             $filter->orWhere('keperluan_skck', 'like', "%" . $search . "%");
-    //         })
-    //         ->get();
-
-    //         $output['draw'] = $draw;
-    //         $output['recordsTotal'] = $output['recordsFiltered'] = $rows->count();
-                                    
-    //     } else {
-    //         $query = SkckDaftarDiri::take($length)
-    //         ->skip($start)
-    //         ->get();
-
-    //         $no = $start + 1;
-    //         foreach ($query as $val) {
-    //             $output['data'][] = 
-    //                 array(
-    //                     $no,
-    //                     $val->nama,
-    //                     $val->no_telepon,
-    //                     $val->alamat,
-    //                     $val->keperluan_skck,
-    //                     $val->created_at
-    //                 );
-    //             $no++;
-    //         }
-
-    //         $output['draw'] = $draw;
-    //         $output['recordsTotal'] = $total;
-    //         $output['recordsFiltered'] = $total; 
-    //     }
-        
-    //     return response()->json($output);
-    // }
 
     public function dataTable(Request $request) {
         $columns = array( 
                             0 =>'id', 
                             1 =>'nama',
-                            2=> 'no_telepon',
-                            3=> 'alamat',
-                            4=> 'keperluan_skck',
-                            5=> 'created_at',
-                            6=> 'id', //action
+                            2 => 'no_telepon',
+                            3 => 'alamat',
+                            4 => 'keperluan_skck',
+                            5 => 'created_at',
+                            6 => 'id', //action
                         );
   
         $totalData = SkckDaftarDiri::count();
@@ -173,7 +76,7 @@ class SkckOnlineController extends Controller
         {
             foreach ($SkckDaftarDiris as $SkckDaftarDiri)
             {
-                // $show =  route('SkckDaftarDiris.show',$SkckDaftarDiri->id);
+                $detail =  route('admin.skck.detail',$SkckDaftarDiri->id);
                 // $edit =  route('SkckDaftarDiris.edit',$SkckDaftarDiri->id);
 
                 $nestedData['id'] = $SkckDaftarDiri->id;
@@ -184,7 +87,7 @@ class SkckOnlineController extends Controller
                 $nestedData['created_at'] = date('j M Y h:i a',strtotime($SkckDaftarDiri->created_at));
                 // $nestedData['options'] = "&emsp;<a href='{$show}' title='SHOW' ><span class='glyphicon glyphicon-list'></span></a>
                 //                           &emsp;<a href='{$edit}' title='EDIT' ><span class='glyphicon glyphicon-edit'></span></a>";
-                $nestedData['options'] = "&emsp;<a href='' title='SHOW' class='btn btn-info'>Detail</a>";
+                $nestedData['options'] = "&emsp;<a href='{$detail}' title='SHOW' class='btn btn-info' target='_blank'>Detail</a>";
                 $data[] = $nestedData;
 
             }
@@ -197,8 +100,100 @@ class SkckOnlineController extends Controller
                     "data"            => $data   
                     );
             
-        // echo json_encode($json_data); 
-        // return response()->json_encode($json_data);
         return response()->json($json_data);
     }
+
+    public function detail($id) {
+        $SkckDaftarDiri = (new SkckDaftarDiri)->getTable();
+        $SkckDaftarBapak = (new SkckDaftarBapak)->getTable();
+        $SkckDaftarIbu = (new SkckDaftarIbu)->getTable();
+        $SkckDaftarIstri = (new SkckDaftarIstri)->getTable();
+        $SkckDaftarSuami = (new SkckDaftarSuami)->getTable();
+        $SkckDaftarPelanggaran = (new SkckDaftarPelanggaran)->getTable();
+        $SkckDaftarPidana = (new SkckDaftarPidana)->getTable();
+        $SkckDaftarSaudara = (new SkckDaftarSaudara)->getTable();
+        
+
+        $SkckDaftarDiriDetail = DB::table($SkckDaftarDiri)
+        ->leftJoin($SkckDaftarBapak, $SkckDaftarBapak . '.skck_daftar_diri_id', '=', $SkckDaftarDiri . '.id')
+        ->leftJoin($SkckDaftarIbu, $SkckDaftarIbu . '.skck_daftar_diri_id', '=', $SkckDaftarDiri . '.id')
+        ->leftJoin($SkckDaftarIstri, $SkckDaftarIstri . '.skck_daftar_diri_id', '=', $SkckDaftarDiri . '.id')
+        ->leftJoin($SkckDaftarSuami, $SkckDaftarSuami . '.skck_daftar_diri_id', '=', $SkckDaftarDiri . '.id')
+        ->leftJoin($SkckDaftarPelanggaran, $SkckDaftarPelanggaran . '.skck_daftar_diri_id', '=', $SkckDaftarDiri . '.id')
+        ->leftJoin($SkckDaftarPidana, $SkckDaftarPidana . '.skck_daftar_diri_id', '=', $SkckDaftarDiri . '.id')
+        ->leftJoin($SkckDaftarSaudara, $SkckDaftarSaudara . '.skck_daftar_diri_id', '=', $SkckDaftarDiri . '.id')
+        ->select($SkckDaftarDiri . '.*', 
+                $SkckDaftarBapak . '.nama as ' . $SkckDaftarBapak . '_nama',
+                $SkckDaftarBapak . '.tempat_lahir as ' . $SkckDaftarBapak . '_tempat_lahir',
+                $SkckDaftarBapak . '.tanggal_lahir as ' . $SkckDaftarBapak . '_tanggal_lahir',
+                $SkckDaftarBapak . '.jenis_kelamin as ' . $SkckDaftarBapak . '_jenis_kelamin',
+                $SkckDaftarBapak . '.nik as ' . $SkckDaftarBapak . '_nik',
+                $SkckDaftarBapak . '.pekerjaan as ' . $SkckDaftarBapak . '_pekerjaan',
+                $SkckDaftarBapak . '.kebangsaan as ' . $SkckDaftarBapak . '_kebangsaan',
+                $SkckDaftarBapak . '.status_perkawinan as ' . $SkckDaftarBapak . '_status_perkawinan',
+                $SkckDaftarBapak . '.agama as ' . $SkckDaftarBapak . '_agama',
+                $SkckDaftarBapak . '.alamat as ' . $SkckDaftarBapak . '_alamat',
+                $SkckDaftarBapak . '.no_telepon as ' . $SkckDaftarBapak . '_no_telepon',
+                $SkckDaftarBapak . '.email as ' . $SkckDaftarBapak . '_email',
+                $SkckDaftarIbu . '.nama as ' . $SkckDaftarIbu . '_nama',
+                $SkckDaftarIbu . '.tempat_lahir as ' . $SkckDaftarIbu . '_tempat_lahir',
+                $SkckDaftarIbu . '.tanggal_lahir as ' . $SkckDaftarIbu . '_tanggal_lahir',
+                $SkckDaftarIbu . '.jenis_kelamin as ' . $SkckDaftarIbu . '_jenis_kelamin',
+                $SkckDaftarIbu . '.nik as ' . $SkckDaftarIbu . '_nik',
+                $SkckDaftarIbu . '.pekerjaan as ' . $SkckDaftarIbu . '_pekerjaan',
+                $SkckDaftarIbu . '.kebangsaan as ' . $SkckDaftarIbu . '_kebangsaan',
+                $SkckDaftarIbu . '.status_perkawinan as ' . $SkckDaftarIbu . '_status_perkawinan',
+                $SkckDaftarIbu . '.agama as ' . $SkckDaftarIbu . '_agama',
+                $SkckDaftarIbu . '.alamat as ' . $SkckDaftarIbu . '_alamat',
+                $SkckDaftarIbu . '.no_telepon as ' . $SkckDaftarIbu . '_no_telepon',
+                $SkckDaftarIbu . '.email as ' . $SkckDaftarIbu . '_email',
+                $SkckDaftarIstri . '.nama as ' . $SkckDaftarIstri . '_nama',
+                $SkckDaftarIstri . '.tempat_lahir as ' . $SkckDaftarIstri . '_tempat_lahir',
+                $SkckDaftarIstri . '.tanggal_lahir as ' . $SkckDaftarIstri . '_tanggal_lahir',
+                $SkckDaftarIstri . '.jenis_kelamin as ' . $SkckDaftarIstri . '_jenis_kelamin',
+                $SkckDaftarIstri . '.nik as ' . $SkckDaftarIstri . '_nik',
+                $SkckDaftarIstri . '.pekerjaan as ' . $SkckDaftarIstri . '_pekerjaan',
+                $SkckDaftarIstri . '.kebangsaan as ' . $SkckDaftarIstri . '_kebangsaan',
+                $SkckDaftarIstri . '.status_perkawinan as ' . $SkckDaftarIstri . '_status_perkawinan',
+                $SkckDaftarIstri . '.agama as ' . $SkckDaftarIstri . '_agama',
+                $SkckDaftarIstri . '.alamat as ' . $SkckDaftarIstri . '_alamat',
+                $SkckDaftarIstri . '.no_telepon as ' . $SkckDaftarIstri . '_no_telepon',
+                $SkckDaftarIstri . '.email as ' . $SkckDaftarIstri . '_email',
+                $SkckDaftarSuami . '.nama as ' . $SkckDaftarSuami . '_nama',
+                $SkckDaftarSuami . '.tempat_lahir as ' . $SkckDaftarSuami . '_tempat_lahir',
+                $SkckDaftarSuami . '.tanggal_lahir as ' . $SkckDaftarSuami . '_tanggal_lahir',
+                $SkckDaftarSuami . '.jenis_kelamin as ' . $SkckDaftarSuami . '_jenis_kelamin',
+                $SkckDaftarSuami . '.nik as ' . $SkckDaftarSuami . '_nik',
+                $SkckDaftarSuami . '.pekerjaan as ' . $SkckDaftarSuami . '_pekerjaan',
+                $SkckDaftarSuami . '.kebangsaan as ' . $SkckDaftarSuami . '_kebangsaan',
+                $SkckDaftarSuami . '.status_perkawinan as ' . $SkckDaftarSuami . '_status_perkawinan',
+                $SkckDaftarSuami . '.agama as ' . $SkckDaftarSuami . '_agama',
+                $SkckDaftarSuami . '.alamat as ' . $SkckDaftarSuami . '_alamat',
+                $SkckDaftarSuami . '.no_telepon as ' . $SkckDaftarSuami . '_no_telepon',
+                $SkckDaftarSuami . '.email as ' . $SkckDaftarSuami . '_email',
+                $SkckDaftarSaudara . '.nama as ' . $SkckDaftarSaudara . '_nama',
+                $SkckDaftarSaudara . '.tempat_lahir as ' . $SkckDaftarSaudara . '_tempat_lahir',
+                $SkckDaftarSaudara . '.tanggal_lahir as ' . $SkckDaftarSaudara . '_tanggal_lahir',
+                $SkckDaftarSaudara . '.jenis_kelamin as ' . $SkckDaftarSaudara . '_jenis_kelamin',
+                $SkckDaftarSaudara . '.nik as ' . $SkckDaftarSaudara . '_nik',
+                $SkckDaftarSaudara . '.pekerjaan as ' . $SkckDaftarSaudara . '_pekerjaan',
+                $SkckDaftarSaudara . '.kebangsaan as ' . $SkckDaftarSaudara . '_kebangsaan',
+                $SkckDaftarSaudara . '.status_perkawinan as ' . $SkckDaftarSaudara . '_status_perkawinan',
+                $SkckDaftarSaudara . '.agama as ' . $SkckDaftarSaudara . '_agama',
+                $SkckDaftarSaudara . '.alamat as ' . $SkckDaftarSaudara . '_alamat',
+                $SkckDaftarSaudara . '.no_telepon as ' . $SkckDaftarSaudara . '_no_telepon',
+                $SkckDaftarSaudara . '.email as ' . $SkckDaftarSaudara . '_email',
+                $SkckDaftarPelanggaran . '.pelanggaran_apa as ' . $SkckDaftarPelanggaran . '_pelanggaran_apa',
+                $SkckDaftarPelanggaran . '.sejauhmana_proseshukumnya as ' . $SkckDaftarPelanggaran . '_sejauhmana_proseshukumnya',
+                $SkckDaftarPidana . '.pidana_apa as ' . $SkckDaftarPidana . '_pidana_apa',
+                $SkckDaftarPidana . '.sejauhmana_proseshukumnya as ' . $SkckDaftarPidana . '_sejauhmana_proseshukumnya',
+                )
+        ->where($SkckDaftarDiri . '.id', $id)
+        ->get(); 
+
+        // dd($SkckDaftarDiriDetail);
+        
+        return view('mazer_template.admin.skck.detail_skck', compact('SkckDaftarDiriDetail'));
+    }
+
 }
