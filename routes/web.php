@@ -42,6 +42,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
 
 Route::group(['prefix' => 'admin/skck', 'middleware' => ['auth', 'role:admin']], function() {
     Route::get('/', [SkckOnlineController::class, 'index'])->name('admin.skck.index');
+    Route::post('/skck/datatable', [SkckOnlineController::class, 'dataTable'])->name('admin.skck.datatable');
 });
 
 

@@ -25,14 +25,16 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped" id="table1">
+                    <table class="table table-striped" id="skck">
                         <thead>
                             <tr>
-                                <th>Kode Daftar Skck</th>
+                                <th>Id</th>
                                 <th>Nama</th>
                                 <th>No Telp</th>
                                 <th>Alamat</th>
                                 <th>Keperluan Skck</th>
+                                <th>created</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                     </table>
