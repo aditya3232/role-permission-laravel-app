@@ -193,7 +193,7 @@ class SkckOnlineController extends Controller
         ->where($SkckDaftarDiri . '.id', $id)
         ->get(); 
 
-        dd($SkckDaftarDiriDetail);
+        // dd($SkckDaftarDiriDetail);
         
         return view('mazer_template.admin.skck.detail_skck', compact('SkckDaftarDiriDetail'));
     }
