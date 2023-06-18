@@ -32,6 +32,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
+// admin
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function() {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/berita/create', [AdminController::class, 'index'])->name('admin.berita.create');
@@ -40,10 +41,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     // Route::get('/permissions', [AdminController::class, 'permissions'])->name('admin.permissions');
 });
 
+// skck online
 Route::group(['prefix' => 'admin/skck', 'middleware' => ['auth', 'role:admin']], function() {
     Route::get('/', [SkckOnlineController::class, 'index'])->name('admin.skck.index');
     Route::post('/skck/datatable', [SkckOnlineController::class, 'dataTable'])->name('admin.skck.datatable');
     Route::get('/skck/detail/{id}', [SkckOnlineController::class, 'detail'])->name('admin.skck.detail');
+    Route::post('/skck/post', [SkckOnlineController::class, 'post'])->name('admin.skck.post');
 });
 
 
@@ -52,6 +55,7 @@ Route::group(['prefix' => 'admin/berita', 'middleware' => ['auth', 'role:admin']
     Route::get('/create', [BeritaController::class, 'index'])->name('admin.berita.create');
 });
 
+// create data semua disini
 Route::group(['prefix' => 'dilanpolres'], function() {
     Route::get('/', [DilanPolresController::class, 'index'])->name('dilanpolres.index');
     Route::get('/daftarskck', [DilanPolresController::class, 'daftarSkck'])->name('dilanpolres.daftarskck');
