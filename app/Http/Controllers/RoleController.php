@@ -66,8 +66,6 @@ class RoleController extends Controller
 
                 $nestedData['id'] = $Role->id;
                 $nestedData['name'] = $Role->name;
-                // $nestedData['options'] = "&emsp;<a href='{$show}' title='SHOW' ><span class='glyphicon glyphicon-list'></span></a>
-                //                           &emsp;<a href='{$edit}' title='EDIT' ><span class='glyphicon glyphicon-edit'></span></a>";
                 $nestedData['options'] = "&emsp;<a href='{$edit}' title='EDIT' class='btn btn-info'>Edit</a>
                                           &emsp;<a href='{$destroy}' title='DESTROY' class='btn btn-danger' data-confirm-delete='true'>Hapus</a>";
                 $data[] = $nestedData;

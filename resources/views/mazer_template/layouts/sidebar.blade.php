@@ -69,6 +69,12 @@
                 </li>
                 <li class="sidebar-title">Admin</li>
                 <li class="sidebar-item  ">
+                    <a href="{{ route('admin.users.index') }}" class='sidebar-link'>
+                        <i class="bi bi-hexagon-fill"></i>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li class="sidebar-item  ">
                     <a href="{{ route('admin.roles.index') }}" class='sidebar-link'>
                         <i class="bi bi-hexagon-fill"></i>
                         <span>Roles</span>

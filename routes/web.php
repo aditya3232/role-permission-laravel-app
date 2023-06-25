@@ -6,6 +6,7 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SkckOnlineController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,17 +45,33 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
 Route::group(['prefix' => 'admin/permissions', 'as' => 'admin.permissions.', 'middleware' => ['auth', 'role:admin']], function() {
     Route::get('/',[ PermissionController::class, 'index'])->name('index');
     Route::post('/datatable', [PermissionController::class, 'dataTable'])->name('datatable');
+    Route::get('/create', [PermissionController::class, 'create'])->name('create');
+    Route::get('/edit/{id}', [PermissionController::class, 'edit'])->name('edit');
+    Route::post('/store', [PermissionController::class, 'store'])->name('store');
+    Route::post('/update/{id}', [PermissionController::class, 'update'])->name('update');
+    Route::delete('/destroy/{id}', [PermissionController::class, 'destroy'])->name('destroy');
 });
 
 // roles
 Route::group(['prefix' => 'admin/roles', 'as' => 'admin.roles.', 'middleware' => ['auth', 'role:admin']], function() {
     Route::get('/', [RoleController::class, 'index'])->name('index');
+    Route::post('/datatable', [RoleController::class, 'dataTable'])->name('datatable');
     Route::get('/create', [RoleController::class, 'create'])->name('create');
     Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('edit');
-    Route::post('/datatable', [RoleController::class, 'dataTable'])->name('datatable');
     Route::post('/store', [RoleController::class, 'store'])->name('store');
     Route::post('/update/{id}', [RoleController::class, 'update'])->name('update');
     Route::delete('/destroy/{id}', [RoleController::class, 'destroy'])->name('destroy');
+});
+
+// users
+Route::group(['prefix' => 'admin/users', 'as' => 'admin.users.', 'middleware' => ['auth', 'role:admin']], function() {
+    Route::get('/', [UserController::class, 'index'])->name('index');
+    Route::post('/datatable', [UserController::class, 'dataTable'])->name('datatable');
+    // Route::get('/create', [RoleController::class, 'create'])->name('create');
+    // Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('edit');
+    // Route::post('/store', [RoleController::class, 'store'])->name('store');
+    // Route::post('/update/{id}', [RoleController::class, 'update'])->name('update');
+    // Route::delete('/destroy/{id}', [RoleController::class, 'destroy'])->name('destroy');
 });
 
 // skck online

@@ -142,3 +142,47 @@
     });
 
 </script>
+
+<script>
+    $(document).ready(function () {
+        $('#users').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "{{ route('admin.users.datatable') }}",
+                dataType: "json",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}"
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    // Do something here
+                    console.log(Error);
+                }
+            },
+            columns: [{
+                    data: null,
+                    "sortable": false,
+                    render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
+                {
+                    data: "name"
+                },
+                {
+                    data: "email"
+                },
+                {
+                    data: "role"
+                },
+                {
+                    data: "options",
+                    "sortable": false,
+                }
+            ]
+
+        });
+    });
+
+</script>
