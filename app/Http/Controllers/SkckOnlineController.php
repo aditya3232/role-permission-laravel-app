@@ -19,7 +19,7 @@ use App\Models\SkckDaftarSaudara;
 class SkckOnlineController extends Controller
 {
     
-    public function index(Request $request) { 
+    public function index() { 
         return view('mazer_template.admin.skck.daftar_skck');
     }
 
@@ -193,7 +193,7 @@ class SkckOnlineController extends Controller
         ->where($SkckDaftarDiri . '.id', $id)
         ->get(); 
 
-        dd($SkckDaftarDiriDetail);
+        // dd($SkckDaftarDiriDetail);
         
         return view('mazer_template.admin.skck.detail_skck', compact('SkckDaftarDiriDetail'));
     }
