@@ -103,9 +103,15 @@
                 </li>
                 <li class="sidebar-title">Admin</li>
                 <li class="sidebar-item  ">
-                    <a href="" class='sidebar-link' target="_blank">
+                    <a href="{{ route('admin.roles.index') }}" class='sidebar-link'>
                         <i class="bi bi-hexagon-fill"></i>
-                        <span>Admin</span>
+                        <span>Roles</span>
+                    </a>
+                </li>
+                <li class="sidebar-item  ">
+                    <a href="{{ route('admin.permissions.index') }}" class='sidebar-link'>
+                        <i class="bi bi-hexagon-fill"></i>
+                        <span>Permissions</span>
                     </a>
                 </li>
                 <li class="sidebar-item  ">
