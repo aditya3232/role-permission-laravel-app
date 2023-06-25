@@ -1,12 +1,12 @@
 @extends('mazer_template.layouts.app')
-@section('title', 'Tambah Roles')
+@section('title', 'Update Permissions')
 @section('content')
 
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Tambah Roles</h3>
+                <h3>Update Permissions</h3>
             </div>
         </div>
     </div>
@@ -16,18 +16,18 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ route('admin.roles.index') }}" type="button" class="btn btn-primary"><i class="bi bi-arrow-return-left" style="font-size: 13px;"></i> Kembali</a>
+                        <a href="{{ route('admin.permissions.index') }}" type="button" class="btn btn-primary"><i class="bi bi-arrow-return-left" style="font-size: 13px;"></i> Kembali</a>
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form" action="{{ route('admin.roles.store') }}" id="" method="POST">
+                            <form class="form" action="{{ url('admin/permissions/update/'.$permission->id) }}" id="" method="POST">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="name">Nama Role</label>
-                                            <input type="text" id="name" class="form-control" placeholder="Nama role" name="name"
-                                                value="{{ old('name') ? old('name') : '' }}">
+                                            <label for="name">Nama Permission</label>
+                                            <input type="text" id="name" class="form-control" placeholder="Nama permission" name="name"
+                                                value="{{ old('name') ? old('name') : $permission->name }}">
                                             @if($errors->has('name'))
                                                 <span class="text-danger">{{ $errors->first('name') }}</span>
                                             @endif
