@@ -49,7 +49,12 @@ Route::group(['prefix' => 'admin/permissions', 'as' => 'admin.permissions.', 'mi
 // roles
 Route::group(['prefix' => 'admin/roles', 'as' => 'admin.roles.', 'middleware' => ['auth', 'role:admin']], function() {
     Route::get('/', [RoleController::class, 'index'])->name('index');
-    Route::post('/roles/datatable', [RoleController::class, 'dataTable'])->name('datatable');
+    Route::get('/create', [RoleController::class, 'create'])->name('create');
+    Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('edit');
+    Route::post('/datatable', [RoleController::class, 'dataTable'])->name('datatable');
+    Route::post('/store', [RoleController::class, 'store'])->name('store');
+    Route::post('/update/{id}', [RoleController::class, 'update'])->name('update');
+    Route::delete('/destroy/{id}', [RoleController::class, 'destroy'])->name('destroy');
 });
 
 // skck online

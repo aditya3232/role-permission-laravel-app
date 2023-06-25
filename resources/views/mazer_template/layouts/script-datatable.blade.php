@@ -95,7 +95,8 @@
                     data: "name"
                 },
                 {
-                    data: "options"
+                    data: "options",
+                    "sortable": false,
                 }
             ]
 
@@ -132,7 +133,8 @@
                     data: "name"
                 },
                 {
-                    data: "options"
+                    data: "options",
+                    "sortable": false,
                 }
             ]
 

@@ -22,7 +22,8 @@
     <section class="section">
         <div class="card">
             <div class="card-body">
-                <div class="table-responsive" style="width: 100%;">
+                <a href="{{ route('admin.roles.create') }}" type="button" class="btn btn-primary"><i class="bi bi-plus-circle" style="font-size: 13px;"></i> Tambah Data</a>
+                <div class="table-responsive mt-4 mb-4" style="width: 100%;">
                     <table class="table table-striped table-bordered" id="roles" style="border-collapse: collapse; width: 100%; table-layout: fixed;">
                         <thead>
                             <tr>
