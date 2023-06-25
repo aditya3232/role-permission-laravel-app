@@ -101,12 +101,20 @@
                         <span>Laporan Kehilangan</span>
                     </a>
                 </li>
+                <li class="sidebar-title">Admin</li>
+                <li class="sidebar-item  ">
+                    <a href="" class='sidebar-link' target="_blank">
+                        <i class="bi bi-hexagon-fill"></i>
+                        <span>Admin</span>
+                    </a>
+                </li>
                 <li class="sidebar-item  ">
                     <a href="{{ route('telescope') }}" class='sidebar-link' target="_blank">
                         <i class="bi bi-hexagon-fill"></i>
                         <span>Logs</span>
                     </a>
                 </li>
+
 
 
 
