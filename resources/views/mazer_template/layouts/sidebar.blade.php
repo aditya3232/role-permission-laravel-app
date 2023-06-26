@@ -5,7 +5,8 @@
                 <div class="logo">
                     <a href="index.html">
                         {{-- <img src="assets/images/logo/logo.png" alt="Logo" srcset=""> --}}
-                        <h4>Polres Malang</h4>
+                        <img src="/assets/images/logo/polri.png">
+                        <h4>Polresta Tidore</h4>
                     </a>
                 </div>
                 <div class="toggler">
