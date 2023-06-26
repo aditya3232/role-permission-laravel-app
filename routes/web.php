@@ -82,8 +82,6 @@ Route::group(['prefix' => 'admin/skck', 'as' => 'admin.skck.', 'middleware' => [
     Route::post('/post', [SkckOnlineController::class, 'post'])->name('post');
 });
 
-
-
 Route::group(['prefix' => 'admin/berita', 'middleware' => ['auth', 'role:admin']], function() {
     Route::get('/create', [BeritaController::class, 'index'])->name('admin.berita.create');
 });
@@ -92,11 +90,12 @@ Route::group(['prefix' => 'admin/berita', 'middleware' => ['auth', 'role:admin']
 Route::group(['prefix' => 'dilanpolres', 'as' => 'dilanpolres.'], function() {
     Route::get('/', [DilanPolresController::class, 'index'])->name('index');
     Route::get('/daftarskck', [DilanPolresController::class, 'daftarSkck'])->name('daftarskck');
-    Route::get('/laporanprovost', [DilanPolresController::class, 'laporanProvost'])->name('laporanprovost');
-    Route::get('/izinkeramaian', [DilanPolresController::class, 'izinKeramaian'])->name('izinkeramaian');
-    Route::get('/pengaduanmasyarakat', [DilanPolresController::class, 'pengaduanMasyarakat'])->name('pengaduanmasyarakat');
-    Route::get('/pengawalanbendaberharga', [DilanPolresController::class, 'pengawalanBendaBerharga'])->name('pengawalanbendaberharga');
-    Route::get('/pengawalantahanan', [DilanPolresController::class, 'pengawalanTahanan'])->name('pengawalantahanan');
+    Route::get('/formsidikjari', [DilanPolresController::class, 'formSidikJari'])->name('formsidikjari');
+    // Route::get('/laporanprovost', [DilanPolresController::class, 'laporanProvost'])->name('laporanprovost');
+    // Route::get('/izinkeramaian', [DilanPolresController::class, 'izinKeramaian'])->name('izinkeramaian');
+    // Route::get('/pengaduanmasyarakat', [DilanPolresController::class, 'pengaduanMasyarakat'])->name('pengaduanmasyarakat');
+    // Route::get('/pengawalanbendaberharga', [DilanPolresController::class, 'pengawalanBendaBerharga'])->name('pengawalanbendaberharga');
+    // Route::get('/pengawalantahanan', [DilanPolresController::class, 'pengawalanTahanan'])->name('pengawalantahanan');
 });
 
 

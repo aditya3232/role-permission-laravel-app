@@ -14,7 +14,7 @@
                             <img class="card-img-top img-fluid" src="assets/images/samples/sidik-jari.jpeg" alt="Card image cap" style="height: 20rem; width: 20rem;" />
                             <div class="card-body d-flex flex-column">
                                 <h4 class="card-title">Pendaftaran Sidik Jari</h4>
-                                <a type="button" class="btn btn-primary block mt-2" href="{{ route('dilanpolres.daftarskck') }}">Input Data</a type="button">
+                                <a type="button" class="btn btn-primary block mt-2" href="{{ route('dilanpolres.formsidikjari') }}">Input Data</a type="button">
                             </div>
                         </div>
                     </div>
