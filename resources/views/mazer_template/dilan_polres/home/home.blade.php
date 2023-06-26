@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="page-heading">
-    <h3>Layanan Online Polres Malang</h3>
+    <h3>Layanan Online Polresta Tidore</h3>
 </div>
 <div class="page-content">
     <section class="row">
@@ -11,12 +11,9 @@
                 <div class="col-md-6 col-sm-6">
                     <div class="card text-center">
                         <div class="card-content">
-                            <img class="card-img-top img-fluid" src="assets/images/samples/origami.jpg" alt="Card image cap" style="height: 20rem" />
+                            <img class="card-img-top img-fluid" src="assets/images/samples/sidik-jari.jpeg" alt="Card image cap" style="height: 20rem; width: 20rem;" />
                             <div class="card-body d-flex flex-column">
-                                <h4 class="card-title">SKCK Online</h4>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cekSkck">
-                                    Cek Data
-                                </button>
+                                <h4 class="card-title">Pendaftaran Sidik Jari</h4>
                                 <a type="button" class="btn btn-primary block mt-2" href="{{ route('dilanpolres.daftarskck') }}">Input Data</a type="button">
                             </div>
                         </div>
@@ -25,10 +22,10 @@
                 <div class="col-md-6 col-sm-6">
                     <div class="card text-center">
                         <div class="card-content">
-                            <img class="card-img-top img-fluid" src="assets/images/samples/origami.jpg" alt="Card image cap" style="height: 20rem" />
+                            <img class="card-img-top img-fluid" src="assets/images/samples/sim.jpeg" alt="Card image cap" style="height: 20rem; width: 20rem;" />
                             <div class="card-body d-flex flex-column">
-                                <h4 class="card-title">SP2HP</h4>
-                                <button class="btn btn-primary block" data-bs-toggle="modal" data-bs-target="#cekSp2hp">Cek Data</button>
+                                <h4 class="card-title">Permohonan SIM</h4>
+                                <a type="button" class="btn btn-primary block mt-2" href="">Input Data</a type="button">
                             </div>
                         </div>
                     </div>
@@ -38,82 +35,10 @@
                 <div class="col-md-6 col-sm-6">
                     <div class="card text-center">
                         <div class="card-content">
-                            <img class="card-img-top img-fluid" src="assets/images/samples/origami.jpg" alt="Card image cap" style="height: 20rem" />
-                            <div class="card-body d-flex flex-column">
-                                <h4 class="card-title">Laporan Provost</h4>
-                                <a type="button" class="btn btn-primary block" href="{{ route('dilanpolres.laporanprovost') }}">Input Data</a type="button">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    <div class="card text-center">
-                        <div class="card-content">
-                            <img class="card-img-top img-fluid" src="assets/images/samples/origami.jpg" alt="Card image cap" style="height: 20rem" />
-                            <div class="card-body d-flex flex-column">
-                                <h4 class="card-title">Izin Keramaian</h4>
-                                <a type="button" class="btn btn-primary block" href="{{ route('dilanpolres.izinkeramaian') }}">Input Data</a type="button">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    <div class="card text-center">
-                        <div class="card-content">
-                            <img class="card-img-top img-fluid" src="assets/images/samples/origami.jpg" alt="Card image cap" style="height: 20rem" />
-                            <div class="card-body d-flex flex-column">
-                                <h4 class="card-title">Laporan Pengaduan Masyarakat</h4>
-                                <a type="button" class="btn btn-primary block" href="{{ route('dilanpolres.pengaduanmasyarakat') }}">Input Data</a type="button">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    <div class="card text-center">
-                        <div class="card-content">
-                            <img class="card-img-top img-fluid" src="assets/images/samples/origami.jpg" alt="Card image cap" style="height: 20rem" />
-                            <div class="card-body d-flex flex-column">
-                                <h4 class="card-title">Pengawalan Benda Berharga</h4>
-                                <a type="button" class="btn btn-primary block" href="{{ route('dilanpolres.pengawalanbendaberharga') }}">Input Data</a type="button">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    <div class="card text-center">
-                        <div class="card-content">
-                            <img class="card-img-top img-fluid" src="assets/images/samples/origami.jpg" alt="Card image cap" style="height: 20rem" />
-                            <div class="card-body d-flex flex-column">
-                                <h4 class="card-title">Pengawalan Tahanan</h4>
-                                <a type="button" class="btn btn-primary block" href="{{ route('dilanpolres.pengawalantahanan') }}">Input Data</a type="button">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    <div class="card text-center">
-                        <div class="card-content">
-                            <img class="card-img-top img-fluid" src="assets/images/samples/origami.jpg" alt="Card image cap" style="height: 20rem" />
-                            <div class="card-body d-flex flex-column">
-                                <h4 class="card-title">Laporan Polisi</h4>
-                                <button class="btn btn-primary block">Input Data</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    <div class="card text-center">
-                        <div class="card-content">
-                            <img class="card-img-top img-fluid" src="assets/images/samples/origami.jpg" alt="Card image cap" style="height: 20rem" />
+                            <img class="card-img-top img-fluid" src="assets/images/samples/kehilangan.jpeg" alt="Card image cap" style="height: 20rem; width: 20rem;" />
                             <div class="card-body d-flex flex-column">
                                 <h4 class="card-title">Laporan Kehilangan</h4>
-                                <button class="btn btn-primary block">Input Data</button>
+                                <a type="button" class="btn btn-primary block" href="">Input Data</a type="button">
                             </div>
                         </div>
                     </div>
@@ -121,10 +46,10 @@
                 <div class="col-md-6 col-sm-6">
                     <div class="card text-center">
                         <div class="card-content">
-                            <img class="card-img-top img-fluid" src="assets/images/samples/origami.jpg" alt="Card image cap" style="height: 20rem" />
+                            <img class="card-img-top img-fluid" src="assets/images/samples/tindak-kriminal.jpeg" alt="Card image cap" style="height: 20rem; width: 20rem;" />
                             <div class="card-body d-flex flex-column">
-                                <h4 class="card-title">Surat Keterangan Bebas Narkoba</h4>
-                                <button class="btn btn-primary block">Input Data</button>
+                                <h4 class="card-title">Laporan Tindak Kriminal</h4>
+                                <a type="button" class="btn btn-primary block" href="">Input Data</a type="button">
                             </div>
                         </div>
                     </div>
