@@ -14,9 +14,5 @@ class DilanPolresController extends Controller
     public function daftarSkck() {
         return view('mazer_template.dilan_polres.daftar_skck.create');
     }
-
-    public function formSidikJari() {
-        return view('mazer_template.dilan_polres.form_sidik_jari.create');
-    }
-    
+     
 }

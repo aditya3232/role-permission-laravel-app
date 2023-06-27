@@ -63,8 +63,8 @@ class PermissionController extends Controller
 
                 $nestedData['id'] = $Permission->id;
                 $nestedData['name'] = $Permission->name;
-                $nestedData['options'] = "&emsp;<a href='{$edit}' title='EDIT' class='btn btn-info'>Edit</a>
-                                          &emsp;<a href='{$destroy}' title='DESTROY' class='btn btn-danger' data-confirm-delete='true'>Hapus</a>";
+                $nestedData['options'] = "&emsp;<a href='{$edit}' title='EDIT' class='btn btn-info btn-sm mt-2'><i class='bi bi-pencil-square'></i></a>
+                                          &emsp;<a href='{$destroy}' title='DESTROY' class='btn btn-danger btn-sm mt-2' data-confirm-delete='true'><i class='bi bi-trash' data-confirm-delete='true'></i></a>";
                 $data[] = $nestedData;
 
             }

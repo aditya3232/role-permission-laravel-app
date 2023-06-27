@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Admin - Admin Polres Malang</title>
+    <title>Polresta Tidore - @yield('title')</title>
 
     {{-- <title>Contoh Select2 di Bootstrap 5</title> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">

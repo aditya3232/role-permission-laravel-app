@@ -1,4 +1,5 @@
 @extends('mazer_template.layouts_dilanpolres.app')
+@section('title', 'Formulir Pendaftaran Sidik Jari')
 @section('content')
 
 <div class="page-heading">
@@ -19,7 +20,7 @@
                     </div>
                     <div class="card-content">
                         <div class="card-body">
-                            <form class="form" action="" id="" method="POST">
+                            <form class="form" action="{{ route('dilanpolres.formsidikjari.store') }}" id="" method="POST" onSubmit="document.getElementById('submit-create-sidik-jari').disabled=true;">
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12 col-12">
@@ -71,7 +72,7 @@
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
                                             <label for="tanggal_lahir">Tanggal lahir</label>
-                                            <input type="datetime-local" id="tanggal_lahir" class="form-control" placeholder="..." name="tanggal_lahir"
+                                            <input type="date" id="tanggal_lahir" class="form-control" placeholder="..." name="tanggal_lahir"
                                                 value="{{ old('tanggal_lahir') ? old('tanggal_lahir') : '' }}">
                                             @if($errors->has('tanggal_lahir'))
                                                 <span class="text-danger">{{ $errors->first('tanggal_lahir') }}</span>
@@ -123,22 +124,22 @@
                                             <label for="agama">Agama</label>
                                             <select class="form-control form-select" name="agama">
                                                 <option selected disabled value="">...</option>
-                                                <option value="islam" {{ old('agama') == 'islam' ?  'selected' : '' }}>
+                                                <option value="Islam" {{ old('agama') == 'Islam' ?  'selected' : '' }}>
                                                     Islam
                                                 </option>
-                                                <option value="protestan" {{ old('agama') == 'protestan' ?  'selected' : '' }}>
+                                                <option value="Protestan" {{ old('agama') == 'Protestan' ?  'selected' : '' }}>
                                                     Protestan
                                                 </option>
-                                                <option value="katolik" {{ old('agama') == 'katolik' ?  'selected' : '' }}>
+                                                <option value="Katolik" {{ old('agama') == 'Katolik' ?  'selected' : '' }}>
                                                     Katolik
                                                 </option>
-                                                <option value="hindu" {{ old('agama') == 'hindu' ?  'selected' : '' }}>
+                                                <option value="Hindu" {{ old('agama') == 'Hindu' ?  'selected' : '' }}>
                                                     Hindu
                                                 </option>
-                                                <option value="buddha" {{ old('agama') == 'buddha' ?  'selected' : '' }}>
+                                                <option value="Buddha" {{ old('agama') == 'Buddha' ?  'selected' : '' }}>
                                                     Buddha
                                                 </option>
-                                                <option value="khonghucu" {{ old('agama') == 'khonghucu' ?  'selected' : '' }}>
+                                                <option value="Khonghucu" {{ old('agama') == 'Khonghucu' ?  'selected' : '' }}>
                                                     Khonghucu
                                                 </option>
                                             </select>
@@ -182,11 +183,11 @@
                                             <label for="status_pernikahan">Status pernikahan</label>
                                             <select class="form-control form-select" name="status_pernikahan">
                                                 <option selected disabled value="">...</option>
-                                                <option value="menikah" {{ old('status_pernikahan') == 'menikah' ?  'selected' : '' }}>
+                                                <option value="Menikah" {{ old('status_pernikahan') == 'Menikah' ?  'selected' : '' }}>
                                                     Menikah
                                                 </option>
-                                                <option value="belum_menikah"
-                                                    {{ old('status_pernikahan') == 'belum_menikah' ?  'selected' : '' }}>
+                                                <option value="Belum Menikah"
+                                                    {{ old('status_pernikahan') == 'Belum Menikah' ?  'selected' : '' }}>
                                                     Belum Menikah
                                                 </option>
                                             </select>
@@ -267,7 +268,7 @@
                                     </div>
                                 </div>
                                 <div class="d-grid gap-2 mt-4">
-                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                    <button class="btn btn-primary" type="submit" id="submit-create-sidik-jari">Submit</button>
                                 </div>
                             </form>
                         </div>
