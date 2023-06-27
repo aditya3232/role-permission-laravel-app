@@ -7,6 +7,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SkckOnlineController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FormSidikJariController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,11 +68,6 @@ Route::group(['prefix' => 'admin/roles', 'as' => 'admin.roles.', 'middleware' =>
 Route::group(['prefix' => 'admin/users', 'as' => 'admin.users.', 'middleware' => ['auth', 'role:admin']], function() {
     Route::get('/', [UserController::class, 'index'])->name('index');
     Route::post('/datatable', [UserController::class, 'dataTable'])->name('datatable');
-    // Route::get('/create', [RoleController::class, 'create'])->name('create');
-    // Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('edit');
-    // Route::post('/store', [RoleController::class, 'store'])->name('store');
-    // Route::post('/update/{id}', [RoleController::class, 'update'])->name('update');
-    // Route::delete('/destroy/{id}', [RoleController::class, 'destroy'])->name('destroy');
 });
 
 // skck online
@@ -82,27 +78,29 @@ Route::group(['prefix' => 'admin/skck', 'as' => 'admin.skck.', 'middleware' => [
     Route::post('/post', [SkckOnlineController::class, 'post'])->name('post');
 });
 
-
-
+// berita
 Route::group(['prefix' => 'admin/berita', 'middleware' => ['auth', 'role:admin']], function() {
     Route::get('/create', [BeritaController::class, 'index'])->name('admin.berita.create');
 });
 
-// create data semua disini
+// dilanpolres home
 Route::group(['prefix' => 'dilanpolres', 'as' => 'dilanpolres.'], function() {
     Route::get('/', [DilanPolresController::class, 'index'])->name('index');
-    Route::get('/daftarskck', [DilanPolresController::class, 'daftarSkck'])->name('daftarskck');
-    Route::get('/laporanprovost', [DilanPolresController::class, 'laporanProvost'])->name('laporanprovost');
-    Route::get('/izinkeramaian', [DilanPolresController::class, 'izinKeramaian'])->name('izinkeramaian');
-    Route::get('/pengaduanmasyarakat', [DilanPolresController::class, 'pengaduanMasyarakat'])->name('pengaduanmasyarakat');
-    Route::get('/pengawalanbendaberharga', [DilanPolresController::class, 'pengawalanBendaBerharga'])->name('pengawalanbendaberharga');
-    Route::get('/pengawalantahanan', [DilanPolresController::class, 'pengawalanTahanan'])->name('pengawalantahanan');
+    Route::get('/formsidikjari', [DilanPolresController::class, 'formSidikJari'])->name('formsidikjari');
 });
 
+// form sidik jari in dilanpolres
+Route::group(['prefix' => 'dilanpolres/formsidikjari', 'as' => 'dilanpolres.formsidikjari.'], function() {
+    Route::get('/create', [FormSidikJariController::class, 'create'])->name('create');
+    Route::post('/store', [FormSidikJariController::class, 'store'])->name('store');
+});
 
-
-
-
+// form sidik jari in admin
+Route::group(['prefix' => 'admin/formsidikjari', 'as' => 'admin.formsidikjari.', 'middleware' => ['auth', 'role:admin']], function() {
+    Route::get('/', [FormSidikJariController::class, 'index'])->name('index');
+    Route::post('/datatable', [FormSidikJariController::class, 'dataTable'])->name('datatable');
+    Route::get('/detail/{id}', [FormSidikJariController::class, 'detail'])->name('detail');
+});
 
 
 require __DIR__.'/auth.php';

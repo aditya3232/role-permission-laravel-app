@@ -6,20 +6,6 @@
 </script>
 
 <script>
-    // $(document).ready(function () {
-    //     $('#skck').DataTable({
-    //         processing: true,
-    //         serverSide: true,
-    //         ajax: {
-    //             url: "{{ route('admin.skck.datatable') }}",
-    //             type: "POST",
-    //             data: {
-    //                 "_token": "{{ csrf_token() }}",
-    //             },
-    //         },
-    //     });
-    // });
-
     $(document).ready(function () {
         $('#skck').DataTable({
             processing: true,
@@ -60,6 +46,9 @@
                 {
                     data: "options"
                 }
+            ],
+            order: [
+                [0, 'desc']
             ]
 
         });
@@ -98,6 +87,9 @@
                     data: "options",
                     "sortable": false,
                 }
+            ],
+            order: [
+                [0, 'desc']
             ]
 
         });
@@ -136,6 +128,9 @@
                     data: "options",
                     "sortable": false,
                 }
+            ],
+            order: [
+                [0, 'desc']
             ]
 
         });
@@ -180,6 +175,62 @@
                     data: "options",
                     "sortable": false,
                 }
+            ],
+            order: [
+                [0, 'desc']
+            ]
+
+        });
+    });
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#form_sidik_jari').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "{{ route('admin.formsidikjari.datatable') }}",
+                dataType: "json",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}"
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    // Do something here
+                    console.log(Error);
+                }
+            },
+            columns: [{
+                    data: null,
+                    "sortable": false,
+                    render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
+                {
+                    data: "nama"
+                },
+                {
+                    data: "nik"
+                },
+                {
+                    data: "alamat_saat_ini"
+                },
+                {
+                    data: "no_telp"
+                },
+                {
+                    data: "email"
+                },
+                {
+                    data: "options",
+                    "sortable": false,
+                }
+            ],
+            order: [
+                [5, 'desc'] // Id column (index 5) in descending order
             ]
 
         });

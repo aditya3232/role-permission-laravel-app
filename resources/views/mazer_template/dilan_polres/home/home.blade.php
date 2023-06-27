@@ -1,8 +1,9 @@
 @extends('mazer_template.layouts_dilanpolres_home.app')
+@section('title', 'Layanan Online Polresta Tidore')
 @section('content')
 
 <div class="page-heading">
-    <h3>Layanan Online Polresta Tidore</h3>
+    <h3>Layanan Online</h3>
 </div>
 <div class="page-content">
     <section class="row">
@@ -14,7 +15,7 @@
                             <img class="card-img-top img-fluid" src="assets/images/samples/sidik-jari.jpeg" alt="Card image cap" style="height: 20rem; width: 20rem;" />
                             <div class="card-body d-flex flex-column">
                                 <h4 class="card-title">Pendaftaran Sidik Jari</h4>
-                                <a type="button" class="btn btn-primary block mt-2" href="{{ route('dilanpolres.daftarskck') }}">Input Data</a type="button">
+                                <a type="button" class="btn btn-primary block mt-2" href="{{ route('dilanpolres.formsidikjari.create') }}">Input Data</a type="button">
                             </div>
                         </div>
                     </div>

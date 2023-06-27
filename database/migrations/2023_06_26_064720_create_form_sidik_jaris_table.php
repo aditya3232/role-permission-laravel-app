@@ -11,21 +11,30 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('provost_terlapors', function (Blueprint $table) {
+        Schema::create('form_sidik_jaris', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
+            $table->string('nama_kecil_alias');
+            $table->string('jenis_kelamin');
             $table->string('tempat_lahir');
             $table->string('tanggal_lahir');
-            $table->string('jenis_kelamin');
             $table->string('nik');
+            $table->string('no_paspor');
             $table->string('pekerjaan');
             $table->string('kebangsaan');
-            $table->string('status_perkawinan');
             $table->string('agama');
-            $table->longText('alamat');
-            $table->string('no_telepon');
+            $table->longText('alamat_saat_ini');
+            $table->string('no_telp');
             $table->string('email');
-            $table->foreignId('provost_pelapor_id')->constrained('provost_pelapors')->onDelete('cascade'); //ketika data ini dihapus, maka data yang berelasi (yg punya pk) juga akan terhapus
+            $table->string('status_perkawinan');
+            $table->string('nama_ayah');
+            $table->longText('alamat_ayah');
+            $table->string('nama_ibu');
+            $table->longText('alamat_ibu');
+            $table->string('nama_istri');
+            $table->string('nama_suami');
+            $table->string('nama_anak');
+            $table->string('verified');
             $table->timestamps();
         });
     }
@@ -35,6 +44,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('provost_terlapors');
+        Schema::dropIfExists('form_sidik_jaris');
     }
 };

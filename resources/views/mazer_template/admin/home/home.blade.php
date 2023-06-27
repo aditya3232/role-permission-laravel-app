@@ -1,4 +1,5 @@
 @extends('mazer_template.layouts.app')
+@section('title', 'Dashboard')
 @section('content')
 
 <div class="page-heading">
@@ -18,7 +19,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Laporan Kehilangan</h6>
+                                    <h6 class="text-muted font-semibold">Pendaftaran Sidik Jari</h6>
                                     <h6 class="font-extrabold mb-0">112.000</h6>
                                 </div>
                             </div>
@@ -35,7 +36,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Laporan Polisi</h6>
+                                    <h6 class="text-muted font-semibold">Permohonan SIM</h6>
                                     <h6 class="font-extrabold mb-0">183.000</h6>
                                 </div>
                             </div>
@@ -52,7 +53,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Laporan Masyarakat</h6>
+                                    <h6 class="text-muted font-semibold">Laporan Kehilangan</h6>
                                     <h6 class="font-extrabold mb-0">80.000</h6>
                                 </div>
                             </div>
@@ -69,7 +70,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Laporan Provost</h6>
+                                    <h6 class="text-muted font-semibold">Laporan Tindak Kriminal</h6>
                                     <h6 class="font-extrabold mb-0">112</h6>
                                 </div>
                             </div>

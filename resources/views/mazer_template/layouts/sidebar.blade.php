@@ -19,7 +19,7 @@
                 <li class="sidebar-title">Dashboard</li>
 
                 <li class="sidebar-item active ">
-                    <a href="index.html" class='sidebar-link'>
+                    <a href="{{ route('admin.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
@@ -45,7 +45,7 @@
                 <li class="sidebar-title">Master Data</li>
 
                 <li class="sidebar-item  ">
-                    <a href="{{ route('admin.skck.index') }}" class='sidebar-link'>
+                    <a href="{{ route('admin.formsidikjari.index') }}" class='sidebar-link'>
                         <i class="bi bi-hexagon-fill"></i>
                         <span>Pendaftaran Sidik Jari</span>
                     </a>
