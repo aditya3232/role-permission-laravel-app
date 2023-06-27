@@ -118,7 +118,7 @@ class PermissionController extends Controller
     }
 
     public function update(Request $request, $id) {
-        $permission = Permission::findOrFail($id);
+        $Permission = Permission::findOrFail($id);
 
         $messages = [
         'required' => ':attribute wajib diisi.',
@@ -129,8 +129,13 @@ class PermissionController extends Controller
         ];
 
         $validator = Validator::make($request->all(),[
-            'name' => 'required|unique:permissions,name',
+            'name' => 'required',
         ],$messages);
+
+        // Check if the 'name' values have changed
+        if ($request->input('name') !== $Permission->name) {
+            $validator->addRules(['name' => 'required|unique:permissions,name']);
+        }
 
         if($validator->fails()) {
             Alert::error('Cek kembali pengisian form, terima kasih !');
