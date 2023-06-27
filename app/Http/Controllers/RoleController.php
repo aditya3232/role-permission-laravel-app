@@ -122,7 +122,7 @@ class RoleController extends Controller
     }
 
     public function update(Request $request, $id) {
-        $role = Role::findOrFail($id);
+        $Role = Role::findOrFail($id);
 
         $messages = [
         'required' => ':attribute wajib diisi.',
@@ -133,8 +133,13 @@ class RoleController extends Controller
         ];
 
         $validator = Validator::make($request->all(),[
-            'name' => 'required|unique:roles,name',
+            'name' => 'required',
         ],$messages);
+
+        // Check if the 'name' values have changed
+        if ($request->input('name') !== $Role->name) {
+            $validator->addRules(['name' => 'required|unique:roles,name']);
+        }
 
         if($validator->fails()) {
             Alert::error('Cek kembali pengisian form, terima kasih !');

@@ -100,6 +100,9 @@ Route::group(['prefix' => 'admin/formsidikjari', 'as' => 'admin.formsidikjari.',
     Route::get('/', [FormSidikJariController::class, 'index'])->name('index');
     Route::post('/datatable', [FormSidikJariController::class, 'dataTable'])->name('datatable');
     Route::get('/detail/{id}', [FormSidikJariController::class, 'detail'])->name('detail');
+    Route::get('/edit/{id}', [FormSidikJariController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}', [FormSidikJariController::class, 'update'])->name('update');
+    Route::delete('/destroy/{id}', [FormSidikJariController::class, 'destroy'])->name('destroy');
 });
 
 

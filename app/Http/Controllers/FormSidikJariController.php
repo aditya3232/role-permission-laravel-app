@@ -7,11 +7,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert as Alert;
-use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\Log;
 use PDOException;
 use Throwable;
-use Exception;
 
 class FormSidikJariController extends Controller
 {
@@ -76,8 +73,8 @@ class FormSidikJariController extends Controller
         {
             foreach ($FormSidikJaris as $FormSidikJari)
             {
-                // $edit =  route('admin.permissions.edit',$FormSidikJari->id);
-                // $destroy =  route('admin.permissions.destroy',$FormSidikJari->id);
+                $edit =  route('admin.formsidikjari.edit',$FormSidikJari->id);
+                $destroy =  route('admin.formsidikjari.destroy',$FormSidikJari->id);
                 $detail =  route('admin.formsidikjari.detail',$FormSidikJari->id);
 
                 $nestedData['id'] = $FormSidikJari->id;
@@ -86,8 +83,8 @@ class FormSidikJariController extends Controller
                 $nestedData['alamat_saat_ini'] = $FormSidikJari->alamat_saat_ini;
                 $nestedData['no_telp'] = $FormSidikJari->no_telp;
                 $nestedData['email'] = $FormSidikJari->email;
-                $nestedData['options'] = "&emsp;<a href='{}' title='EDIT' class='btn btn-info btn-sm mt-2'><i class='bi bi-pencil-square'></i></a>
-                                          &emsp;<a href='{}' title='DESTROY' class='btn btn-danger btn-sm mt-2' data-confirm-delete='true'><i class='bi bi-trash' data-confirm-delete='true'></i></a>
+                $nestedData['options'] = "&emsp;<a href='{$edit}' title='EDIT' class='btn btn-info btn-sm mt-2'><i class='bi bi-pencil-square'></i></a>
+                                          &emsp;<a href='{$destroy}' title='DESTROY' class='btn btn-danger btn-sm mt-2' data-confirm-delete='true'><i class='bi bi-trash' data-confirm-delete='true'></i></a>
                                           &emsp;<a href='{$detail}' title='DETAIL' class='btn btn-warning btn-sm mt-2'><i class='bi bi-info-square'></i></a>";
                 $data[] = $nestedData;
 
@@ -149,7 +146,6 @@ class FormSidikJariController extends Controller
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
             'nik' => 'required|unique:form_sidik_jaris,nik',
-            'no_paspor' => 'unique:form_sidik_jaris,no_paspor',
             'pekerjaan' => 'required',
             'kebangsaan' => 'required',
             'agama' => 'required',
@@ -211,4 +207,178 @@ class FormSidikJariController extends Controller
         Alert::success('Sukses', 'Formulir pendaftaran sidik jari berhasil ditambahkan.');
         return redirect()->route('dilanpolres.index');
     }
+
+    public function edit($id) {
+        try {
+            $data = FormSidikJari::findOrFail($id);
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal masuk form edit sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal masuk form edit sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
+        } catch (\Exception $e) {
+            Alert::error('Gagal masuk form edit sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
+        } catch (PDOException $e) {
+            Alert::error('Gagal masuk form edit sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
+        } catch (Throwable $e) {
+            Alert::error('Gagal masuk form edit sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
+        }
+
+        return view('mazer_template.admin.form_sidik_jari.edit', compact('data'));
+    }
+
+    public function update(Request $request, $id) {
+        try {
+            $FormSidikJari = FormSidikJari::findOrFail($id);
+            
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
+        } catch (\Exception $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
+        } catch (PDOException $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
+        } catch (Throwable $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
+        }
+
+        $messages = [
+            'required' => ':attribute wajib diisi.',
+            'min' => ':attribute harus diisi minimal :min karakter.',
+            'max' => ':attribute harus diisi maksimal :max karakter.',
+            'size' => ':attribute harus diisi tepat :size karakter.',
+            'unique' => ':attribute sudah terpakai.',
+        ];
+
+        $validator = Validator::make($request->all(),[
+            'nama' => 'required',
+            'nama_kecil_alias' => 'required',
+            'jenis_kelamin' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'nik' => 'required',
+            'pekerjaan' => 'required',
+            'kebangsaan' => 'required',
+            'agama' => 'required',
+            'alamat_saat_ini' => 'required',
+            'no_telp' => 'required',
+            'status_pernikahan' => 'required',
+            'nama_ayah' => 'required',
+            'nama_ibu' => 'required',
+        ],$messages);
+
+        // Check if the 'nik' values have changed
+        if ($request->input('nik') !== $FormSidikJari->nik) {
+            $validator->addRules(['nik' => 'required|unique:form_sidik_jaris,nik']);
+        }
+
+        if($validator->fails()) {
+            Alert::error('Cek kembali pengisian form, terima kasih !');
+            return redirect()->route('admin.formsidikjari.edit',$id)->withErrors($validator->errors())->withInput();
+        }
+
+        $upadted_at= date("Y-m-d H:i:s");
+        try {
+            FormSidikJari::where('id',$id)
+                ->update([
+                    'nama' => $request->input('nama'),
+                    'nama_kecil_alias' => $request->input('nama_kecil_alias'),
+                    'jenis_kelamin' => $request->input('jenis_kelamin'),
+                    'tempat_lahir' => $request->input('tempat_lahir'),
+                    'tanggal_lahir' => $request->input('tanggal_lahir'),
+                    'nik' => $request->input('nik'),
+                    'no_paspor' => $request->input('no_paspor'),
+                    'pekerjaan' => $request->input('pekerjaan'),
+                    'kebangsaan' => $request->input('kebangsaan'),
+                    'agama' => $request->input('agama'),
+                    'alamat_saat_ini' => $request->input('alamat_saat_ini'),
+                    'no_telp' => $request->input('no_telp'),
+                    'email' => $request->input('email'),
+                    'status_pernikahan' => $request->input('status_pernikahan'),
+                    'nama_ayah' => $request->input('nama_ayah'),
+                    'alamat_ayah' => $request->input('alamat_ayah'),
+                    'nama_ibu' => $request->input('nama_ibu'),
+                    'alamat_ibu' => $request->input('alamat_ibu'),
+                    'nama_istri' => $request->input('nama_istri'),
+                    'nama_suami' => $request->input('nama_suami'),
+                    'nama_anak' => $request->input('nama_anak'),
+                    'updated_at'=>$upadted_at,
+                ]);
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.edit',$id);
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.edit',$id);
+        } catch (\Exception $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.edit',$id);
+        } catch (PDOException $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.edit',$id);
+        } catch (Throwable $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.edit',$id);
+        }
+
+        Alert::success('Sukses', 'Update form sidik jari berhasil');
+        return redirect()->route('admin.formsidikjari.index');
+    }
+
+    public function destroy($id) {
+        try {
+            $FormSidikJari = FormSidikJari::findOrFail($id);
+            
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.edit',$id);
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.edit',$id);
+        } catch (\Exception $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.edit',$id);
+        } catch (PDOException $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.edit',$id);
+        } catch (Throwable $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.edit',$id);
+        }
+
+        try {
+            $FormSidikJari->delete();
+        
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.edit',$id);
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.edit',$id);
+        } catch (\Exception $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.edit',$id);
+        } catch (PDOException $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.edit',$id);
+        } catch (Throwable $e) {
+            Alert::error('Gagal update form sidik jari!');
+            return redirect()->route('admin.formsidikjari.edit',$id);
+        }
+
+        Alert::success('Sukses', 'Form sidik jari berhasil dihapus');
+        return redirect()->route('admin.formsidikjari.index');
+    }
+
 }
