@@ -13,19 +13,24 @@
 
     <section id="multiple-column-form">
         <div class="row match-height">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <a href="{{ route('dilanpolres.index') }}" type="button" class="btn btn-primary"><i class="bi bi-arrow-return-left" style="font-size: 13px;"></i> Kembali</a>
-                    </div>
-                    <div class="card-content">
-                        <div class="card-body">
-                            <form class="form" action="{{ route('dilanpolres.formsidikjari.store') }}" id="" method="POST" onSubmit="document.getElementById('submit-create-sidik-jari').disabled=true;">
-                                @csrf
+            <div class="mb-4">
+                <a href="{{ route('dilanpolres.index') }}" type="button" class="btn btn-primary"><i class="bi bi-arrow-return-left" style="font-size: 13px;"></i> Kembali</a>
+            </div>
+            {{-- <form class="form" action="{{ route('dilanpolres.formsidikjari.store') }}" id="" method="POST"
+            onSubmit="document.getElementById('submit-create-sidik-jari').disabled=true;"> --}}
+            <form class="form" action="{{ route('dilanpolres.formsidikjari.store') }}" id="form-create-sidik-jari" method="POST">
+                @csrf
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body">
+
                                 <div class="row">
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="nama">Nama</label>
+                                            <label for="nama" style="font-weight: bold;">Nama <span class="text-danger">*</span></label>
                                             <input type="text" id="nama" class="form-control" placeholder="..." name="nama" value="{{ old('nama') ? old('nama') : '' }}">
                                             @if($errors->has('nama'))
                                                 <span class="text-danger">{{ $errors->first('nama') }}</span>
@@ -34,7 +39,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="nama_kecil_alias">Nama kecil / alias</label>
+                                            <label for="nama_kecil_alias" style="font-weight: bold;">Nama kecil / alias <span class="text-danger">*</span></label>
                                             <input type="text" id="nama_kecil_alias" class="form-control" placeholder="..." name="nama_kecil_alias"
                                                 value="{{ old('nama_kecil_alias') ? old('nama_kecil_alias') : '' }}">
                                             @if($errors->has('nama_kecil_alias'))
@@ -44,7 +49,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="jenis_kelamin">Jenis kelamin</label>
+                                            <label for="jenis_kelamin" style="font-weight: bold;">Jenis kelamin <span class="text-danger">*</span></label>
                                             <select class="form-control form-select" name="jenis_kelamin">
                                                 <option selected disabled value="">...</option>
                                                 <option value="Laki-laki" {{ old('jenis_kelamin') == 'Laki-laki' ?  'selected' : '' }}>
@@ -61,7 +66,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="tempat_lahir">Tempat lahir</label>
+                                            <label for="tempat_lahir" style="font-weight: bold;">Tempat lahir <span class="text-danger">*</span></label>
                                             <input type="text" id="tempat_lahir" class="form-control" placeholder="..." name="tempat_lahir"
                                                 value="{{ old('tempat_lahir') ? old('tempat_lahir') : '' }}">
                                             @if($errors->has('tempat_lahir'))
@@ -71,7 +76,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="tanggal_lahir">Tanggal lahir</label>
+                                            <label for="tanggal_lahir" style="font-weight: bold;">Tanggal lahir <span class="text-danger">*</span></label>
                                             <input type="date" id="tanggal_lahir" class="form-control" placeholder="..." name="tanggal_lahir"
                                                 value="{{ old('tanggal_lahir') ? old('tanggal_lahir') : '' }}">
                                             @if($errors->has('tanggal_lahir'))
@@ -81,7 +86,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="nik">Nik</label>
+                                            <label for="nik" style="font-weight: bold;">Nik <span class="text-danger">*</span></label>
                                             <input oninput="this.value=this.value.replace(/[^0-9]/g,'');" type="number" id="nik" class="form-control" placeholder="..." name="nik"
                                                 value="{{ old('nik') ? old('nik') : '' }}">
                                             @if($errors->has('nik'))
@@ -91,7 +96,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="no_paspor">No. paspor</label>
+                                            <label for="no_paspor" style="font-weight: bold;">No. paspor</label>
                                             <input oninput="this.value=this.value.replace(/[^0-9]/g,'');" type="number" id="no_paspor" class="form-control" placeholder="..." name="no_paspor"
                                                 value="{{ old('no_paspor') ? old('no_paspor') : '' }}">
                                             @if($errors->has('no_paspor'))
@@ -101,7 +106,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="pekerjaan">Pekerjaan</label>
+                                            <label for="pekerjaan" style="font-weight: bold;">Pekerjaan <span class="text-danger">*</span></label>
                                             <input type="text" id="pekerjaan" class="form-control" placeholder="..." name="pekerjaan"
                                                 value="{{ old('pekerjaan') ? old('pekerjaan') : '' }}">
                                             @if($errors->has('pekerjaan'))
@@ -111,7 +116,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="kebangsaan">Kebangsaan</label>
+                                            <label for="kebangsaan" style="font-weight: bold;">Kebangsaan <span class="text-danger">*</span></label>
                                             <input type="text" id="kebangsaan" class="form-control" placeholder="..." name="kebangsaan"
                                                 value="{{ old('kebangsaan') ? old('kebangsaan') : '' }}">
                                             @if($errors->has('kebangsaan'))
@@ -121,7 +126,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="agama">Agama</label>
+                                            <label for="agama" style="font-weight: bold;">Agama <span class="text-danger">*</span></label>
                                             <select class="form-control form-select" name="agama">
                                                 <option selected disabled value="">...</option>
                                                 <option value="Islam" {{ old('agama') == 'Islam' ?  'selected' : '' }}>
@@ -150,7 +155,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="alamat_saat_ini">Alamat saat ini</label>
+                                            <label for="alamat_saat_ini" style="font-weight: bold;">Alamat saat ini <span class="text-danger">*</span></label>
                                             <textarea name="alamat_saat_ini" id="alamat_saat_ini" cols="24" class="form-control" placeholder="..."
                                                 rows="3">{{ old('alamat_saat_ini') ? old('alamat_saat_ini') : '' }}</textarea>
                                             @if($errors->has('alamat_saat_ini'))
@@ -160,7 +165,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="no_telp">No. telepon</label>
+                                            <label for="no_telp" style="font-weight: bold;">No. telepon <span class="text-danger">*</span></label>
                                             <input oninput="this.value=this.value.replace(/[^0-9]/g,'');" type="number" id="no_telp" class="form-control" placeholder="..." name="no_telp"
                                                 value="{{ old('no_telp') ? old('no_telp') : '' }}">
                                             @if($errors->has('no_telp'))
@@ -170,7 +175,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="email">Email</label>
+                                            <label for="email" style="font-weight: bold;">Email</label>
                                             <input type="text" id="email" class="form-control" placeholder="..." name="email"
                                                 value="{{ old('email') ? old('email') : '' }}">
                                             @if($errors->has('email'))
@@ -180,7 +185,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="status_pernikahan">Status pernikahan</label>
+                                            <label for="status_pernikahan" style="font-weight: bold;">Status pernikahan <span class="text-danger">*</span></label>
                                             <select class="form-control form-select" name="status_pernikahan">
                                                 <option selected disabled value="">...</option>
                                                 <option value="Menikah" {{ old('status_pernikahan') == 'Menikah' ?  'selected' : '' }}>
@@ -198,7 +203,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="nama_ayah">Nama ayah</label>
+                                            <label for="nama_ayah" style="font-weight: bold;">Nama ayah <span class="text-danger">*</span></label>
                                             <input type="text" id="nama_ayah" class="form-control" placeholder="..." name="nama_ayah"
                                                 value="{{ old('nama_ayah') ? old('nama_ayah') : '' }}">
                                             @if($errors->has('nama_ayah'))
@@ -208,7 +213,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="alamat_ayah">Alamat ayah</label>
+                                            <label for="alamat_ayah" style="font-weight: bold;">Alamat ayah</label>
                                             <textarea name="alamat_ayah" id="alamat_ayah" cols="24" class="form-control" placeholder="..."
                                                 rows="3">{{ old('alamat_ayah') ? old('alamat_ayah') : '' }}</textarea>
                                             @if($errors->has('alamat_ayah'))
@@ -218,7 +223,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="nama_ibu">Nama ibu</label>
+                                            <label for="nama_ibu" style="font-weight: bold;">Nama ibu <span class="text-danger">*</span></label>
                                             <input type="text" id="nama_ibu" class="form-control" placeholder="..." name="nama_ibu"
                                                 value="{{ old('nama_ibu') ? old('nama_ibu') : '' }}">
                                             @if($errors->has('nama_ibu'))
@@ -228,7 +233,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="alamat_ibu">Alamat ibu</label>
+                                            <label for="alamat_ibu" style="font-weight: bold;">Alamat ibu</label>
                                             <textarea name="alamat_ibu" id="alamat_ibu" cols="24" class="form-control" placeholder="..."
                                                 rows="3">{{ old('alamat_ibu') ? old('alamat_ibu') : '' }}</textarea>
                                             @if($errors->has('alamat_ibu'))
@@ -238,7 +243,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="nama_istri">Nama istri</label>
+                                            <label for="nama_istri" style="font-weight: bold;">Nama istri</label>
                                             <input type="text" id="nama_istri" class="form-control" placeholder="..." name="nama_istri"
                                                 value="{{ old('nama_istri') ? old('nama_istri') : '' }}">
                                             @if($errors->has('nama_istri'))
@@ -248,7 +253,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="nama_suami">Nama suami</label>
+                                            <label for="nama_suami" style="font-weight: bold;">Nama suami</label>
                                             <input type="text" id="nama_suami" class="form-control" placeholder="..." name="nama_suami"
                                                 value="{{ old('nama_suami') ? old('nama_suami') : '' }}">
                                             @if($errors->has('nama_suami'))
@@ -258,7 +263,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="nama_anak">Nama anak</label>
+                                            <label for="nama_anak" style="font-weight: bold;">Nama anak</label>
                                             <input type="text" id="nama_anak" class="form-control" placeholder="..." name="nama_anak"
                                                 value="{{ old('nama_anak') ? old('nama_anak') : '' }}">
                                             @if($errors->has('nama_anak'))
@@ -267,16 +272,43 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-grid gap-2 mt-4">
-                                    <button class="btn btn-primary" type="submit" id="submit-create-sidik-jari">Submit</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </form>
+            <div class="d-grid gap-2 mt-4">
+                <button class="btn btn-primary btn-lg" type="submit" id="submit-create-sidik-jari" onClick="changeToLoadingFormSidikJari()">Submit</button>
             </div>
         </div>
     </section>
 </div>
+
+<script>
+    function changeToLoadingFormSidikJari() {
+        var btn = document.getElementById('submit-create-sidik-jari');
+        btn.innerHTML = '<span class="spinner-border" role="status" aria-hidden="true"></span> Loading...';
+        btn.disabled = true;
+
+        // Simulating a delay of 2 seconds for demonstration purposes
+        setTimeout(function () {
+            // Enable the button and change the text back to "Login" after the delay
+            btn.disabled = false;
+            btn.innerHTML = 'Submit';
+
+            // Submit the form
+            submitFormSidikJari();
+        }, 2000);
+    }
+
+    function submitFormSidikJari() {
+        // Get the form element
+        var form = document.getElementById('form-create-sidik-jari');
+
+        // Submit the form
+        form.submit();
+    }
+
+</script>
 
 @endsection
