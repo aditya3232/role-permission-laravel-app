@@ -190,7 +190,6 @@ class FormSimController extends Controller
             'cacat_fisik' => $request->input('cacat_fisik'),
             'jenis_permohonan' => $request->input('jenis_permohonan'),
             'gol_sim' => $request->input('gol_sim'),
-            'sim_umum' => $request->input('sim_umum'),
             'polda_kedatangan' => $request->input('polda_kedatangan'),
             'lokasi_kedatangan' => $request->input('lokasi_kedatangan'),
             'hasil_ujian_teori' => $request->input('hasil_ujian_teori'),
@@ -199,19 +198,24 @@ class FormSimController extends Controller
             'praktik_dua' => $request->input('praktik_dua'),
         ]);
     } catch (\Illuminate\Database\QueryException $e) {
-        Alert::error('Gagal menyimpan!');
+        // Alert::error('Gagal menyimpan!');
+        Alert::error($e->getMessage());
         return redirect()->route('dilanpolres.formsim.create');
     } catch (ModelNotFoundException $e) {
-        Alert::error('Gagal menyimpan!');
+        // Alert::error('Gagal menyimpan!');
+        Alert::error($e->getMessage());
         return redirect()->route('dilanpolres.formsim.create');
     } catch (\Exception $e) {
-        Alert::error('Gagal menyimpan!');
+        // Alert::error('Gagal menyimpan!');
+        Alert::error($e->getMessage());
         return redirect()->route('dilanpolres.formsim.create');
     } catch (PDOException $e) {
-        Alert::error('Gagal menyimpan!');
+        // Alert::error('Gagal menyimpan!');
+        Alert::error($e->getMessage());
         return redirect()->route('dilanpolres.formsim.create');
     } catch (Throwable $e) {
-        Alert::error('Gagal menyimpan!');
+        // Alert::error('Gagal menyimpan!');
+        Alert::error($e->getMessage());
         return redirect()->route('dilanpolres.formsim.create');
     }
 
@@ -328,8 +332,7 @@ class FormSimController extends Controller
                     'berkacamata' => $request->input('berkacamata'),
                     'cacat_fisik' => $request->input('cacat_fisik'),
                     'jenis_permohonan' => $request->input('jenis_permohonan'),
-                    'gol_sim' => $request->input('gol_sim'),
-                    'sim_umum' => $request->input('sim_umum'),
+                    'gol_sim' => $request->input('gol_sim'),    
                     'polda_kedatangan' => $request->input('polda_kedatangan'),
                     'lokasi_kedatangan' => $request->input('lokasi_kedatangan'),
                     'hasil_ujian_teori' => $request->input('hasil_ujian_teori'),
