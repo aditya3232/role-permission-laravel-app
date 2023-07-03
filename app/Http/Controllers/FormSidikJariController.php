@@ -288,7 +288,6 @@ class FormSidikJariController extends Controller
             return redirect()->route('admin.formsidikjari.edit',$id)->withErrors($validator->errors())->withInput();
         }
 
-        $upadted_at= date("Y-m-d H:i:s");
         try {
             FormSidikJari::where('id',$id)
                 ->update([
@@ -313,7 +312,6 @@ class FormSidikJariController extends Controller
                     'nama_istri' => $request->input('nama_istri'),
                     'nama_suami' => $request->input('nama_suami'),
                     'nama_anak' => $request->input('nama_anak'),
-                    'updated_at'=>$upadted_at,
                 ]);
         } catch (\Illuminate\Database\QueryException $e) {
             Alert::error('Gagal update form sidik jari!');

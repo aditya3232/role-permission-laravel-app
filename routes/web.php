@@ -8,6 +8,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SkckOnlineController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FormSidikJariController;
+use App\Http\Controllers\FormSimController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -103,6 +104,22 @@ Route::group(['prefix' => 'admin/formsidikjari', 'as' => 'admin.formsidikjari.',
     Route::get('/edit/{id}', [FormSidikJariController::class, 'edit'])->name('edit');
     Route::post('/update/{id}', [FormSidikJariController::class, 'update'])->name('update');
     Route::delete('/destroy/{id}', [FormSidikJariController::class, 'destroy'])->name('destroy');
+});
+
+// form permohonan sim in dilanpolres
+Route::group(['prefix' => 'dilanpolres/formsim', 'as' => 'dilanpolres.formsim.'], function() {
+    Route::get('/create', [FormSimController::class, 'create'])->name('create');
+    Route::post('/store', [FormSimController::class, 'store'])->name('store');
+});
+
+// form permohonan sim in admin
+Route::group(['prefix' => 'admin/formsim', 'as' => 'admin.formsim.', 'middleware' => ['auth', 'role:admin']], function() {
+    Route::get('/', [FormSimController::class, 'index'])->name('index');
+    Route::post('/datatable', [FormSimController::class, 'dataTable'])->name('datatable');
+    Route::get('/detail/{id}', [FormSimController::class, 'detail'])->name('detail');
+    Route::get('/edit/{id}', [FormSimController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}', [FormSimController::class, 'update'])->name('update');
+    Route::delete('/destroy/{id}', [FormSimController::class, 'destroy'])->name('destroy');
 });
 
 
