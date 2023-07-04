@@ -5,8 +5,8 @@
                 <div class="logo">
                     <a href="index.html">
                         {{-- <img src="assets/images/logo/logo.png" alt="Logo" srcset=""> --}}
-                        <img src="/assets/images/logo/polri.png">
-                        <h4>Polresta Tidore</h4>
+                        <img src="/assets/images/logo/polresta-tidore.png" width="190">
+                        {{-- <h4>Polresta Tidore</h4> --}}
                     </a>
                 </div>
                 <div class="toggler">
@@ -51,7 +51,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item  ">
-                    <a href="#" class='sidebar-link'>
+                    <a href="{{ route('admin.formsim.index') }}" class='sidebar-link'>
                         <i class="bi bi-hexagon-fill"></i>
                         <span>Permohonan SIM</span>
                     </a>

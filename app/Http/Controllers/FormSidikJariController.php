@@ -339,40 +339,40 @@ class FormSidikJariController extends Controller
             $FormSidikJari = FormSidikJari::findOrFail($id);
             
         } catch (\Illuminate\Database\QueryException $e) {
-            Alert::error('Gagal update form sidik jari!');
-            return redirect()->route('admin.formsidikjari.edit',$id);
+            Alert::error('Gagal hapus form sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
         } catch (ModelNotFoundException $e) {
-            Alert::error('Gagal update form sidik jari!');
-            return redirect()->route('admin.formsidikjari.edit',$id);
+            Alert::error('Gagal hapus form sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
         } catch (\Exception $e) {
-            Alert::error('Gagal update form sidik jari!');
-            return redirect()->route('admin.formsidikjari.edit',$id);
+            Alert::error('Gagal hapus form sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
         } catch (PDOException $e) {
-            Alert::error('Gagal update form sidik jari!');
-            return redirect()->route('admin.formsidikjari.edit',$id);
+            Alert::error('Gagal hapus form sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
         } catch (Throwable $e) {
-            Alert::error('Gagal update form sidik jari!');
-            return redirect()->route('admin.formsidikjari.edit',$id);
+            Alert::error('Gagal hapus form sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
         }
 
         try {
             $FormSidikJari->delete();
         
         } catch (\Illuminate\Database\QueryException $e) {
-            Alert::error('Gagal update form sidik jari!');
-            return redirect()->route('admin.formsidikjari.edit',$id);
+            Alert::error('Gagal hapus form sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
         } catch (ModelNotFoundException $e) {
-            Alert::error('Gagal update form sidik jari!');
-            return redirect()->route('admin.formsidikjari.edit',$id);
+            Alert::error('Gagal hapus form sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
         } catch (\Exception $e) {
-            Alert::error('Gagal update form sidik jari!');
-            return redirect()->route('admin.formsidikjari.edit',$id);
+            Alert::error('Gagal hapus form sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
         } catch (PDOException $e) {
-            Alert::error('Gagal update form sidik jari!');
-            return redirect()->route('admin.formsidikjari.edit',$id);
+            Alert::error('Gagal hapus form sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
         } catch (Throwable $e) {
-            Alert::error('Gagal update form sidik jari!');
-            return redirect()->route('admin.formsidikjari.edit',$id);
+            Alert::error('Gagal hapus form sidik jari!');
+            return redirect()->route('admin.formsidikjari.index');
         }
 
         Alert::success('Sukses', 'Form sidik jari berhasil dihapus');

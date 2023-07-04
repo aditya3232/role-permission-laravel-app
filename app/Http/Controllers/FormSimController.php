@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FormSim;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -359,6 +360,82 @@ class FormSimController extends Controller
 
         Alert::success('Sukses', 'Update form permohonan sim berhasil');
         return redirect()->route('admin.formsim.index');
+    }
+
+    public function destroy($id) {
+        try {
+            $FormSim = FormSim::findOrFail($id);
+            
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal hapus form permohonan sim!');
+            return redirect()->route('admin.formsim.index');
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal hapus form permohonan sim!');
+            return redirect()->route('admin.formsim.index');
+        } catch (\Exception $e) {
+            Alert::error('Gagal hapus form permohonan sim!');
+            return redirect()->route('admin.formsim.index');
+        } catch (PDOException $e) {
+            Alert::error('Gagal hapus form permohonan sim!');
+            return redirect()->route('admin.formsim.index');
+        } catch (Throwable $e) {
+            Alert::error('Gagal hapus form permohonan sim!');
+            return redirect()->route('admin.formsim.index');
+        }
+
+        try {
+            $FormSim->delete();
+        
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal hapus form permohonan sim!');
+            return redirect()->route('admin.formsim.index');
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal hapus form permohonan sim!');
+            return redirect()->route('admin.formsim.index');
+        } catch (\Exception $e) {
+            Alert::error('Gagal hapus form permohonan sim!');
+            return redirect()->route('admin.formsim.index');
+        } catch (PDOException $e) {
+            Alert::error('Gagal hapus form permohonan sim!');
+            return redirect()->route('admin.formsim.index');
+        } catch (Throwable $e) {
+            Alert::error('Gagal hapus form permohonan sim!');
+            return redirect()->route('admin.formsim.index');
+        }
+
+        Alert::success('Sukses', 'Form permohonan sim berhasil dihapus');
+        return redirect()->route('admin.formsim.index');
+    }
+
+    // public function pdf() {
+    //   $pegawai = FormSim::all();
+ 
+    //     $pdf = FacadePdf::loadview('mazer_template.admin.form_sim.pdf',['pegawai'=>$pegawai]);
+    //     return $pdf->download('laporan-pegawai-pdf.pdf');
+    // }
+
+    public function pdf($id) {
+        try {
+            $data = FormSim::findOrFail($id);
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal masuk form edit permohonan sim!');
+            return redirect()->route('admin.formsim.index');
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal masuk form edit permohonan sim!');
+            return redirect()->route('admin.formsim.index');
+        } catch (\Exception $e) {
+            Alert::error('Gagal masuk form edit permohonan sim!');
+            return redirect()->route('admin.formsim.index');
+        } catch (PDOException $e) {
+            Alert::error('Gagal masuk form edit permohonan sim!');
+            return redirect()->route('admin.formsim.index');
+        } catch (Throwable $e) {
+            Alert::error('Gagal masuk form edit permohonan sim!');
+            return redirect()->route('admin.formsim.index');
+        }
+ 
+        return view('mazer_template.admin.form_sim.pdf', compact('data'));
     }
 
 

@@ -1,5 +1,5 @@
-<footer class="bg-light py-3">
-    <div class="footer clearfix mb-0 text-muted">
+<footer class="bg-light py-3 footer">
+    <div class="clearfix mb-0 text-muted mx-5">
         <div class="float-start">
             <p>@php $currentYear = date('Y '); echo $currentYear; @endphp&copy; Polresta Tidore</p>
         </div>
