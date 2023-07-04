@@ -22,6 +22,46 @@
     <link rel="stylesheet" href="/assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="/assets/css/app.css">
     <link rel="shortcut icon" href="/assets/images/favicon.svg" type="image/x-icon">
+
+    <style>
+        body {
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            padding-bottom: 60px;
+            /* Adjust this value to match the height of your footer */
+        }
+
+        .content {
+            padding-bottom: 60px;
+            /* Adjust this value to match the height of your footer */
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            /* Adjust this value to match the width of your sidebar */
+            height: 100vh;
+            background-color: #f1f1f1;
+            z-index: 100;
+            /* Ensure the sidebar appears above other elements */
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 55px;
+            /* Adjust this value to set the height of your footer */
+            z-index: 10;
+            /* Ensure the footer appears above the sidebar */
+        }
+
+    </style>
+
 </head>
 
 <body>
@@ -69,6 +109,38 @@
     {{-- <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> --}}
 
     <script src="/assets/js/main.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Function to update the time every second
+            function updateTime() {
+                var now = new Date();
+
+                // Format the date and time using JavaScript
+                var options = {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    second: 'numeric',
+                    hour12: true
+                };
+                var formattedTime = now.toLocaleString('en-US', options);
+
+                // Update the time element
+                $('#current-time').text(formattedTime);
+            }
+
+            // Call updateTime immediately to display the initial time
+            updateTime();
+
+            // Call updateTime every second (1000 milliseconds)
+            setInterval(updateTime, 1000);
+        });
+
+    </script>
 </body>
 
 </html>

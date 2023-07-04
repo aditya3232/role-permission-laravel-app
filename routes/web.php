@@ -120,6 +120,7 @@ Route::group(['prefix' => 'admin/formsim', 'as' => 'admin.formsim.', 'middleware
     Route::get('/edit/{id}', [FormSimController::class, 'edit'])->name('edit');
     Route::post('/update/{id}', [FormSimController::class, 'update'])->name('update');
     Route::delete('/destroy/{id}', [FormSimController::class, 'destroy'])->name('destroy');
+    Route::get('/pdf/{id}', [FormSimController::class, 'pdf'])->name('pdf');
 });
 
 
