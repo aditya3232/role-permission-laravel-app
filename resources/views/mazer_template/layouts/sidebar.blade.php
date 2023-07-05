@@ -63,7 +63,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item  ">
-                    <a href="ui-file-uploader.html" class='sidebar-link'>
+                    <a href="{{ route('admin.formlaporantindakkriminal.index') }}" class='sidebar-link'>
                         <i class="bi bi-hexagon-fill"></i>
                         <span>Laporan Tindak Kriminal</span>
                     </a>

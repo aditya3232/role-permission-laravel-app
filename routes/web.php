@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\FormSidikJariController;
 use App\Http\Controllers\FormSimController;
 use App\Http\Controllers\FormLaporanKehilanganController;
+use App\Http\Controllers\FormLaporanTindakKriminalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -140,6 +141,23 @@ Route::group(['prefix' => 'admin/formlaporankehilangan', 'as' => 'admin.formlapo
     Route::post('/update/{id}', [FormLaporanKehilanganController::class, 'update'])->name('update');
     Route::delete('/destroy/{id}', [FormLaporanKehilanganController::class, 'destroy'])->name('destroy');
     Route::get('/pdf/{id}', [FormLaporanKehilanganController::class, 'pdf'])->name('pdf');
+});
+
+// form permohonan laporan tidank kriminal in dilanpolres
+Route::group(['prefix' => 'dilanpolres/formlaporantindakkriminal', 'as' => 'dilanpolres.formlaporantindakkriminal.'], function() {
+    Route::get('/create', [FormLaporanTindakKriminalController::class, 'create'])->name('create');
+    Route::post('/store', [FormLaporanTindakKriminalController::class, 'store'])->name('store');
+});
+
+// form permohonan laporan tindak kriminal in admin
+Route::group(['prefix' => 'admin/formlaporantindakkriminal', 'as' => 'admin.formlaporantindakkriminal.', 'middleware' => ['auth', 'role:admin']], function() {
+    Route::get('/', [FormLaporanTindakKriminalController::class, 'index'])->name('index');
+    Route::post('/datatable', [FormLaporanTindakKriminalController::class, 'dataTable'])->name('datatable');
+    Route::get('/detail/{id}', [FormLaporanTindakKriminalController::class, 'detail'])->name('detail');
+    Route::get('/edit/{id}', [FormLaporanTindakKriminalController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}', [FormLaporanTindakKriminalController::class, 'update'])->name('update');
+    Route::delete('/destroy/{id}', [FormLaporanTindakKriminalController::class, 'destroy'])->name('destroy');
+    Route::get('/pdf/{id}', [FormLaporanTindakKriminalController::class, 'pdf'])->name('pdf');
 });
 
 
