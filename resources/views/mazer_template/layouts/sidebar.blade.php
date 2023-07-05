@@ -57,7 +57,7 @@
                     </a>
                 </li>
                 <li class="sidebar-item  ">
-                    <a href="ui-file-uploader.html" class='sidebar-link'>
+                    <a href="{{ route('admin.formlaporankehilangan.index') }}" class='sidebar-link'>
                         <i class="bi bi-hexagon-fill"></i>
                         <span>Laporan Kehilangan</span>
                     </a>

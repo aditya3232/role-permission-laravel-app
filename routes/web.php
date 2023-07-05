@@ -9,6 +9,7 @@ use App\Http\Controllers\SkckOnlineController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FormSidikJariController;
 use App\Http\Controllers\FormSimController;
+use App\Http\Controllers\FormLaporanKehilanganController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -122,6 +123,23 @@ Route::group(['prefix' => 'admin/formsim', 'as' => 'admin.formsim.', 'middleware
     Route::post('/update/{id}', [FormSimController::class, 'update'])->name('update');
     Route::delete('/destroy/{id}', [FormSimController::class, 'destroy'])->name('destroy');
     Route::get('/pdf/{id}', [FormSimController::class, 'pdf'])->name('pdf');
+});
+
+// form permohonan laporan kehilangan in dilanpolres
+Route::group(['prefix' => 'dilanpolres/formlaporankehilangan', 'as' => 'dilanpolres.formlaporankehilangan.'], function() {
+    Route::get('/create', [FormLaporanKehilanganController::class, 'create'])->name('create');
+    Route::post('/store', [FormLaporanKehilanganController::class, 'store'])->name('store');
+});
+
+// form permohonan laporan kehilangan in admin
+Route::group(['prefix' => 'admin/formlaporankehilangan', 'as' => 'admin.formlaporankehilangan.', 'middleware' => ['auth', 'role:admin']], function() {
+    Route::get('/', [FormLaporanKehilanganController::class, 'index'])->name('index');
+    Route::post('/datatable', [FormLaporanKehilanganController::class, 'dataTable'])->name('datatable');
+    Route::get('/detail/{id}', [FormLaporanKehilanganController::class, 'detail'])->name('detail');
+    Route::get('/edit/{id}', [FormLaporanKehilanganController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}', [FormLaporanKehilanganController::class, 'update'])->name('update');
+    Route::delete('/destroy/{id}', [FormLaporanKehilanganController::class, 'destroy'])->name('destroy');
+    Route::get('/pdf/{id}', [FormLaporanKehilanganController::class, 'pdf'])->name('pdf');
 });
 
 
