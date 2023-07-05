@@ -104,6 +104,7 @@ Route::group(['prefix' => 'admin/formsidikjari', 'as' => 'admin.formsidikjari.',
     Route::get('/edit/{id}', [FormSidikJariController::class, 'edit'])->name('edit');
     Route::post('/update/{id}', [FormSidikJariController::class, 'update'])->name('update');
     Route::delete('/destroy/{id}', [FormSidikJariController::class, 'destroy'])->name('destroy');
+    Route::get('/pdf/{id}', [FormSidikJariController::class, 'pdf'])->name('pdf');
 });
 
 // form permohonan sim in dilanpolres
