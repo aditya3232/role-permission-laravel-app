@@ -22,7 +22,7 @@
     <section class="section">
         <div class="card">
             <div class="card-body">
-                <a href="{{}}" type="button" class="btn btn-primary"><i class="bi bi-plus-circle" style="font-size: 13px;"></i> Tambah Data</a>
+                <a href="{{ route('admin.users.create') }}" type="button" class="btn btn-primary"><i class="bi bi-plus-circle" style="font-size: 13px;"></i> Tambah Data</a>
                 <div class="table-responsive mt-4 mb-4" style="width: 100%;">
                     <table class="table table-striped table-bordered" id="users" style="border-collapse: collapse; width: 100%; table-layout: fixed;">
                         <thead>

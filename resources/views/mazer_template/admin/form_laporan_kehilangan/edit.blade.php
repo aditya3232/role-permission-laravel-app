@@ -1,4 +1,4 @@
-@extends('mazer_template.layouts_dilanpolres.app')
+@extends('mazer_template.layouts.app')
 @section('title', 'Update Formulir Laporan Kehilangan')
 @section('content')
 

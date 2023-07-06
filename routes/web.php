@@ -65,12 +65,16 @@ Route::group(['prefix' => 'admin/roles', 'as' => 'admin.roles.', 'middleware' =>
     Route::post('/store', [RoleController::class, 'store'])->name('store');
     Route::post('/update/{id}', [RoleController::class, 'update'])->name('update');
     Route::delete('/destroy/{id}', [RoleController::class, 'destroy'])->name('destroy');
+    Route::post('/select2permissions/{id}', [RoleController::class, 'select2Permissions'])->name('select2permissions');
+    Route::post('assignpermissions/{id}', [RoleController::class, 'assignPermissions'])->name('assignpermissions');
 });
 
 // users
 Route::group(['prefix' => 'admin/users', 'as' => 'admin.users.', 'middleware' => ['auth', 'role:admin']], function() {
     Route::get('/', [UserController::class, 'index'])->name('index');
     Route::post('/datatable', [UserController::class, 'dataTable'])->name('datatable');
+    Route::get('/create', [UserController::class, 'create'])->name('create');
+    Route::post('/store', [UserController::class, 'store'])->name('store');
 });
 
 // skck online

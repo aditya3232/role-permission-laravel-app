@@ -1,4 +1,4 @@
-@extends('mazer_template.layouts_dilanpolres.app')
+@extends('mazer_template.layouts.app')
 @section('title', 'Update Formulir Pendaftaran Sidik Jari')
 @section('content')
 
@@ -48,8 +48,8 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="jenis_kelamin" style="font-weight: bold">Jenis Kelamin <span class="text-danger">*</span></label>>
-                                            <select class="form-control form-select" name="jenis_kelamin">
+                                            <label for="jenis_kelamin" style="font-weight: bold">Jenis Kelamin <span class="text-danger">*</span></label>
+                                            <select class="form-control select2" name="jenis_kelamin">
                                                 <option value="Laki-laki"
                                                     {{ old('jenis_kelamin') == 'Laki-laki' || $data->jenis_kelamin == 'Laki-laki' ?  'selected' : '' }}>
                                                     Laki-laki
