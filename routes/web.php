@@ -9,6 +9,8 @@ use App\Http\Controllers\SkckOnlineController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\FormSidikJariController;
 use App\Http\Controllers\FormSimController;
+use App\Http\Controllers\FormLaporanKehilanganController;
+use App\Http\Controllers\FormLaporanTindakKriminalController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -63,12 +65,16 @@ Route::group(['prefix' => 'admin/roles', 'as' => 'admin.roles.', 'middleware' =>
     Route::post('/store', [RoleController::class, 'store'])->name('store');
     Route::post('/update/{id}', [RoleController::class, 'update'])->name('update');
     Route::delete('/destroy/{id}', [RoleController::class, 'destroy'])->name('destroy');
+    Route::post('/select2permissions/{id}', [RoleController::class, 'select2Permissions'])->name('select2permissions');
+    Route::post('assignpermissions/{id}', [RoleController::class, 'assignPermissions'])->name('assignpermissions');
 });
 
 // users
 Route::group(['prefix' => 'admin/users', 'as' => 'admin.users.', 'middleware' => ['auth', 'role:admin']], function() {
     Route::get('/', [UserController::class, 'index'])->name('index');
     Route::post('/datatable', [UserController::class, 'dataTable'])->name('datatable');
+    Route::get('/create', [UserController::class, 'create'])->name('create');
+    Route::post('/store', [UserController::class, 'store'])->name('store');
 });
 
 // skck online
@@ -104,6 +110,7 @@ Route::group(['prefix' => 'admin/formsidikjari', 'as' => 'admin.formsidikjari.',
     Route::get('/edit/{id}', [FormSidikJariController::class, 'edit'])->name('edit');
     Route::post('/update/{id}', [FormSidikJariController::class, 'update'])->name('update');
     Route::delete('/destroy/{id}', [FormSidikJariController::class, 'destroy'])->name('destroy');
+    Route::get('/pdf/{id}', [FormSidikJariController::class, 'pdf'])->name('pdf');
 });
 
 // form permohonan sim in dilanpolres
@@ -121,6 +128,40 @@ Route::group(['prefix' => 'admin/formsim', 'as' => 'admin.formsim.', 'middleware
     Route::post('/update/{id}', [FormSimController::class, 'update'])->name('update');
     Route::delete('/destroy/{id}', [FormSimController::class, 'destroy'])->name('destroy');
     Route::get('/pdf/{id}', [FormSimController::class, 'pdf'])->name('pdf');
+});
+
+// form permohonan laporan kehilangan in dilanpolres
+Route::group(['prefix' => 'dilanpolres/formlaporankehilangan', 'as' => 'dilanpolres.formlaporankehilangan.'], function() {
+    Route::get('/create', [FormLaporanKehilanganController::class, 'create'])->name('create');
+    Route::post('/store', [FormLaporanKehilanganController::class, 'store'])->name('store');
+});
+
+// form permohonan laporan kehilangan in admin
+Route::group(['prefix' => 'admin/formlaporankehilangan', 'as' => 'admin.formlaporankehilangan.', 'middleware' => ['auth', 'role:admin']], function() {
+    Route::get('/', [FormLaporanKehilanganController::class, 'index'])->name('index');
+    Route::post('/datatable', [FormLaporanKehilanganController::class, 'dataTable'])->name('datatable');
+    Route::get('/detail/{id}', [FormLaporanKehilanganController::class, 'detail'])->name('detail');
+    Route::get('/edit/{id}', [FormLaporanKehilanganController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}', [FormLaporanKehilanganController::class, 'update'])->name('update');
+    Route::delete('/destroy/{id}', [FormLaporanKehilanganController::class, 'destroy'])->name('destroy');
+    Route::get('/pdf/{id}', [FormLaporanKehilanganController::class, 'pdf'])->name('pdf');
+});
+
+// form permohonan laporan tidank kriminal in dilanpolres
+Route::group(['prefix' => 'dilanpolres/formlaporantindakkriminal', 'as' => 'dilanpolres.formlaporantindakkriminal.'], function() {
+    Route::get('/create', [FormLaporanTindakKriminalController::class, 'create'])->name('create');
+    Route::post('/store', [FormLaporanTindakKriminalController::class, 'store'])->name('store');
+});
+
+// form permohonan laporan tindak kriminal in admin
+Route::group(['prefix' => 'admin/formlaporantindakkriminal', 'as' => 'admin.formlaporantindakkriminal.', 'middleware' => ['auth', 'role:admin']], function() {
+    Route::get('/', [FormLaporanTindakKriminalController::class, 'index'])->name('index');
+    Route::post('/datatable', [FormLaporanTindakKriminalController::class, 'dataTable'])->name('datatable');
+    Route::get('/detail/{id}', [FormLaporanTindakKriminalController::class, 'detail'])->name('detail');
+    Route::get('/edit/{id}', [FormLaporanTindakKriminalController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}', [FormLaporanTindakKriminalController::class, 'update'])->name('update');
+    Route::delete('/destroy/{id}', [FormLaporanTindakKriminalController::class, 'destroy'])->name('destroy');
+    Route::get('/pdf/{id}', [FormLaporanTindakKriminalController::class, 'pdf'])->name('pdf');
 });
 
 

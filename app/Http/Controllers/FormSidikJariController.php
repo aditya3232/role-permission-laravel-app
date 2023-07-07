@@ -379,4 +379,28 @@ class FormSidikJariController extends Controller
         return redirect()->route('admin.formsidikjari.index');
     }
 
+    public function pdf($id) {
+        try {
+            $data = FormSidikJari::findOrFail($id);
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal masuk form edit permohonan sim!');
+            return redirect()->route('admin.formsidikjari.index');
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal masuk form edit permohonan sim!');
+            return redirect()->route('admin.formsidikjari.index');
+        } catch (\Exception $e) {
+            Alert::error('Gagal masuk form edit permohonan sim!');
+            return redirect()->route('admin.formsidikjari.index');
+        } catch (PDOException $e) {
+            Alert::error('Gagal masuk form edit permohonan sim!');
+            return redirect()->route('admin.formsidikjari.index');
+        } catch (Throwable $e) {
+            Alert::error('Gagal masuk form edit permohonan sim!');
+            return redirect()->route('admin.formsidikjari.index');
+        }
+
+        return view('mazer_template.admin.form_sidik_jari.pdf', compact('data'));
+    }
+
 }

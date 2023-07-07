@@ -7,33 +7,57 @@
 </head>
 
 <body>
+
     <style type="text/css">
         table tr td,
         table tr th {
             font-size: 9pt;
         }
 
-        @page{
-        /* Add border to all pages */
-        border: 1px solid black;
-        margin: 20px;
-        /* Adjust margin as needed */
+        body {
+            background-image: url('../../../assets/images/logo/polantas.png');
+            background-size: 60% auto;
+            /* Set the background image size to 50% of its original width, while maintaining aspect ratio */
+            background-position: center;
+            background-repeat: no-repeat;
+            filter: grayscale(100%);
+            font-weight: bold;
+        }
+
+        page[size="F4"] {
+            background: white;
+            width: 21cm;
+            height: 29.7cm;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 0.5cm;
+            box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+        }
+
+        @mediaprint{
+
+        /*  */
+        body,
+        page[size="F4"] {
+            margin: 0;
+            /* box-shadow: 0; */
+        }
         }
 
         .small-text {
-            font-size: 7px;
+            font-size: 8pt;
         }
 
         .small-minus1-text {
-            font-size: 6px;
+            font-size: 6pt;
         }
 
         .medium-text {
-            font-size: 10px;
+            font-size: 10pt;
         }
 
         .large-text {
-            font-size: 15px;
+            font-size: 12pt;
         }
 
         .bold {
@@ -91,7 +115,7 @@
                     <tbody>
                         <tr>
                             <th scope="row">
-                                <div class="text-center text-bold mb-2">
+                                <div class="text-center text-bold">
                                     <h1 class="small-minus1-text bold">BUKTI REGISTRASI PESERTA UJI SIM</h1>
                                 </div>
                                 <div class="text-left">
@@ -592,7 +616,7 @@
                     ..........................................................................
                 </h1>
                 <h1 class="medium-text">
-                    ..................................., NRP. ............................
+                    ...................., NRP. .........................................
                 </h1>
             </div>
         </div>

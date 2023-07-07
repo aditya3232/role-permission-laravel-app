@@ -434,8 +434,10 @@ class FormSimController extends Controller
             Alert::error('Gagal masuk form edit permohonan sim!');
             return redirect()->route('admin.formsim.index');
         }
+
+        $imagePath = asset('assets/images/logo/polantas.png');
  
-        return view('mazer_template.admin.form_sim.pdf', compact('data'));
+        return view('mazer_template.admin.form_sim.pdf', compact('data', 'imagePath'));
     }
 
 

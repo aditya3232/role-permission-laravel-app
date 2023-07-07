@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission;
+use App\Models\PermissionRole;
 use Illuminate\Http\Request;
 use App\Models\Role;
 use Illuminate\Support\Facades\Validator;
@@ -115,10 +117,73 @@ class RoleController extends Controller
         return redirect()->route('admin.roles.index');
     }
 
+    public function select2Permissions(Request $request, $id) {
+        $search = $request->search;
+        
+        if($search) {
+            // SELECT 
+            //     p.id,
+            //     p.name
+            // from permissions p 
+            // where p.id not in (select p.id from permissions p
+            //                 join permission_role pr on pr.permission_id = p.id
+            //                 where pr.role_id = 7)
+            $Permissions = Permission::select('permissions.id', 'permissions.name')
+                                        ->whereNotIn('permissions.id', function ($query) use ($id) {
+                                            $query->select('p.id')
+                                                ->from('permissions as p')
+                                                ->join('permission_role as pr', 'pr.permission_id', '=', 'p.id')
+                                                ->where('pr.role_id', $id);
+                                        })
+                                        ->where('permissions.name', 'LIKE',"%{$search}%")
+                                        ->limit(100)
+                                        ->get();
+        } else {
+            $Permissions = Permission::select('permissions.id', 'permissions.name')
+                                        ->whereNotIn('permissions.id', function ($query) use ($id) {
+                                            $query->select('p.id')
+                                                ->from('permissions as p')
+                                                ->join('permission_role as pr', 'pr.permission_id', '=', 'p.id')
+                                                ->where('pr.role_id', $id);
+                                        })
+                                        ->limit(100)
+                                        ->get();
+        }
+
+        $response = array();
+            foreach($Permissions as $Permission){
+                $response[] = array(
+                    "id"=>$Permission->id,
+                    "text"=>$Permission->name
+                );
+            }
+
+        return response()->json($response);
+    }
+
     public function edit($id) {
         $role = Role::findOrFail($id);
 
-        return view('mazer_template.admin.roles.edit', compact('role'));
+        $permission = Permission::all();
+
+        return view('mazer_template.admin.roles.edit', compact('role','permission'));
+    }
+
+    public function assignPermissions(Request $request, $id) {
+        $role = Role::findOrFail($id);
+        // $role->permissions()->sync($request->permissions);
+
+        $permissions = $request->permissions;
+
+        foreach ($permissions as $permission) {
+            PermissionRole::insert([
+                'role_id' => $id,
+                'permission_id' => $permission,
+            ]);
+        }
+        
+        Alert::success('Sukses', 'Permission telah ditambahkan');
+        return back();
     }
 
     public function update(Request $request, $id) {

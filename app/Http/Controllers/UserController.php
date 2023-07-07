@@ -99,4 +99,9 @@ class UserController extends Controller
         return response()->json($json_data);
 
     }
+
+    public function create() {
+        return view('mazer_template.admin.users.create');
+    }
+
 }

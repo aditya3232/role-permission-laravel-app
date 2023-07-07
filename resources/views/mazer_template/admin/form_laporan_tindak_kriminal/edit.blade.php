@@ -1,12 +1,12 @@
 @extends('mazer_template.layouts.app')
-@section('title', 'Update Formulir Pendaftaran Sidik Jari')
+@section('title', 'Update Formulir Laporan Tindak Kriminal')
 @section('content')
 
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Update Formulir Pendaftaran Sidik Jari</h3>
+                <h3>Update Formulir Laporan Tindak Kriminal</h3>
             </div>
         </div>
     </div>
@@ -14,9 +14,9 @@
     <section id="multiple-column-form">
         <div class="row match-height">
             <div class="mb-4">
-                <a href="{{ route('admin.formsidikjari.index') }}" type="button" class="btn btn-primary"><i class="bi bi-arrow-return-left" style="font-size: 13px;"></i> Kembali</a>
+                <a href="{{ route('admin.formlaporantindakkriminal.index') }}" type="button" class="btn btn-primary"><i class="bi bi-arrow-return-left" style="font-size: 13px;"></i> Kembali</a>
             </div>
-            <form class="form" action="{{ url('admin/formsidikjari/update/'.$data->id) }}" id="form-update-sidik-jari" method="POST">
+            <form class="form" action="{{ url('admin/formlaporantindakkriminal/update/'.$data->id) }}" id="form-update-laporanTindakKriminal" method="POST">
                 @csrf
                 <div class="col-12">
                     <div class="card">
@@ -48,8 +48,8 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="jenis_kelamin" style="font-weight: bold">Jenis Kelamin <span class="text-danger">*</span></label>
-                                            <select class="form-control select2" name="jenis_kelamin">
+                                            <label for="jenis_kelamin" style="font-weight: bold">Jenis Kelamin <span class="text-danger">*</span></label>>
+                                            <select class="form-control form-select" name="jenis_kelamin">
                                                 <option value="Laki-laki"
                                                     {{ old('jenis_kelamin') == 'Laki-laki' || $data->jenis_kelamin == 'Laki-laki' ?  'selected' : '' }}>
                                                     Laki-laki
@@ -189,89 +189,11 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group">
-                                            <label for="status_pernikahan" style="font-weight: bold">Status Pernikahan <span class="text-danger">*</span></label>
-                                            <select class="form-control form-select" name="status_pernikahan">
-                                                <option value="Menikah"
-                                                    {{ old('status_pernikahan') == 'Menikah' || $data->status_pernikahan == 'Menikah' ?  'selected' : '' }}>
-                                                    Menikah
-                                                </option>
-                                                <option value="Belum Menikah"
-                                                    {{ old('status_pernikahan') == 'Belum Menikah' || $data->status_pernikahan == 'Belum Menikah' ?  'selected' : '' }}>
-                                                    Belum Menikah
-                                                </option>
-                                            </select>
-                                            @if($errors->has('status_pernikahan'))
-                                                <span class="text-danger">{{ $errors->first('status_pernikahan') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-12">
-                                        <div class="form-group">
-                                            <label for="nama_ayah" style="font-weight: bold">Nama Ayah <span class="text-danger">*</span></label>
-                                            <input type="text" id="nama_ayah" class="form-control" placeholder="..." name="nama_ayah"
-                                                value="{{ old('nama_ayah') ? old('nama_ayah') : $data->nama_ayah }}">
-                                            @if($errors->has('nama_ayah'))
-                                                <span class="text-danger">{{ $errors->first('nama_ayah') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-12">
-                                        <div class="form-group">
-                                            <label for="alamat_ayah" style="font-weight: bold">Alamat Ayah</label>
-                                            <textarea name="alamat_ayah" id="alamat_ayah" cols="24" class="form-control" placeholder="..."
-                                                rows="3">{{ old('alamat_ayah') ? old('alamat_ayah') : $data->alamat_ayah }}</textarea>
-                                            @if($errors->has('alamat_ayah'))
-                                                <span class="text-danger">{{ $errors->first('alamat_ayah') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-12">
-                                        <div class="form-group">
-                                            <label for="nama_ibu" style="font-weight: bold">Nama Ibu <span class="text-danger">*</span></label>
-                                            <input type="text" id="nama_ibu" class="form-control" placeholder="..." name="nama_ibu"
-                                                value="{{ old('nama_ibu') ? old('nama_ibu') : $data->nama_ibu }}">
-                                            @if($errors->has('nama_ibu'))
-                                                <span class="text-danger">{{ $errors->first('nama_ibu') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-12">
-                                        <div class="form-group">
-                                            <label for="alamat_ibu" style="font-weight: bold">Alamat Ibu</label>
-                                            <textarea name="alamat_ibu" id="alamat_ibu" cols="24" class="form-control" placeholder="..."
-                                                rows="3">{{ old('alamat_ibu') ? old('alamat_ibu') : $data->alamat_ibu }}</textarea>
-                                            @if($errors->has('alamat_ibu'))
-                                                <span class="text-danger">{{ $errors->first('alamat_ibu') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-12">
-                                        <div class="form-group">
-                                            <label for="nama_istri" style="font-weight: bold">Nama Istri</label>
-                                            <input type="text" id="nama_istri" class="form-control" placeholder="..." name="nama_istri"
-                                                value="{{ old('nama_istri') ? old('nama_istri') : $data->nama_istri }}">
-                                            @if($errors->has('nama_istri'))
-                                                <span class="text-danger">{{ $errors->first('nama_istri') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-12">
-                                        <div class="form-group">
-                                            <label for="nama_suami" style="font-weight: bold">Nama Suami</label>
-                                            <input type="text" id="nama_suami" class="form-control" placeholder="..." name="nama_suami"
-                                                value="{{ old('nama_suami') ? old('nama_suami') : $data->nama_suami }}">
-                                            @if($errors->has('nama_suami'))
-                                                <span class="text-danger">{{ $errors->first('nama_suami') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-12">
-                                        <div class="form-group">
-                                            <label for="nama_anak" style="font-weight: bold">Nama Anak</label>
-                                            <input type="text" id="nama_anak" class="form-control" placeholder="..." name="nama_anak"
-                                                value="{{ old('nama_anak') ? old('nama_anak') : $data->nama_anak }}">
-                                            @if($errors->has('nama_anak'))
-                                                <span class="text-danger">{{ $errors->first('nama_anak') }}</span>
+                                            <label for="tindak_kriminal" style="font-weight: bold">Tindak Kriminal</label>
+                                            <input type="text" id="tindak_kriminal" class="form-control" placeholder="..." name="tindak_kriminal"
+                                                value="{{ old('tindak_kriminal') ? old('tindak_kriminal') : $data->tindak_kriminal }}">
+                                            @if($errors->has('tindak_kriminal'))
+                                                <span class="text-danger">{{ $errors->first('tindak_kriminal') }}</span>
                                             @endif
                                         </div>
                                     </div>
@@ -282,15 +204,15 @@
                 </div>
             </form>
             <div class="d-grid gap-2 mt-4">
-                <button class="btn btn-primary btn-lg" type="submit" id="submit-update-sidik-jari" onClick="changeToLoadingFormUpdateSidikJari()">Submit</button>
+                <button class="btn btn-primary btn-lg" type="submit" id="submit-update-laporanTindakKriminal" onClick="changeToLoadingFormUpdateLaporanTindakKriminal()">Submit</button>
             </div>
         </div>
     </section>
 </div>
 
 <script>
-    function changeToLoadingFormUpdateSidikJari() {
-        var btn = document.getElementById('submit-update-sidik-jari');
+    function changeToLoadingFormUpdateLaporanTindakKriminal() {
+        var btn = document.getElementById('submit-update-laporanTindakKriminal');
         btn.innerHTML = '<span class="spinner-border" role="status" aria-hidden="true"></span> Loading...';
         btn.disabled = true;
 
@@ -301,13 +223,13 @@
             btn.innerHTML = 'Submit';
 
             // Submit the form
-            submitFormUpdateSidikJari();
+            submitFormUpdateLaporanTindakKriminal();
         }, 2000);
     }
 
-    function submitFormUpdateSidikJari() {
+    function submitFormUpdateLaporanTindakKriminal() {
         // Get the form element
-        var form = document.getElementById('form-update-sidik-jari');
+        var form = document.getElementById('form-update-laporanTindakKriminal');
 
         // Submit the form
         form.submit();

@@ -39,7 +39,7 @@
                             <img class="card-img-top img-fluid" src="assets/images/samples/kehilangan.jpeg" alt="Card image cap" style="height: 20rem; width: 20rem;" />
                             <div class="card-body d-flex flex-column">
                                 <h4 class="card-title">Laporan Kehilangan</h4>
-                                <a type="button" class="btn btn-primary block" href="">Input Data</a type="button">
+                                <a type="button" class="btn btn-primary block" href="{{ route('dilanpolres.formlaporankehilangan.create') }}">Input Data</a type="button">
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                             <img class="card-img-top img-fluid" src="assets/images/samples/tindak-kriminal.jpeg" alt="Card image cap" style="height: 20rem; width: 20rem;" />
                             <div class="card-body d-flex flex-column">
                                 <h4 class="card-title">Laporan Tindak Kriminal</h4>
-                                <a type="button" class="btn btn-primary block" href="">Input Data</a type="button">
+                                <a type="button" class="btn btn-primary block" href="{{ route('dilanpolres.formlaporantindakkriminal.create') }}">Input Data</a type="button">
                             </div>
                         </div>
                     </div>

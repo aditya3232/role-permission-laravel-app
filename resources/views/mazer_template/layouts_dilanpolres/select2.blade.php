@@ -1,6 +1,6 @@
 <script>
     $(document).ready(function () {
-        $('#select2').select2();
+        $('.js-example-basic-single').select2();
     });
 
 </script>
