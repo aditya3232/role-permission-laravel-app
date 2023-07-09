@@ -17,7 +17,7 @@
             <div class="mb-4">
                 <a href="{{ route('admin.users.index') }}" type="button" class="btn btn-primary"><i class="bi bi-arrow-return-left" style="font-size: 13px;"></i> Kembali</a>
             </div>
-            <form class="form" action="{{ route('admin.users.store') }}" id="form-create-sidik-jari" method="POST">
+            <form class="form" action="{{ route('admin.users.store') }}" id="form-create-user" method="POST">
                 @csrf
                 <div class="col-12">
                     <div class="card">
@@ -77,15 +77,15 @@
                 </div>
             </form>
             <div class="d-grid gap-2 mt-4">
-                <button class="btn btn-primary btn-lg" type="submit" id="submit-create-sidik-jari" onClick="changeToLoadingFormSidikJari()">Submit</button>
+                <button class="btn btn-primary btn-lg" type="submit" id="submit-create-user" onClick="changeToLoadingFormUser()">Submit</button>
             </div>
         </div>
     </section>
 </div>
 
 <script>
-    function changeToLoadingFormSidikJari() {
-        var btn = document.getElementById('submit-create-sidik-jari');
+    function changeToLoadingFormUser() {
+        var btn = document.getElementById('submit-create-user');
         btn.innerHTML = '<span class="spinner-border" role="status" aria-hidden="true"></span> Loading...';
         btn.disabled = true;
 
@@ -96,13 +96,13 @@
             btn.innerHTML = 'Submit';
 
             // Submit the form
-            submitFormSidikJari();
+            submitFormUser();
         }, 2000);
     }
 
-    function submitFormSidikJari() {
+    function submitFormUser() {
         // Get the form element
-        var form = document.getElementById('form-create-sidik-jari');
+        var form = document.getElementById('form-create-user');
 
         // Submit the form
         form.submit();
