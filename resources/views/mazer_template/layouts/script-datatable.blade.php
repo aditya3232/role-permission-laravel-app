@@ -173,11 +173,19 @@
                 },
                 {
                     data: "options",
-                    "sortable": false,
+                    sortable: false,
+                    searchable: false,
+                    render: function (data, type, row) {
+                        if (row.authId === row.id) {
+                            return "";
+                        } else {
+                            return data;
+                        }
+                    }
                 }
             ],
             order: [
-                [0, 'desc']
+                [3, 'desc']
             ]
 
         });

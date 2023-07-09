@@ -75,6 +75,10 @@ Route::group(['prefix' => 'admin/users', 'as' => 'admin.users.', 'middleware' =>
     Route::post('/datatable', [UserController::class, 'dataTable'])->name('datatable');
     Route::get('/create', [UserController::class, 'create'])->name('create');
     Route::post('/store', [UserController::class, 'store'])->name('store');
+    Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}', [UserController::class, 'update'])->name('update');
+    Route::post('/select2roles', [UserController::class, 'select2Roles'])->name('select2roles');
+    Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('destroy');
 });
 
 // skck online
