@@ -9,11 +9,14 @@
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
                 <div class="logo">
-                    <a href="index.html">
-                        {{-- <img src="assets/images/logo/logo.png" alt="Logo" srcset=""> --}}
-                        <img src="/assets/images/logo/polresta-tidore.png" width="190">
-                        {{-- <h4>Polresta Tidore</h4> --}}
-                    </a>
+
+                    <h1 class="text-uppercase text-briview-login d-flex align-items-center justify-content-center">
+                        <img src="/assets/images/logo/polri.png" class="mr-4" alt="polresta-tidore-company" style="max-width: 40%; height: 100%;">
+                        <div class="d-flex flex-column align-items-start" style="font-size: 20px; ">
+                            <span>Polresta</span>
+                            <span>Tidore</span>
+                        </div>
+                    </h1>
                 </div>
                 <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
