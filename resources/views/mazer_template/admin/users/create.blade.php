@@ -17,9 +17,7 @@
             <div class="mb-4">
                 <a href="{{ route('admin.users.index') }}" type="button" class="btn btn-primary"><i class="bi bi-arrow-return-left" style="font-size: 13px;"></i> Kembali</a>
             </div>
-            {{-- <form class="form" action="{{ route('dilanpolres.formsidikjari.store') }}" id="" method="POST"
-            onSubmit="document.getElementById('submit-create-sidik-jari').disabled=true;"> --}}
-            <form class="form" action="{{ route('register') }}" id="form-create-sidik-jari" method="POST">
+            <form class="form" action="{{ route('admin.users.store') }}" id="form-create-sidik-jari" method="POST">
                 @csrf
                 <div class="col-12">
                     <div class="card">
@@ -33,7 +31,10 @@
                                         <div class="form-group">
                                             <label for="name" style="font-weight: bold;">Nama <span class="text-danger">*</span></label>
                                             <input type="text" id="name" class="form-control" placeholder="..." name="name" value="{{ old('name') ? old('name') : '' }}">
-                                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                            {{-- <x-input-error :messages="$errors->get('name')" class="mt-2" /> --}}
+                                            @if($errors->has('name'))
+                                                <span class="text-danger">{{ $errors->first('name') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-12">
@@ -41,7 +42,10 @@
                                             <label for="email" style="font-weight: bold;">Email <span class="text-danger">*</span></label>
                                             <input type="email" id="email" class="form-control" placeholder="..." name="email"
                                                 value="{{ old('email') ? old('email') : '' }}">
-                                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                            {{-- <x-input-error :messages="$errors->get('email')" class="mt-2" /> --}}
+                                            @if($errors->has('email'))
+                                                <span class="text-danger">{{ $errors->first('email') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-12">
@@ -49,7 +53,10 @@
                                             <label for="password" style="font-weight: bold;">Password <span class="text-danger">*</span></label>
                                             <input type="password" id="password" class="form-control" placeholder="..." name="password"
                                                 value="{{ old('password') ? old('password') : '' }}">
-                                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                            {{-- <x-input-error :messages="$errors->get('password')" class="mt-2" /> --}}
+                                            @if($errors->has('password'))
+                                                <span class="text-danger">{{ $errors->first('password') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-md-12 col-12">
@@ -57,7 +64,10 @@
                                             <label for="password_confirmation" style="font-weight: bold;">Confirm Password <span class="text-danger">*</span></label>
                                             <input type="password" id="password_confirmation" class="form-control" placeholder="..." name="password_confirmation"
                                                 value="{{ old('password_confirmation') ? old('password_confirmation') : '' }}">
-                                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                            {{-- <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" /> --}}
+                                            @if($errors->has('password_confirmation'))
+                                                <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
