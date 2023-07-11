@@ -40,7 +40,7 @@ Route::get('/dashboard', function () {
 
 
 // admin
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'role:admin']], function() {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'role:admin,admin pendaftaran sidik jari']], function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::get('/berita/create', [AdminController::class, 'index'])->name('berita.create');
 });
@@ -57,7 +57,7 @@ Route::group(['prefix' => 'admin/permissions', 'as' => 'admin.permissions.', 'mi
 });
 
 // roles
-Route::group(['prefix' => 'admin/roles', 'as' => 'admin.roles.', 'middleware' => ['auth', 'role:admin']], function() {
+Route::group(['prefix' => 'admin/roles', 'as' => 'admin.roles.', 'middleware' => ['auth', 'role:admin,admin pendaftaran sidik jari']], function() {
     Route::get('/', [RoleController::class, 'index'])->name('index');
     Route::post('/datatable', [RoleController::class, 'dataTable'])->name('datatable');
     Route::get('/create', [RoleController::class, 'create'])->name('create');
@@ -67,10 +67,11 @@ Route::group(['prefix' => 'admin/roles', 'as' => 'admin.roles.', 'middleware' =>
     Route::delete('/destroy/{id}', [RoleController::class, 'destroy'])->name('destroy');
     Route::post('/select2permissions/{id}', [RoleController::class, 'select2Permissions'])->name('select2permissions');
     Route::post('assignpermissions/{id}', [RoleController::class, 'assignPermissions'])->name('assignpermissions');
+    Route::delete('/deletepermissions/{role_id}/{permission_id}', [RoleController::class, 'deletePermissions'])->name('deletepermissions');
 });
 
 // users
-Route::group(['prefix' => 'admin/users', 'as' => 'admin.users.', 'middleware' => ['auth', 'role:admin']], function() {
+Route::group(['prefix' => 'admin/users', 'as' => 'admin.users.', 'middleware' => ['auth', 'role:admin,admin pendaftaran sidik jari']], function() {
     Route::get('/', [UserController::class, 'index'])->name('index');
     Route::post('/datatable', [UserController::class, 'dataTable'])->name('datatable');
     Route::get('/create', [UserController::class, 'create'])->name('create');
@@ -107,7 +108,7 @@ Route::group(['prefix' => 'dilanpolres/formsidikjari', 'as' => 'dilanpolres.form
 });
 
 // form sidik jari in admin
-Route::group(['prefix' => 'admin/formsidikjari', 'as' => 'admin.formsidikjari.', 'middleware' => ['auth', 'role:admin']], function() {
+Route::group(['prefix' => 'admin/formsidikjari', 'as' => 'admin.formsidikjari.', 'middleware' => ['auth', 'role:admin,admin pendaftaran sidik jari']], function() {
     Route::get('/', [FormSidikJariController::class, 'index'])->name('index');
     Route::post('/datatable', [FormSidikJariController::class, 'dataTable'])->name('datatable');
     Route::get('/detail/{id}', [FormSidikJariController::class, 'detail'])->name('detail');

@@ -25,61 +25,91 @@
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
-                <li class="sidebar-title">Dashboard</li>
+                {{-- models harus ada walaupun dummy --}}
+                @can('sidebarParentDashboard', App\Models\Sidebar::class)
+                    <li class="sidebar-title">Dashboard</li>
+                @endcan
 
-                <li class="{{ (request()->is('admin')) ? 'sidebar-item active' : 'sidebar-item' }}">
-                    <a href="{{ route('admin.index') }}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
+                @can('sidebarChildDashboard', App\Models\Sidebar::class)
+                    <li class="{{ (request()->is('admin')) ? 'sidebar-item active' : 'sidebar-item' }}">
+                        <a href="{{ route('admin.index') }}" class='sidebar-link'>
+                            <i class="bi bi-grid-fill"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                @endcan
 
-                <li class="sidebar-title">Master Data</li>
+                @can('sidebarParentMasterData', App\Models\Sidebar::class)
+                    <li class="sidebar-title">Master Data</li>
+                @endcan
 
-                <li class="{{ (request()->is('admin/formsidikjari')) ? 'sidebar-item active' : 'sidebar-item' }}">
-                    <a href="{{ route('admin.formsidikjari.index') }}" class='sidebar-link'>
-                        <i class="bi bi-hexagon-fill"></i>
-                        <span>Pendaftaran Sidik Jari</span>
-                    </a>
-                </li>
-                <li class="{{ (request()->is('admin/formsim')) ? 'sidebar-item active' : 'sidebar-item' }}">
-                    <a href="{{ route('admin.formsim.index') }}" class='sidebar-link'>
-                        <i class="bi bi-hexagon-fill"></i>
-                        <span>Permohonan SIM</span>
-                    </a>
-                </li>
-                <li class="{{ (request()->is('admin/formlaporankehilangan')) ? 'sidebar-item active' : 'sidebar-item' }}">
-                    <a href="{{ route('admin.formlaporankehilangan.index') }}" class='sidebar-link'>
-                        <i class="bi bi-hexagon-fill"></i>
-                        <span>Laporan Kehilangan</span>
-                    </a>
-                </li>
-                <li class="{{ (request()->is('admin/formlaporantindakkriminal')) ? 'sidebar-item active' : 'sidebar-item' }}">
-                    <a href="{{ route('admin.formlaporantindakkriminal.index') }}" class='sidebar-link'>
-                        <i class="bi bi-hexagon-fill"></i>
-                        <span>Laporan Tindak Kriminal</span>
-                    </a>
-                </li>
-                <li class="sidebar-title">Admin</li>
+                @can('sidebarChildMasterDataPendaftaranSidikJari', App\Models\Sidebar::class)
+                    <li class="{{ (request()->is('admin/formsidikjari')) ? 'sidebar-item active' : 'sidebar-item' }}">
+                        <a href="{{ route('admin.formsidikjari.index') }}" class='sidebar-link'>
+                            <i class="bi bi-hexagon-fill"></i>
+                            <span>Pendaftaran Sidik Jari</span>
+                        </a>
+                    </li>
+                @endcan
 
-                <li class="{{ (request()->is('admin/users')) ? 'sidebar-item active' : 'sidebar-item' }}">
-                    <a href="{{ route('admin.users.index') }}" class='sidebar-link'>
-                        <i class="bi bi-hexagon-fill"></i>
-                        <span>Users</span>
-                    </a>
-                </li>
-                <li class="{{ (request()->is('admin/roles')) ? 'sidebar-item active' : 'sidebar-item' }}">
-                    <a href="{{ route('admin.roles.index') }}" class='sidebar-link'>
-                        <i class="bi bi-hexagon-fill"></i>
-                        <span>Roles</span>
-                    </a>
-                </li>
-                <li class="{{ (request()->is('admin/permissions')) ? 'sidebar-item active' : 'sidebar-item' }}">
-                    <a href="{{ route('admin.permissions.index') }}" class='sidebar-link'>
-                        <i class="bi bi-hexagon-fill"></i>
-                        <span>Permissions</span>
-                    </a>
-                </li>
+                @can('sidebarChildMasterDataPermohonanSim', App\Models\Sidebar::class)
+                    <li class="{{ (request()->is('admin/formsim')) ? 'sidebar-item active' : 'sidebar-item' }}">
+                        <a href="{{ route('admin.formsim.index') }}" class='sidebar-link'>
+                            <i class="bi bi-hexagon-fill"></i>
+                            <span>Permohonan SIM</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('sidebarChildMasterDataLaporanKehilangan', App\Models\Sidebar::class)
+                    <li class="{{ (request()->is('admin/formlaporankehilangan')) ? 'sidebar-item active' : 'sidebar-item' }}">
+                        <a href="{{ route('admin.formlaporankehilangan.index') }}" class='sidebar-link'>
+                            <i class="bi bi-hexagon-fill"></i>
+                            <span>Laporan Kehilangan</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('sidebarChildMasterDataTindakKriminal', App\Models\Sidebar::class)
+                    <li class="{{ (request()->is('admin/formlaporantindakkriminal')) ? 'sidebar-item active' : 'sidebar-item' }}">
+                        <a href="{{ route('admin.formlaporantindakkriminal.index') }}" class='sidebar-link'>
+                            <i class="bi bi-hexagon-fill"></i>
+                            <span>Laporan Tindak Kriminal</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('sidebarParentAdmin', App\Models\Sidebar::class)
+                    <li class="sidebar-title">Admin</li>
+                @endcan
+
+                @can('sidebarChildAdminUsers', App\Models\Sidebar::class)
+                    <li class="{{ (request()->is('admin/users')) ? 'sidebar-item active' : 'sidebar-item' }}">
+                        <a href="{{ route('admin.users.index') }}" class='sidebar-link'>
+                            <i class="bi bi-hexagon-fill"></i>
+                            <span>Users</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('sidebarChildAdminRoles', App\Models\Sidebar::class)
+                    <li class="{{ (request()->is('admin/roles')) ? 'sidebar-item active' : 'sidebar-item' }}">
+                        <a href="{{ route('admin.roles.index') }}" class='sidebar-link'>
+                            <i class="bi bi-hexagon-fill"></i>
+                            <span>Roles</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('sidebarChildAdminPermissions', App\Models\Sidebar::class)
+                    <li class="{{ (request()->is('admin/permissions')) ? 'sidebar-item active' : 'sidebar-item' }}">
+                        <a href="{{ route('admin.permissions.index') }}" class='sidebar-link'>
+                            <i class="bi bi-hexagon-fill"></i>
+                            <span>Permissions</span>
+                        </a>
+                    </li>
+                @endcan
+
                 <li class="{{ (request()->is('admin/telescope')) ? 'sidebar-item active' : 'sidebar-item' }}">
                     <a href="{{ route('telescope') }}" class='sidebar-link' target="_blank">
                         <i class="bi bi-hexagon-fill"></i>

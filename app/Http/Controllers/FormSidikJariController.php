@@ -127,6 +127,9 @@ class FormSidikJariController extends Controller
     }
 
     public function create() {
+        // contoh authorization di controller
+        // $this->authorize('create', FormSidikJari::class);
+        
         return view('mazer_template.dilan_polres.form_sidik_jari.create');
     }
 
