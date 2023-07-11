@@ -14,4 +14,14 @@ class Role extends Model
     public function users() {
         return $this->hasMany(User::class);
     }
+
+    // dipake pas assign
+    public function permissions() {
+        return $this->belongsToMany(Permission::class);
+    }
+
+    // cek selected permissions
+    public function hasPermission($name) : bool {
+        return $this->permissions()->where('name', $name)->exists();
+    }
 }

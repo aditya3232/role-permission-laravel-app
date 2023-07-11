@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -191,6 +192,7 @@ return [
     'aliases' => [
     // Other aliases...
     'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+    'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

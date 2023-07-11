@@ -1,4 +1,5 @@
 @extends('mazer_template.layouts.app')
+@section('title', 'Daftar Skck')
 @section('content')
 
 <div class="page-heading">
