@@ -164,9 +164,7 @@ class RoleController extends Controller
     public function edit($id) {
         $role = Role::findOrFail($id);
 
-        $permission = Permission::all();
-
-        return view('mazer_template.admin.roles.edit', compact('role','permission'));
+        return view('mazer_template.admin.roles.edit', compact('role'));
     }
 
     public function assignPermissions(Request $request, $id) {
@@ -183,6 +181,15 @@ class RoleController extends Controller
         }
         
         Alert::success('Sukses', 'Permission telah ditambahkan');
+        return back();
+    }
+
+    public function deletePermissions($role_id, $permission_id) {
+         PermissionRole::where('role_id', $role_id)
+                  ->where('permission_id', $permission_id)
+                  ->delete();
+
+        Alert::success('Sukses', 'Permission telah dihapus');
         return back();
     }
 
