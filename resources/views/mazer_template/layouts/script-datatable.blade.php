@@ -6,93 +6,41 @@
 </script>
 
 <script>
-    $(document).ready(function () {
-        $('#skck').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url: "{{ route('admin.skck.datatable') }}",
-                dataType: "json",
-                type: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}"
+    // Simple Datatable
+    let table1 = document.querySelector('#permissions');
+    let dataTable = new DataTable(table1, {
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: "{{ route('admin.permissions.datatable') }}",
+            dataType: "json",
+            type: "POST",
+            data: {
+                _token: "{{ csrf_token() }}"
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                // Do something here
+                console.log(Error);
+            }
+        },
+        columns: [{
+                data: null,
+                "sortable": false,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
                 }
             },
-            columns: [{
-                    data: null,
-                    "sortable": false,
-                    render: function (data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }
-                },
-                {
-                    data: "id"
-                },
-                {
-                    data: "nama"
-                },
-                {
-                    data: "no_telepon"
-                },
-                {
-                    data: "alamat"
-                },
-                {
-                    data: "keperluan_skck"
-                },
-                {
-                    data: "created_at"
-                },
-                {
-                    data: "options"
-                }
-            ],
-            order: [
-                [0, 'desc']
-            ]
-
-        });
-    });
-
-</script>
-
-<script>
-    $(document).ready(function () {
-        $('#permissions').DataTable({
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url: "{{ route('admin.permissions.datatable') }}",
-                dataType: "json",
-                type: "POST",
-                data: {
-                    _token: "{{ csrf_token() }}"
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    // Do something here
-                    console.log(Error);
-                }
+            {
+                data: "name"
             },
-            columns: [{
-                    data: null,
-                    "sortable": false,
-                    render: function (data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }
-                },
-                {
-                    data: "name"
-                },
-                {
-                    data: "options",
-                    "sortable": false,
-                }
-            ],
-            order: [
-                [1, 'desc']
-            ]
-
-        });
+            {
+                data: "options",
+                "sortable": false,
+            }
+        ],
+        order: [
+            [1, 'desc']
+        ]
     });
 
 </script>
