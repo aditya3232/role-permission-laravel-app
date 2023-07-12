@@ -87,7 +87,7 @@ Route::group(['prefix' => 'admin/users', 'as' => 'admin.users.', 'middleware' =>
 // setting profile
 Route::group(['prefix' => 'admin/profiles', 'as' => 'admin.profiles.', 'middleware' => ['auth']], function() {
     Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
-    Route::post('/update/{id}', [ProfileController::class, 'update'])->name('update');
+    Route::post('/update', [ProfileController::class, 'update'])->name('update');
 });
 
 // dilanpolres home
