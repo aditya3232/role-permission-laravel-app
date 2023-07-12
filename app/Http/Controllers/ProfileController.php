@@ -7,54 +7,107 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert as Alert;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use PDOException;
+use Throwable;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class ProfileController extends Controller
 {
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
-    {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+    public function edit() {
+        try {
+            $id = auth()->user()->id;
+            $data = User::findOrFail($id);
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal masuk form edit profile!');
+            return back();
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal masuk form edit profile!');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('Gagal masuk form edit profile!');
+            return back();
+        } catch (PDOException $e) {
+            Alert::error('Gagal masuk form edit profile!');
+            return back();
+        } catch (Throwable $e) {
+            Alert::error('Gagal masuk form edit profile!');
+            return back();
+        }
+
+        return view('mazer_template.admin.profiles.edit', compact('data'));
     }
 
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $request->user()->fill($request->validated());
+    public function update(Request $request) {
+        try {
+            $id = auth()->user()->id;
+            User::findOrFail($id);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (PDOException $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (Throwable $e) {
+            Alert::error('Gagal update profile!');
+            return back();
         }
 
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    }
-
-    /**
-     * Delete the user's account.
-     */
-    public function destroy(Request $request): RedirectResponse
-    {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
+        $validator = Validator::make($request->all(), [
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+        'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $user = $request->user();
+        if($validator->fails()) {
+            Alert::error('Cek kembali pengisian form, terima kasih !');
+            return redirect()->back()->withErrors($validator->errors())->withInput();
+        }
 
-        Auth::logout();
+        try {
+            User::where('id',$id)
+                ->update([
+                    'name' => $request->input('name'),
+                    'email' => $request->input('email'),
+                    'password' => Hash::make($request->password),
+                ]);
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (PDOException $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (Throwable $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        }
 
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
+        Alert::success('Sukses', 'Update profile berhasil');
+        return back();
     }
+
 }

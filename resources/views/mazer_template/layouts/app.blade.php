@@ -94,6 +94,7 @@
     <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
     <script src="/assets/js/jquery.dataTables.min.js"></script>
     <script src="/assets/js/dataTables.bootstrap5.min.js"></script>
+    {{-- <script src="/assets/vendors/simple-datatables/simple-datatables.js"></script> --}}
 
     {{-- script datatable mending dibkin 1 file --}}
     @include('mazer_template.layouts.script-datatable')

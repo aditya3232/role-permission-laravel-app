@@ -11,6 +11,7 @@ use App\Http\Controllers\FormSidikJariController;
 use App\Http\Controllers\FormSimController;
 use App\Http\Controllers\FormLaporanKehilanganController;
 use App\Http\Controllers\FormLaporanTindakKriminalController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,18 +26,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return redirect('/login');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 
 // admin
@@ -82,17 +84,10 @@ Route::group(['prefix' => 'admin/users', 'as' => 'admin.users.', 'middleware' =>
     Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('destroy');
 });
 
-// skck online
-Route::group(['prefix' => 'admin/skck', 'as' => 'admin.skck.', 'middleware' => ['auth', 'role:admin']], function() {
-    Route::get('/', [SkckOnlineController::class, 'index'])->name('index');
-    Route::post('/datatable', [SkckOnlineController::class, 'dataTable'])->name('datatable');
-    Route::get('/detail/{id}', [SkckOnlineController::class, 'detail'])->name('detail');
-    Route::post('/post', [SkckOnlineController::class, 'post'])->name('post');
-});
-
-// berita
-Route::group(['prefix' => 'admin/berita', 'middleware' => ['auth', 'role:admin']], function() {
-    Route::get('/create', [BeritaController::class, 'index'])->name('admin.berita.create');
+// setting profile
+Route::group(['prefix' => 'admin/profiles', 'as' => 'admin.profiles.', 'middleware' => ['auth']], function() {
+    Route::get('/edit', [ProfileController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}', [ProfileController::class, 'update'])->name('update');
 });
 
 // dilanpolres home
