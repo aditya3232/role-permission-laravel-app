@@ -47,7 +47,8 @@ class AuthenticatedSessionController extends Controller
         if (Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
             $request->session()->regenerate();
 
-            return redirect('/dashboard');
+            // return redirect('/dashboard');
+            return redirect('/admin');
         }
 
         // Alert::error('Cek kembali email atau password, terima kasih !');

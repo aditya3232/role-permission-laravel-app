@@ -46,7 +46,7 @@
                 @can('sidebarChildMasterDataPendaftaranSidikJari', App\Models\Sidebar::class)
                     <li class="{{ (request()->is('admin/formsidikjari')) ? 'sidebar-item active' : 'sidebar-item' }}">
                         <a href="{{ route('admin.formsidikjari.index') }}" class='sidebar-link'>
-                            <i class="bi bi-hexagon-fill"></i>
+                            <i class="bi bi-stack"></i>
                             <span>Pendaftaran Sidik Jari</span>
                         </a>
                     </li>
@@ -55,7 +55,7 @@
                 @can('sidebarChildMasterDataPermohonanSim', App\Models\Sidebar::class)
                     <li class="{{ (request()->is('admin/formsim')) ? 'sidebar-item active' : 'sidebar-item' }}">
                         <a href="{{ route('admin.formsim.index') }}" class='sidebar-link'>
-                            <i class="bi bi-hexagon-fill"></i>
+                            <i class="bi bi-stack"></i>
                             <span>Permohonan SIM</span>
                         </a>
                     </li>
@@ -64,7 +64,7 @@
                 @can('sidebarChildMasterDataLaporanKehilangan', App\Models\Sidebar::class)
                     <li class="{{ (request()->is('admin/formlaporankehilangan')) ? 'sidebar-item active' : 'sidebar-item' }}">
                         <a href="{{ route('admin.formlaporankehilangan.index') }}" class='sidebar-link'>
-                            <i class="bi bi-hexagon-fill"></i>
+                            <i class="bi bi-stack"></i>
                             <span>Laporan Kehilangan</span>
                         </a>
                     </li>
@@ -73,7 +73,7 @@
                 @can('sidebarChildMasterDataTindakKriminal', App\Models\Sidebar::class)
                     <li class="{{ (request()->is('admin/formlaporantindakkriminal')) ? 'sidebar-item active' : 'sidebar-item' }}">
                         <a href="{{ route('admin.formlaporantindakkriminal.index') }}" class='sidebar-link'>
-                            <i class="bi bi-hexagon-fill"></i>
+                            <i class="bi bi-stack"></i>
                             <span>Laporan Tindak Kriminal</span>
                         </a>
                     </li>
@@ -86,7 +86,7 @@
                 @can('sidebarChildAdminUsers', App\Models\Sidebar::class)
                     <li class="{{ (request()->is('admin/users')) ? 'sidebar-item active' : 'sidebar-item' }}">
                         <a href="{{ route('admin.users.index') }}" class='sidebar-link'>
-                            <i class="bi bi-hexagon-fill"></i>
+                            <i class="bi bi-people-fill"></i>
                             <span>Users</span>
                         </a>
                     </li>
@@ -95,7 +95,7 @@
                 @can('sidebarChildAdminRoles', App\Models\Sidebar::class)
                     <li class="{{ (request()->is('admin/roles')) ? 'sidebar-item active' : 'sidebar-item' }}">
                         <a href="{{ route('admin.roles.index') }}" class='sidebar-link'>
-                            <i class="bi bi-hexagon-fill"></i>
+                            <i class="bi bi-person-check-fill"></i>
                             <span>Roles</span>
                         </a>
                     </li>
@@ -104,7 +104,7 @@
                 @can('sidebarChildAdminPermissions', App\Models\Sidebar::class)
                     <li class="{{ (request()->is('admin/permissions')) ? 'sidebar-item active' : 'sidebar-item' }}">
                         <a href="{{ route('admin.permissions.index') }}" class='sidebar-link'>
-                            <i class="bi bi-hexagon-fill"></i>
+                            <i class="bi bi-person-lines-fill"></i>
                             <span>Permissions</span>
                         </a>
                     </li>
@@ -112,7 +112,7 @@
 
                 <li class="{{ (request()->is('admin/telescope')) ? 'sidebar-item active' : 'sidebar-item' }}">
                     <a href="{{ route('telescope') }}" class='sidebar-link' target="_blank">
-                        <i class="bi bi-hexagon-fill"></i>
+                        <i class="bi bi-file-earmark-ruled-fill"></i>
                         <span>Logs</span>
                     </a>
                 </li>

@@ -35,11 +35,17 @@
             <div class="form-form-wrap">
                 <div class="form-container">
                     <div class="form-content">
-                        <h1 class="text-uppercase text-briview-login d-flex align-items-center justify-content-center">
+                        {{-- <h1 class="text-uppercase text-briview-login d-flex align-items-center justify-content-center">
                             <img src="/assets/images/logo/polri.png" class="bri-logo mr-2" alt="bit-company">
                             <div class="bit-login-title d-flex flex-column align-items-start">
                                 <span>Polresta</span>
                                 <span>Tidore</span>
+                            </div>
+                        </h1> --}}
+                        <h1 class="text-uppercase text-briview-login align-items-center justify-content-center">
+                            <img src="/assets/images/logo/polri.png" class="bri-logo mr-2" alt="bit-company">
+                            <div class="bit-login-title">
+                                <h4>Polresta Tidore</h4>
                             </div>
                         </h1>
                         <form class="text-left" id="login-form" method="POST" action="{{ route('login') }}">
