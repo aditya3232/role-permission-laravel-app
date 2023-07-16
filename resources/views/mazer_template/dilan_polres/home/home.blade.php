@@ -56,6 +56,19 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="card text-center">
+                        <div class="card-content">
+                            <img class="card-img-top img-fluid" src="assets/images/samples/kehilangan.jpeg" alt="Card image cap" style="height: 20rem; width: 20rem;" />
+                            <div class="card-body d-flex flex-column">
+                                <h4 class="card-title">Layanan SKCK</h4>
+                                <a type="button" class="btn btn-primary block" href="{{ route('dilanpolres.formskck.create') }}">Input Data</a type="button">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         {{-- <div class="col-12 col-lg-3">
             
