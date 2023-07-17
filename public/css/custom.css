@@ -243,8 +243,14 @@ ticket-dispatch {
 }
 
 .bri-logo {
-  max-width: 30%;
+  max-width: 50%;
   height: 100%;
+}
+
+.centered-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .text-error-login {
@@ -253,7 +259,7 @@ ticket-dispatch {
 }
 
 .bit-login-title {
-  font-size: 16px !important;
+  font-size: 24px !important;
   font-weight: 700 !important;
 }
 

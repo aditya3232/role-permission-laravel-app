@@ -14,6 +14,7 @@ use PDOException;
 use Throwable;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules;
 
 class ProfileController extends Controller
@@ -43,7 +44,7 @@ class ProfileController extends Controller
             return back();
         }
 
-        return view('mazer_template.admin.profiles.edit', compact('data'));
+        return view('mazer_template.admin.profile.edit', compact('data'));
     }
 
     /**
@@ -52,7 +53,7 @@ class ProfileController extends Controller
     public function update(Request $request) {
         try {
             $id = auth()->user()->id;
-            User::findOrFail($id);
+            $User = User::findOrFail($id);
 
         } catch (\Illuminate\Database\QueryException $e) {
             Alert::error('Gagal update profile!');
@@ -73,9 +74,21 @@ class ProfileController extends Controller
 
         $validator = Validator::make($request->all(), [
         'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
-        'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        'email' => ['required', 'string', 'email', 'max:255'],
+        'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
         ]);
+
+        // Check if the 'email' values have changed, then check this unique
+        if ($request->email !== $User->email) {
+            $validator->addRules(['email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],]);
+        }
+
+        // Check if the 'password' field is null or empty, then do not update the password
+        if ($request->has('password') && !empty($request->password)) {
+            $password = Hash::make($request->password);
+        } else {
+            $password = $User->password;
+        }
 
         if($validator->fails()) {
             Alert::error('Cek kembali pengisian form, terima kasih !');
@@ -85,10 +98,48 @@ class ProfileController extends Controller
         try {
             User::where('id',$id)
                 ->update([
-                    'name' => $request->input('name'),
-                    'email' => $request->input('email'),
-                    'password' => Hash::make($request->password),
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => $password,
                 ]);
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (PDOException $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (Throwable $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        }
+        
+        try {
+            $foto_profil  = $request->file('foto_profil');
+            if (!is_null($foto_profil)) {
+                $extension = $request->file('foto_profil')->extension();
+                $imgname = date('dmyHis').'.'.$extension;
+                $this->validate($request, ['foto_profil' => 'required|file|max:5000']);
+                $path = Storage::putFileAs('public/images/profil', $request->file('foto_profil'), $imgname);
+
+                // Delete previous profile image if it exists
+                $previousImage = $User->foto_profil;
+                if ($previousImage && Storage::exists('public/images/profil/' . $previousImage)) {
+                    Storage::delete('public/images/profil/' . $previousImage);
+                }
+
+                User::where('id',$id)
+                    ->update([
+                        'foto_profil' => $imgname,
+                    ]);
+            }
+
         } catch (\Illuminate\Database\QueryException $e) {
             Alert::error('Gagal update profile!');
             return back();

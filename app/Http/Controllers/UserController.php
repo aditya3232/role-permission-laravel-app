@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert as Alert;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Validation\Rules\NotIn;
 use PDOException;
 use Throwable;
 
