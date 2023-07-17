@@ -20,7 +20,12 @@
                         </div>
                         <div class="user-img d-flex align-items-center">
                             <div class="avatar avatar-md">
-                                <img src="/assets/images/faces/1.jpg" alt="avatar-icon">
+                                @php
+                                    use Illuminate\Support\Facades\Storage;
+                                    $path = Storage::url('images/profil/'.auth()->user()->foto_profil);
+                                    $imageUrl = asset($path);
+                                @endphp
+                                <img src="{{ $imageUrl }}" onerror="this.src='/assets/images/samples/default.png'" alt="avatar-icon" />
                             </div>
                         </div>
                     </div>

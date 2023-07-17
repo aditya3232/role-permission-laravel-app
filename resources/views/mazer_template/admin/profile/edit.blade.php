@@ -2,6 +2,21 @@
 @section('title', 'Update Profile')
 @section('content')
 
+<style>
+    #show-password:hover {
+        cursor: pointer;
+        cursor: -webkit-grab;
+        cursor: pointer;
+    }
+
+    #show-password-confirmation:hover {
+        cursor: pointer;
+        cursor: -webkit-grab;
+        cursor: pointer;
+    }
+
+</style>
+
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
@@ -36,7 +51,7 @@
                                                 $imageUrl = asset($path);
                                             @endphp
                                             <img src="{{ $imageUrl }}" onerror="this.src='/assets/images/samples/default.png'" class="rounded-circle img-preview" width="128" height="128" />
-                                            <span>{{ $path }}</span>
+                                            {{-- <span>{{ $path }}</span> --}}
                                             <div class="mt-2">
                                                 <!-- ini adalah tombol upload yg ketika diklik akan mengeluarkan input file -->
                                                 <!-- disini tidak pakai button, tapi pakai span agar tidak terdeteksi oleh form action -->
@@ -49,7 +64,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group has-icon-left">
-                                            <label for="name" style="font-weight: bold">Nama </label>
+                                            <label for="name" style="font-weight: bold">Nama <span class="text-danger">*</span></label>
                                             <div class="position-relative">
                                                 <input type="text" id="name" class="form-control" placeholder="..." name="name" value="{{ old('name') ? old('name') : $data->name }}">
                                                 <div class="form-control-icon">
@@ -63,7 +78,7 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group has-icon-left">
-                                            <label for="email" style="font-weight: bold">Email </label>
+                                            <label for="email" style="font-weight: bold">Email <span class="text-danger">*</span></label>
                                             <div class="position-relative">
                                                 <input type="email" id="email" class="form-control" placeholder="..." name="email"
                                                     value="{{ old('email') ? old('email') : $data->email }}">
@@ -80,10 +95,11 @@
                                         <div class="form-group has-icon-left">
                                             <label for="password" style="font-weight: bold">New Password </label>
                                             <div class="position-relative">
-                                                <input type="text" id="password" class="form-control" placeholder="..." name="password"
+                                                <input type="password" id="password" class="form-control" placeholder="..." name="password"
                                                     value="{{ old('password') ? old('password') : '' }}">
+
                                                 <div class="form-control-icon">
-                                                    <i class="bi bi-lock"></i>
+                                                    <i id="show-password" class="bi bi-lock"></i>
                                                 </div>
                                             </div>
                                             @if($errors->has('password'))
@@ -93,12 +109,12 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group has-icon-left">
-                                            <label for="password_confirmation" style="font-weight: bold">Confirm Password </label>
+                                            <label for="password_confirmation" style="font-weight: bold">Confirm Password</label>
                                             <div class="position-relative">
-                                                <input type="text" id="password_confirmation" class="form-control" placeholder="..." name="password_confirmation"
+                                                <input type="password" id="password_confirmation" class="form-control" placeholder="..." name="password_confirmation"
                                                     value="{{ old('password_confirmation') ? old('password_confirmation') : '' }}">
                                                 <div class="form-control-icon">
-                                                    <i class="bi bi-lock"></i>
+                                                    <i id="show-password-confirmation" class="bi bi-lock"></i>
                                                 </div>
                                             </div>
                                             @if($errors->has('password_confirmation'))
@@ -171,6 +187,43 @@
     function openDialog() {
         document.getElementById('foto_profil').click();
     }
+
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var passwordInput = document.getElementById('password');
+        var showPasswordIcon = document.getElementById('show-password');
+
+        showPasswordIcon.addEventListener('click', function () {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                showPasswordIcon.classList.remove('bi-lock');
+                showPasswordIcon.classList.add('bi-unlock');
+            } else {
+                passwordInput.type = 'password';
+                showPasswordIcon.classList.remove('bi-unlock');
+                showPasswordIcon.classList.add('bi-lock');
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var passwordConfirmationInput = document.getElementById('password_confirmation');
+        var showPasswordConfirmationIcon = document.getElementById('show-password-confirmation');
+
+        showPasswordConfirmationIcon.addEventListener('click', function () {
+            if (passwordConfirmationInput.type === 'password') {
+                passwordConfirmationInput.type = 'text';
+                showPasswordConfirmationIcon.classList.remove('bi-lock');
+                showPasswordConfirmationIcon.classList.add('bi-unlock');
+            } else {
+                passwordConfirmationInput.type = 'password';
+                showPasswordConfirmationIcon.classList.remove('bi-unlock');
+                showPasswordConfirmationIcon.classList.add('bi-lock');
+            }
+        });
+    });
 
 </script>
 

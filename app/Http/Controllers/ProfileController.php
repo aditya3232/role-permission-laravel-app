@@ -75,12 +75,19 @@ class ProfileController extends Controller
         $validator = Validator::make($request->all(), [
         'name' => ['required', 'string', 'max:255'],
         'email' => ['required', 'string', 'email', 'max:255'],
-        'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
         ]);
 
         // Check if the 'email' values have changed, then check this unique
-        if ($request->input('email') !== $User->email) {
+        if ($request->email !== $User->email) {
             $validator->addRules(['email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],]);
+        }
+
+        // Check if the 'password' field is null or empty, then do not update the password
+        if ($request->has('password') && !empty($request->password)) {
+            $password = Hash::make($request->password);
+        } else {
+            $password = $User->password;
         }
 
         if($validator->fails()) {
@@ -88,39 +95,67 @@ class ProfileController extends Controller
             return redirect()->back()->withErrors($validator->errors())->withInput();
         }
 
-        // try {
+        try {
+            User::where('id',$id)
+                ->update([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'password' => $password,
+                ]);
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (PDOException $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (Throwable $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        }
+        
+        try {
             $foto_profil  = $request->file('foto_profil');
-            
+            if (!is_null($foto_profil)) {
                 $extension = $request->file('foto_profil')->extension();
                 $imgname = date('dmyHis').'.'.$extension;
                 $this->validate($request, ['foto_profil' => 'required|file|max:5000']);
                 $path = Storage::putFileAs('public/images/profil', $request->file('foto_profil'), $imgname);
 
+                // Delete previous profile image if it exists
+                $previousImage = $User->foto_profil;
+                if ($previousImage && Storage::exists('public/images/profil/' . $previousImage)) {
+                    Storage::delete('public/images/profil/' . $previousImage);
+                }
+
                 User::where('id',$id)
                     ->update([
-                        'name' => $request->input('name'),
-                        'email' => $request->input('email'),
-                        'password' => Hash::make($request->password),
                         'foto_profil' => $imgname,
                     ]);
-            
+            }
 
-        // } catch (\Illuminate\Database\QueryException $e) {
-        //     Alert::error('Gagal update profile!');
-        //     return back();
-        // } catch (ModelNotFoundException $e) {
-        //     Alert::error('Gagal update profile!');
-        //     return back();
-        // } catch (\Exception $e) {
-        //     Alert::error('Gagal update profile!');
-        //     return back();
-        // } catch (PDOException $e) {
-        //     Alert::error('Gagal update profile!');
-        //     return back();
-        // } catch (Throwable $e) {
-        //     Alert::error('Gagal update profile!');
-        //     return back();
-        // }
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (PDOException $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        } catch (Throwable $e) {
+            Alert::error('Gagal update profile!');
+            return back();
+        }
 
         Alert::success('Sukses', 'Update profile berhasil');
         return back();

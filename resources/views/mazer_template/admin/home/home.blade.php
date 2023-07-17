@@ -84,7 +84,12 @@
                 <div class="card-body py-4 px-5">
                     <div class="d-flex align-items-center">
                         <div class="avatar avatar-xl">
-                            <img src="assets/images/faces/1.jpg" alt="Face 1">
+                            @php
+                                use Illuminate\Support\Facades\Storage;
+                                $path = Storage::url('images/profil/'.auth()->user()->foto_profil);
+                                $imageUrl = asset($path);
+                            @endphp
+                            <img src="{{ $imageUrl }}" onerror="this.src='/assets/images/samples/default.png'" alt="avatar-icon" />
                         </div>
                         <div class="ms-3 name">
                             <h5 class="font-bold">Selamat Datang</h5>
