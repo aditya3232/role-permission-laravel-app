@@ -13,7 +13,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Update Roles</h3>
+                <h3>Assign Permission to Roles</h3>
             </div>
         </div>
     </div>
@@ -55,7 +55,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Permission</h4>
+                        <h4 class="card-title">Assign Permissions to Role: <span class="badge bg-primary mb-2">{{ $role->name }}</span></h4>
 
                     </div>
                     <div class="card-content">
@@ -107,7 +107,7 @@
                                                     @endif
 
                                                     <div class="d-grid gap-2 mt-4">
-                                                        <button class="btn btn-primary" type="submit">Submit</button>
+                                                        <button class="btn btn-primary" type="submit">Assign Permissions to This Role</button>
                                                     </div>
                                                 </form>
                                             </div>

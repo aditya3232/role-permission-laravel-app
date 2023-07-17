@@ -26,9 +26,10 @@
     <link rel="stylesheet" href="/plugins/font-icons/fontawesome-6.2/css/all.min.css">
     <script src="/plugins/sweetalert2/js/sweetalert2.all.min.js"></script>
     <link rel="stylesheet" href="/plugins/sweetalert2/css/sweetalert2.min.css">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
 </head>
 
-<body class="form bg-bri">
+<body class="form items-center justify-center w-screen h-screen  bg-gradient-to-r from-indigo-600 to-blue-400">
     @include('sweetalert::alert')
     <div class="form-container outer">
         <div class="form-form">
@@ -43,7 +44,9 @@
                             </div>
                         </h1> --}}
                         <h1 class="text-uppercase text-briview-login align-items-center justify-content-center">
-                            <img src="/assets/images/logo/polri.png" class="bri-logo mr-2" alt="bit-company">
+                            <div class="centered-logo">
+                                <img src="/assets/images/logo/polri.png" class="bri-logo mr-2" alt="bit-company">
+                            </div>
                             <div class="bit-login-title">
                                 <h4>Polresta Tidore</h4>
                             </div>

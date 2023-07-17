@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 use App\Models\Role;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert as Alert;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use PDOException;
+use Throwable;
 
 class RoleController extends Controller
 {
@@ -68,7 +71,7 @@ class RoleController extends Controller
 
                 $nestedData['id'] = $Role->id;
                 $nestedData['name'] = $Role->name;
-                $nestedData['options'] = "&emsp;<a href='{$edit}' title='EDIT' class='btn btn-info btn-sm mt-2'><i class='bi bi-pencil-square'></i></a>
+                $nestedData['options'] = "&emsp;<a href='{$edit}' title='Assign Permission to Role' class='btn btn-info btn-sm mt-2'><i class='bi bi-pencil-square'></i></a>
                                           &emsp;<a href='{$destroy}' title='DESTROY' class='btn btn-danger btn-sm mt-2' data-confirm-delete='true'><i class='bi bi-trash' data-confirm-delete='true'></i></a>";
                 $data[] = $nestedData;
 
@@ -109,9 +112,29 @@ class RoleController extends Controller
             return redirect()->route('admin.roles.create')->withErrors($validator->errors())->withInput();
         }
 
-        Role::insert([
-            'name' => $request->input('name'),
-        ]);
+        try {
+            Role::insert([
+                'name' => $request->input('name'),
+            ]);
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            // Alert::error($e->getMessage());
+            Alert::error('Gagal menyimpan!');
+            return back();
+        } catch (ModelNotFoundException $e) {
+            // Alert::error($e->getMessage());
+            Alert::error('Gagal menyimpan!');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('Gagal menyimpan!');
+            return back();
+        } catch (PDOException $e) {
+            Alert::error('Gagal menyimpan!');
+            return back();
+        } catch (Throwable $e) {
+            Alert::error('Gagal menyimpan!');
+            return back();
+        }
 
         Alert::success('Sukses', 'Tambah role berhasil');
         return redirect()->route('admin.roles.index');
@@ -162,22 +185,77 @@ class RoleController extends Controller
     }
 
     public function edit($id) {
-        $role = Role::findOrFail($id);
+        try {
+            $role = Role::findOrFail($id);
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal masuk form assign permissions to roles!');
+            return redirect()->route('admin.roles.index');
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal masuk form assign permissions to roles!');
+            return redirect()->route('admin.roles.index');
+        } catch (\Exception $e) {
+            Alert::error('Gagal masuk form assign permissions to roles!');
+            return redirect()->route('admin.roles.index');
+        } catch (PDOException $e) {
+            Alert::error('Gagal masuk form assign permissions to roles!');
+            return redirect()->route('admin.roles.index');
+        } catch (Throwable $e) {
+            Alert::error('Gagal masuk form assign permissions to roles!');
+            return redirect()->route('admin.roles.index');
+        }
 
         return view('mazer_template.admin.roles.edit', compact('role'));
     }
 
     public function assignPermissions(Request $request, $id) {
-        $role = Role::findOrFail($id);
-        // $role->permissions()->sync($request->permissions);
+
+        try {
+            $role = Role::findOrFail($id);
+            // $role->permissions()->sync($request->permissions);
+            
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal assign permission!');
+            return back();
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal assign permission!');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('Gagal assign permission!');
+            return back();
+        } catch (PDOException $e) {
+            Alert::error('Gagal assign permission!');
+            return back();
+        } catch (Throwable $e) {
+            Alert::error('Gagal assign permission!');
+            return back();
+        }
 
         $permissions = $request->permissions;
 
-        foreach ($permissions as $permission) {
-            PermissionRole::insert([
-                'role_id' => $id,
-                'permission_id' => $permission,
-            ]);
+        try {
+            foreach ($permissions as $permission) {
+                PermissionRole::insert([
+                    'role_id' => $id,
+                    'permission_id' => $permission,
+                ]);
+            }
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal assign permission!');
+            return back();
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal assign permission!');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('Gagal assign permission!');
+            return back();
+        } catch (PDOException $e) {
+            Alert::error('Gagal assign permission!');
+            return back();
+        } catch (Throwable $e) {
+            Alert::error('Gagal assign permission!');
+            return back();
         }
         
         Alert::success('Sukses', 'Permission telah ditambahkan');
@@ -185,16 +263,53 @@ class RoleController extends Controller
     }
 
     public function deletePermissions($role_id, $permission_id) {
-         PermissionRole::where('role_id', $role_id)
-                  ->where('permission_id', $permission_id)
-                  ->delete();
+
+        try {
+            PermissionRole::where('role_id', $role_id)
+                    ->where('permission_id', $permission_id)
+                    ->delete();
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal hapus permission dari role ini!');
+            return back();
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal hapus permission dari role ini!');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('Gagal hapus permission dari role ini!');
+            return back();
+        } catch (PDOException $e) {
+            Alert::error('Gagal hapus permission dari role ini!');
+            return back();
+        } catch (Throwable $e) {
+            Alert::error('Gagal hapus permission dari role ini!');
+            return back();
+        }
 
         Alert::success('Sukses', 'Permission telah dihapus');
         return back();
     }
 
     public function update(Request $request, $id) {
-        $Role = Role::findOrFail($id);
+        try {
+            $Role = Role::findOrFail($id);
+            
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal update nama role!');
+            return back();
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal update nama role!');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('Gagal update nama role!');
+            return back();
+        } catch (PDOException $e) {
+            Alert::error('Gagal update nama role!');
+            return back();
+        } catch (Throwable $e) {
+            Alert::error('Gagal update nama role!');
+            return back();
+        }
 
         $messages = [
         'required' => ':attribute wajib diisi.',
@@ -218,22 +333,73 @@ class RoleController extends Controller
             return redirect()->route('admin.roles.edit',$id)->withErrors($validator->errors())->withInput();
         }
 
-        $upadted_at= date("Y-m-d H:i:s");
-        Role::where('id',$id)
-            ->update([
-                'name'=>$request->input('name'),
-                'updated_at'=>$upadted_at,
-            ]);
+        try {
+            Role::where('id',$id)
+                ->update([
+                    'name'=>$request->input('name'),
+                ]);
+                
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal update nama role!');
+            return back();
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal update nama role!');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('Gagal update nama role!');
+            return back();
+        } catch (PDOException $e) {
+            Alert::error('Gagal update nama role!');
+            return back();
+        } catch (Throwable $e) {
+            Alert::error('Gagal update nama role!');
+            return back();
+        }
 
-        Alert::success('Sukses', 'Update role berhasil');
+        Alert::success('Sukses', 'Update nama role berhasil');
         return redirect()->route('admin.roles.index');
     }
 
     public function destroy($id) {
-        $ids = $id;
-        $role = Role::findOrFail($id);
+        try {
+            $role = Role::findOrFail($id);
 
-        $role->delete();
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal hapus role!');
+            return back();
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal hapus role!');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('Gagal hapus role!');
+            return back();
+        } catch (PDOException $e) {
+            Alert::error('Gagal hapus role!');
+            return back();
+        } catch (Throwable $e) {
+            Alert::error('Gagal hapus role!');
+            return back();
+        }
+
+        try {
+            $role->delete();
+            
+        } catch (\Illuminate\Database\QueryException $e) {
+            Alert::error('Gagal hapus role!');
+            return back();
+        } catch (ModelNotFoundException $e) {
+            Alert::error('Gagal hapus role!');
+            return back();
+        } catch (\Exception $e) {
+            Alert::error('Gagal hapus role!');
+            return back();
+        } catch (PDOException $e) {
+            Alert::error('Gagal hapus role!');
+            return back();
+        } catch (Throwable $e) {
+            Alert::error('Gagal hapus role!');
+            return back();
+        }
 
         Alert::success('Sukses', 'Role berhasil dihapus');
         return redirect()->route('admin.roles.index');
