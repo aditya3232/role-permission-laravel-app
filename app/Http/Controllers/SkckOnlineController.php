@@ -23,6 +23,249 @@ class SkckOnlineController extends Controller
         return view('mazer_template.admin.skck.daftar_skck');
     }
 
+    public function create() {
+        return view('mazer_template.dilan_polres.form_skck.create');
+    }
+
+    public function store(Request $request) {
+        $messages = [
+        'required' => ':attribute wajib diisi.',
+        'min' => ':attribute harus diisi minimal :min karakter.',
+        'max' => ':attribute harus diisi maksimal :max karakter.',
+        'size' => ':attribute harus diisi tepat :size karakter.',
+        'unique' => ':attribute sudah terpakai.',
+        ];
+
+        $validator = Validator::make($request->all(),[
+            'nama' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'nik' => 'required|unique:nik',
+            'pekerjaan' => 'required',
+            'kebangsaan' => 'required',
+            'status_perkawinan' => 'required',
+            'agama' => 'required',
+            'alamat' => 'required',
+            'no_telepon' => 'required',
+            'email' => 'required',
+            'no_passport' => 'required',
+            'no_kitas_kitap' => 'required',
+            'keperluan_skck' => 'required',
+            // 'riwayat_sd' => 'required',
+            // 'tangggal_lulus_sd' => 'required',
+            // 'riwayat_smp' => 'required',
+            // 'tangggal_lulus_smp' => 'required',
+            // 'riwayat_sma' => 'required',
+            // 'tangggal_lulus_sma' => 'required',
+            // 'riwayat_s1' => 'required',
+            // 'tangggal_lulus_s1' => 'required',
+            // 'riwayat_s2' => 'required',
+            // 'tangggal_lulus_s2' => 'required',
+            // 'riwayat_s3' => 'required',
+            // 'tangggal_lulus_s3' => 'required',
+
+            'skck_daftar_bapaks_nama' => 'required',
+            'skck_daftar_bapaks_tempat_lahir' => 'required',
+            'skck_daftar_bapaks_tanggal_lahir' => 'required',
+            'skck_daftar_bapaks_jenis_kelamin' => 'required',
+            'skck_daftar_bapaks_nik' => 'required',
+            'skck_daftar_bapaks_pekerjaan' => 'required',
+            'skck_daftar_bapaks_kebangsaan' => 'required',
+            'skck_daftar_bapaks_status_perkawinan' => 'required',
+            'skck_daftar_bapaks_agama' => 'required',
+            'skck_daftar_bapaks_alamat' => 'required',
+            'skck_daftar_bapaks_no_telepon' => 'required',
+            // 'skck_daftar_bapaks_email' => 'required',
+
+            'skck_daftar_ibus_nama' => 'required',
+            'skck_daftar_ibus_tempat_lahir' => 'required',
+            'skck_daftar_ibus_tanggal_lahir' => 'required',
+            'skck_daftar_ibus_jenis_kelamin' => 'required',
+            'skck_daftar_ibus_nik' => 'required',
+            'skck_daftar_ibus_pekerjaan' => 'required',
+            'skck_daftar_ibus_kebangsaan' => 'required',
+            'skck_daftar_ibus_status_perkawinan' => 'required',
+            'skck_daftar_ibus_agama' => 'required',
+            'skck_daftar_ibus_alamat' => 'required',
+            'skck_daftar_ibus_no_telepon' => 'required',
+            // 'skck_daftar_ibus_email' => 'required',
+
+            'skck_daftar_istris_nama' => 'required',
+            'skck_daftar_istris_tempat_lahir' => 'required',
+            'skck_daftar_istris_tanggal_lahir' => 'required',
+            'skck_daftar_istris_jenis_kelamin' => 'required',
+            'skck_daftar_istris_nik' => 'required',
+            'skck_daftar_istris_pekerjaan' => 'required',
+            'skck_daftar_istris_kebangsaan' => 'required',
+            'skck_daftar_istris_status_perkawinan' => 'required',
+            'skck_daftar_istris_agama' => 'required',
+            'skck_daftar_istris_alamat' => 'required',
+            'skck_daftar_istris_no_telepon' => 'required',
+            // 'skck_daftar_istris_email' => 'required',
+
+            'skck_daftar_suamis_nama' => 'required',
+            'skck_daftar_suamis_tempat_lahir' => 'required',
+            'skck_daftar_suamis_tanggal_lahir' => 'required',
+            'skck_daftar_suamis_jenis_kelamin' => 'required',
+            'skck_daftar_suamis_nik' => 'required',
+            'skck_daftar_suamis_pekerjaan' => 'required',
+            'skck_daftar_suamis_kebangsaan' => 'required',
+            'skck_daftar_suamis_status_perkawinan' => 'required',
+            'skck_daftar_suamis_agama' => 'required',
+            'skck_daftar_suamis_alamat' => 'required',
+            'skck_daftar_suamis_no_telepon' => 'required',
+            // 'skck_daftar_suamis_email' => 'required',
+
+            'skck_daftar_saudaras_nama' => 'required',
+            'skck_daftar_saudaras_tempat_lahir' => 'required',
+            'skck_daftar_saudaras_tanggal_lahir' => 'required',
+            'skck_daftar_saudaras_jenis_kelamin' => 'required',
+            'skck_daftar_saudaras_nik' => 'required',
+            'skck_daftar_saudaras_pekerjaan' => 'required',
+            'skck_daftar_saudaras_kebangsaan' => 'required',
+            'skck_daftar_saudaras_status_perkawinan' => 'required',
+            'skck_daftar_saudaras_agama' => 'required',
+            'skck_daftar_saudaras_alamat' => 'required',
+            'skck_daftar_saudaras_no_telepon' => 'required',
+            // 'skck_daftar_saudaras_email' => 'required',
+
+            'skck_daftar_pelanggarans_pelanggaran_apa' => 'required',
+            'skck_daftar_pelanggarans_sejauhmana_proseshukumnya' => 'required',
+
+            'skck_daftar_pidanas_pidana_apa' => 'required',
+            'skck_daftar_pidanas_sejauhmana_proseshukumnya' => 'required',
+        ],$messages);
+
+        if($validator->fails()) {
+            Alert::error('please validate the captcha, thanks !');
+            return redirect()->route('dilanpolres.daftarskck')->withErrors($validator->errors())->withInput();
+        }
+
+        // post data diri
+        SkckDaftarDiri::insert([
+            'nama' => $request->input('nama'),
+            'tempat_lahir' => $request->input('tempat_lahir'),
+            'tanggal_lahir' => $request->input('tanggal_lahir'),
+            'jenis_kelamin' => $request->input('jenis_kelamin'),
+            'nik' => $request->input('nik'),
+            'pekerjaan' => $request->input('pekerjaan'),
+            'kebangsaan' => $request->input('kebangsaan'),
+            'status_perkawinan' => $request->input('status_perkawinan'),
+            'agama' => $request->input('agama'),
+            'alamat' => $request->input('alamat'),
+            'no_telepon' => $request->input('no_telepon'),
+            'email' => $request->input('email'),
+        ]);
+
+        // // select id where nik = request, and created_at where nik = request, created at in latest
+        // $created_at = SkckDaftarDiri::where('nik', $request->input('nik'))->latest()->first()->created_at;
+        // $skck_daftar_diri_id = SkckDaftarDiri::where('nik', $request->input('nik'))->where('created_at', $created_at)->first()->id;
+
+
+        // post data bapak, disini memanggil relasi dari skck_daftar_diri_id
+        SkckDaftarBapak::skckDaftarBapak()->insert([
+            // 'skck_daftar_diri_id' => $skck_daftar_diri_id,
+            'skck_daftar_bapaks_nama' => $request->input('skck_daftar_bapaks_nama'),
+            'skck_daftar_bapaks_tempat_lahir' => $request->input('skck_daftar_bapaks_tempat_lahir'),
+            'skck_daftar_bapaks_tanggal_lahir' => $request->input('skck_daftar_bapaks_tanggal_lahir'),
+            'skck_daftar_bapaks_jenis_kelamin' => $request->input('skck_daftar_bapaks_jenis_kelamin'),
+            'skck_daftar_bapaks_nik' => $request->input('skck_daftar_bapaks_nik'),
+            'skck_daftar_bapaks_pekerjaan' => $request->input('skck_daftar_bapaks_pekerjaan'),
+            'skck_daftar_bapaks_kebangsaan' => $request->input('skck_daftar_bapaks_kebangsaan'),
+            'skck_daftar_bapaks_status_perkawinan' => $request->input('skck_daftar_bapaks_status_perkawinan'),
+            'skck_daftar_bapaks_agama' => $request->input('skck_daftar_bapaks_agama'),
+            'skck_daftar_bapaks_alamat' => $request->input('skck_daftar_bapaks_alamat'),
+            'skck_daftar_bapaks_no_telepon' => $request->input('skck_daftar_bapaks_no_telepon'),
+            'skck_daftar_bapaks_email' => $request->input('skck_daftar_bapaks_email'),
+        ]);
+
+        // post data ibu
+        SkckDaftarIbu::skckDaftarIbu()->insert([
+            // 'skck_daftar_diri_id' => $skck_daftar_diri_id,
+            'skck_daftar_ibus_nama' => $request->input('skck_daftar_ibus_nama'),
+            'skck_daftar_ibus_tempat_lahir' => $request->input('skck_daftar_ibus_tempat_lahir'),
+            'skck_daftar_ibus_tanggal_lahir' => $request->input('skck_daftar_ibus_tanggal_lahir'),
+            'skck_daftar_ibus_jenis_kelamin' => $request->input('skck_daftar_ibus_jenis_kelamin'),
+            'skck_daftar_ibus_nik' => $request->input('skck_daftar_ibus_nik'),
+            'skck_daftar_ibus_pekerjaan' => $request->input('skck_daftar_ibus_pekerjaan'),
+            'skck_daftar_ibus_kebangsaan' => $request->input('skck_daftar_ibus_kebangsaan'),
+            'skck_daftar_ibus_status_perkawinan' => $request->input('skck_daftar_ibus_status_perkawinan'),
+            'skck_daftar_ibus_agama' => $request->input('skck_daftar_ibus_agama'),
+            'skck_daftar_ibus_alamat' => $request->input('skck_daftar_ibus_alamat'),
+            'skck_daftar_ibus_no_telepon' => $request->input('skck_daftar_ibus_no_telepon'),
+            'skck_daftar_ibus_email' => $request->input('skck_daftar_ibus_email'),
+        ]);
+
+        // post data istri
+        SkckDaftarIstri::skckDaftarIstri()->insert([
+            // 'skck_daftar_diri_id' => $skck_daftar_diri_id,
+            'skck_daftar_istris_nama' => $request->input('skck_daftar_istris_nama'),
+            'skck_daftar_istris_tempat_lahir' => $request->input('skck_daftar_istris_tempat_lahir'),
+            'skck_daftar_istris_tanggal_lahir' => $request->input('skck_daftar_istris_tanggal_lahir'),
+            'skck_daftar_istris_jenis_kelamin' => $request->input('skck_daftar_istris_jenis_kelamin'),
+            'skck_daftar_istris_nik' => $request->input('skck_daftar_istris_nik'),
+            'skck_daftar_istris_pekerjaan' => $request->input('skck_daftar_istris_pekerjaan'),
+            'skck_daftar_istris_kebangsaan' => $request->input('skck_daftar_istris_kebangsaan'),
+            'skck_daftar_istris_status_perkawinan' => $request->input('skck_daftar_istris_status_perkawinan'),
+            'skck_daftar_istris_agama' => $request->input('skck_daftar_istris_agama'),
+            'skck_daftar_istris_alamat' => $request->input('skck_daftar_istris_alamat'),
+            'skck_daftar_istris_no_telepon' => $request->input('skck_daftar_istris_no_telepon'),
+            'skck_daftar_istris_email' => $request->input('skck_daftar_istris_email'),
+        ]);
+
+        // post data suami
+        SkckDaftarSuami::skckDaftarSuami()->insert([
+            // 'skck_daftar_diri_id' => $skck_daftar_diri_id,
+            'skck_daftar_suamis_nama' => $request->input('skck_daftar_suamis_nama'),
+            'skck_daftar_suamis_tempat_lahir' => $request->input('skck_daftar_suamis_tempat_lahir'),
+            'skck_daftar_suamis_tanggal_lahir' => $request->input('skck_daftar_suamis_tanggal_lahir'),
+            'skck_daftar_suamis_jenis_kelamin' => $request->input('skck_daftar_suamis_jenis_kelamin'),
+            'skck_daftar_suamis_nik' => $request->input('skck_daftar_suamis_nik'),
+            'skck_daftar_suamis_pekerjaan' => $request->input('skck_daftar_suamis_pekerjaan'),
+            'skck_daftar_suamis_kebangsaan' => $request->input('skck_daftar_suamis_kebangsaan'),
+            'skck_daftar_suamis_status_perkawinan' => $request->input('skck_daftar_suamis_status_perkawinan'),
+            'skck_daftar_suamis_agama' => $request->input('skck_daftar_suamis_agama'),
+            'skck_daftar_suamis_alamat' => $request->input('skck_daftar_suamis_alamat'),
+            'skck_daftar_suamis_no_telepon' => $request->input('skck_daftar_suamis_no_telepon'),
+            'skck_daftar_suamis_email' => $request->input('skck_daftar_suamis_email'),
+        ]);
+
+        // post data saudara
+        SkckDaftarSaudara::skckDaftarSaudara()->insert([
+            // 'skck_daftar_diri_id' => $skck_daftar_diri_id,
+            'skck_daftar_saudaras_nama' => $request->input('skck_daftar_saudaras_nama'),
+            'skck_daftar_saudaras_tempat_lahir' => $request->input('skck_daftar_saudaras_tempat_lahir'),
+            'skck_daftar_saudaras_tanggal_lahir' => $request->input('skck_daftar_saudaras_tanggal_lahir'),
+            'skck_daftar_saudaras_jenis_kelamin' => $request->input('skck_daftar_saudaras_jenis_kelamin'),
+            'skck_daftar_saudaras_nik' => $request->input('skck_daftar_saudaras_nik'),
+            'skck_daftar_saudaras_pekerjaan' => $request->input('skck_daftar_saudaras_pekerjaan'),
+            'skck_daftar_saudaras_kebangsaan' => $request->input('skck_daftar_saudaras_kebangsaan'),
+            'skck_daftar_saudaras_status_perkawinan' => $request->input('skck_daftar_saudaras_status_perkawinan'),
+            'skck_daftar_saudaras_agama' => $request->input('skck_daftar_saudaras_agama'),
+            'skck_daftar_saudaras_alamat' => $request->input('skck_daftar_saudaras_alamat'),
+            'skck_daftar_saudaras_no_telepon' => $request->input('skck_daftar_saudaras_no_telepon'),
+            'skck_daftar_saudaras_email' => $request->input('skck_daftar_saudaras_email'),
+        ]);
+
+        // post data pelanggaran
+        SkckDaftarPelanggaran::skckDaftarPelanggaran()->insert([
+            // 'skck_daftar_diri_id' => $skck_daftar_diri_id,
+            'skck_daftar_pelanggarans_pelanggaran_apa' => $request->input('skck_daftar_pelanggarans_pelanggaran_apa'),
+            'skck_daftar_pelanggarans_sejauhmana_proseshukumnya' => $request->input('skck_daftar_pelanggarans_sejauhmana_proseshukumnya'),
+        ]);
+
+        // post data pidana
+        SkckDaftarPidana::skckDaftarPidana()->insert([
+            // 'skck_daftar_diri_id' => $skck_daftar_diri_id,
+            'skck_daftar_pidanas_pidana_apa' => $request->input('skck_daftar_pidanas_pidana_apa'),
+            'skck_daftar_pidanas_sejauhmana_proseshukumnya' => $request->input('skck_daftar_pidanas_sejauhmana_proseshukumnya'),
+        ]);
+            
+        return redirect()->route('dilanpolres.index')->alert()->success('SuccessAlert','Data Daftar Skck Online Berhasil Dikirim');;
+    }
+    
+
     public function dataTable(Request $request) {
         $columns = array( 
                             0 =>'id', 
