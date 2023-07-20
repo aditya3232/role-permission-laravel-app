@@ -74,14 +74,8 @@ class ProfileController extends Controller
 
         $validator = Validator::make($request->all(), [
         'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'email', 'max:255'],
         'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
         ]);
-
-        // Check if the 'email' values have changed, then check this unique
-        if ($request->email !== $User->email) {
-            $validator->addRules(['email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],]);
-        }
 
         // Check if the 'password' field is null or empty, then do not update the password
         if ($request->has('password') && !empty($request->password)) {
@@ -99,7 +93,6 @@ class ProfileController extends Controller
             User::where('id',$id)
                 ->update([
                     'name' => $request->name,
-                    'email' => $request->email,
                     'password' => $password,
                 ]);
 

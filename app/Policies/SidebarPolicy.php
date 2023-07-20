@@ -52,6 +52,16 @@ class SidebarPolicy
         return $user->role->hasPermission('sidebar child master data laporan tindak kriminal'); 
     }
 
+    public function sidebarChildMasterDataPengaduanMasyarakat(User $user)
+    {
+        return $user->role->hasPermission('sidebar child master data pengaduan masyarakat'); 
+    }
+
+    public function sidebarChildMasterDataPendaftaranSkck(User $user)
+    {
+        return $user->role->hasPermission('sidebar child master data pendaftaran skck'); 
+    }
+
     public function sidebarParentAdmin(User $user)
     {
         return $user->role->hasPermission('sidebar parent admin'); 

@@ -79,6 +79,24 @@
                     </li>
                 @endcan
 
+                @can('sidebarChildMasterDataPengaduanMasyarakat', App\Models\Sidebar::class)
+                    <li class="{{ (request()->is('admin/formlaporanpengaduanmasyarakat')) ? 'sidebar-item active' : 'sidebar-item' }}">
+                        <a href="{{ route('admin.formlaporanpengaduanmasyarakat.index') }}" class='sidebar-link'>
+                            <i class="bi bi-stack"></i>
+                            <span>Laporan Pengaduan Masyarakat</span>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('sidebarChildMasterDataPendaftaranSkck', App\Models\Sidebar::class)
+                    <li class="{{ (request()->is('admin/formskck')) ? 'sidebar-item active' : 'sidebar-item' }}">
+                        <a href="{{ route('admin.formskck.index') }}" class='sidebar-link'>
+                            <i class="bi bi-stack"></i>
+                            <span>Permohonan SKCK</span>
+                        </a>
+                    </li>
+                @endcan
+
                 @can('sidebarParentAdmin', App\Models\Sidebar::class)
                     <li class="sidebar-title">Admin</li>
                 @endcan
