@@ -143,7 +143,7 @@ class UserController extends Controller
 
         try {
             $user = User::create([
-                'role_id' => 1,
+                'role_id' => 14,
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
@@ -167,11 +167,13 @@ class UserController extends Controller
             return redirect()->route('admin.users.create');
         }
 
-        event(new Registered($user));
+        // event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        // return redirect(RouteServiceProvider::HOME);
+
+        return redirect()->route('admin.users.index');
     }
 
     public function select2Roles(Request $request) {

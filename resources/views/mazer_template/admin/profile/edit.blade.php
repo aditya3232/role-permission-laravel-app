@@ -78,21 +78,6 @@
                                     </div>
                                     <div class="col-md-12 col-12">
                                         <div class="form-group has-icon-left">
-                                            <label for="email" style="font-weight: bold">Email <span class="text-danger">*</span></label>
-                                            <div class="position-relative">
-                                                <input type="email" id="email" class="form-control" placeholder="..." name="email"
-                                                    value="{{ old('email') ? old('email') : $data->email }}">
-                                                <div class="form-control-icon">
-                                                    <i class="bi bi-envelope"></i>
-                                                </div>
-                                            </div>
-                                            @if($errors->has('email'))
-                                                <span class="text-danger">{{ $errors->first('email') }}</span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 col-12">
-                                        <div class="form-group has-icon-left">
                                             <label for="password" style="font-weight: bold">New Password </label>
                                             <div class="position-relative">
                                                 <input type="password" id="password" class="form-control" placeholder="..." name="password"
