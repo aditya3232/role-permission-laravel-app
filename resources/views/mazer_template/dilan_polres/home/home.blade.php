@@ -57,24 +57,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-12 col-sm-12">
                     <div class="card text-center">
                         <div class="card-content">
-                            <img class="card-img-top img-fluid" src="assets/images/samples/pengaduan_masyarakat.png" alt="Card image cap" style="height: 20rem; width: 20rem;" />
+                            <img class="card-img-top img-fluid" src="assets/images/samples/kehilangan.jpeg" alt="Card image cap" style="height: 20rem; width: 20rem;" />
                             <div class="card-body d-flex flex-column">
-                                <h4 class="card-title">Laporan Pengaduan Masyarakat</h4>
-                                <a type="button" class="btn btn-primary block" href="{{ route('dilanpolres.formlaporanpengaduanmasyarakat.create') }}">Input Data</a type="button">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    <div class="card text-center">
-                        <div class="card-content">
-                            <img class="card-img-top img-fluid" src="assets/images/samples/skck.png" alt="Card image cap" style="height: 20rem; width: 30rem;" />
-                            <div class="card-body d-flex flex-column">
-                                <h4 class="card-title">Permohonan SKCK</h4>
-                                <a type="button" class="btn btn-primary block" href="{{ route('dilanpolres.formlaporantindakkriminal.create') }}">Input Data</a type="button">
+                                <h4 class="card-title">Layanan SKCK</h4>
+                                <a type="button" class="btn btn-primary block" href="{{ route('dilanpolres.formskck.create') }}">Input Data</a type="button">
                             </div>
                         </div>
                     </div>

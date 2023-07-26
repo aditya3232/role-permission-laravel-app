@@ -11,7 +11,6 @@ use App\Http\Controllers\FormSidikJariController;
 use App\Http\Controllers\FormSimController;
 use App\Http\Controllers\FormLaporanKehilanganController;
 use App\Http\Controllers\FormLaporanTindakKriminalController;
-use App\Http\Controllers\FormLaporanPengaduanMasyarakatController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,7 +42,7 @@ Route::get('/', function () {
 
 
 // admin
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'role:admin,admin pendaftaran sidik jari,fresh']], function() {
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'role:admin,admin pendaftaran sidik jari']], function() {
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::get('/berita/create', [AdminController::class, 'index'])->name('berita.create');
 });
@@ -148,7 +147,7 @@ Route::group(['prefix' => 'admin/formlaporankehilangan', 'as' => 'admin.formlapo
     Route::get('/pdf/{id}', [FormLaporanKehilanganController::class, 'pdf'])->name('pdf');
 });
 
-// form permohonan laporan tindak kriminal in dilanpolres
+// form permohonan laporan tidank kriminal in dilanpolres
 Route::group(['prefix' => 'dilanpolres/formlaporantindakkriminal', 'as' => 'dilanpolres.formlaporantindakkriminal.'], function() {
     Route::get('/create', [FormLaporanTindakKriminalController::class, 'create'])->name('create');
     Route::post('/store', [FormLaporanTindakKriminalController::class, 'store'])->name('store');
@@ -165,38 +164,21 @@ Route::group(['prefix' => 'admin/formlaporantindakkriminal', 'as' => 'admin.form
     Route::get('/pdf/{id}', [FormLaporanTindakKriminalController::class, 'pdf'])->name('pdf');
 });
 
-// form permohonan laporan pengaduan masyarakat in dilanpolres
-Route::group(['prefix' => 'dilanpolres/formlaporanpengaduanmasyarakat', 'as' => 'dilanpolres.formlaporanpengaduanmasyarakat.'], function() {
-    Route::get('/create', [FormLaporanPengaduanMasyarakatController::class, 'create'])->name('create');
-    Route::post('/store', [FormLaporanPengaduanMasyarakatController::class, 'store'])->name('store');
-});
-
-// form permohonan laporan pengaduan masyarakat in admin
-Route::group(['prefix' => 'admin/formlaporanpengaduanmasyarakat', 'as' => 'admin.formlaporanpengaduanmasyarakat.', 'middleware' => ['auth', 'role:admin']], function() {
-    Route::get('/', [FormLaporanPengaduanMasyarakatController::class, 'index'])->name('index');
-    Route::post('/datatable', [FormLaporanPengaduanMasyarakatController::class, 'dataTable'])->name('datatable');
-    Route::get('/detail/{id}', [FormLaporanPengaduanMasyarakatController::class, 'detail'])->name('detail');
-    Route::get('/edit/{id}', [FormLaporanPengaduanMasyarakatController::class, 'edit'])->name('edit');
-    Route::post('/update/{id}', [FormLaporanPengaduanMasyarakatController::class, 'update'])->name('update');
-    Route::delete('/destroy/{id}', [FormLaporanPengaduanMasyarakatController::class, 'destroy'])->name('destroy');
-    Route::get('/pdf/{id}', [FormLaporanPengaduanMasyarakatController::class, 'pdf'])->name('pdf');
-});
-
-// form permohonan laporan permohonan skck in dilanpolres
+// form permohonan laporan tidank kriminal in dilanpolres
 Route::group(['prefix' => 'dilanpolres/formskck', 'as' => 'dilanpolres.formskck.'], function() {
-    Route::get('/create', [FormSkckController::class, 'create'])->name('create');
-    Route::post('/store', [FormSkckController::class, 'store'])->name('store');
+    Route::get('/create', [SkckOnlineController::class, 'create'])->name('create');
+    Route::post('/store', [SkckOnlineController::class, 'store'])->name('store');
 });
 
-// form permohonan laporan permohonan skck in admin
+// form permohonan laporan tindak kriminal in admin
 Route::group(['prefix' => 'admin/formskck', 'as' => 'admin.formskck.', 'middleware' => ['auth', 'role:admin']], function() {
-    Route::get('/', [FormSkckController::class, 'index'])->name('index');
-    Route::post('/datatable', [FormSkckController::class, 'dataTable'])->name('datatable');
-    Route::get('/detail/{id}', [FormSkckController::class, 'detail'])->name('detail');
-    Route::get('/edit/{id}', [FormSkckController::class, 'edit'])->name('edit');
-    Route::post('/update/{id}', [FormSkckController::class, 'update'])->name('update');
-    Route::delete('/destroy/{id}', [FormSkckController::class, 'destroy'])->name('destroy');
-    Route::get('/pdf/{id}', [FormSkckController::class, 'pdf'])->name('pdf');
+    Route::get('/', [SkckOnlineController::class, 'index'])->name('index');
+    Route::post('/datatable', [SkckOnlineController::class, 'dataTable'])->name('datatable');
+    Route::get('/detail/{id}', [SkckOnlineController::class, 'detail'])->name('detail');
+    Route::get('/edit/{id}', [SkckOnlineController::class, 'edit'])->name('edit');
+    Route::post('/update/{id}', [SkckOnlineController::class, 'update'])->name('update');
+    Route::delete('/destroy/{id}', [SkckOnlineController::class, 'destroy'])->name('destroy');
+    Route::get('/pdf/{id}', [SkckOnlineController::class, 'pdf'])->name('pdf');
 });
 
 require __DIR__.'/auth.php';

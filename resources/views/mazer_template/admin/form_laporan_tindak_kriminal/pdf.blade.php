@@ -91,31 +91,6 @@
 
     </style>
 
-    <?php
-        // Assuming $data->created_at contains a timestamp in the format "Y-m-d H:i:s" (e.g., "2023-07-20 12:34:56")
-        $created_at_timestamp = $data->created_at;
-
-        // Convert the timestamp to the day of the week as a number (1 for Monday, 2 for Tuesday, etc.)
-        $dayOfWeekNumber = date("N", strtotime($created_at_timestamp));
-
-        // Define an array to map the day of the week number to the Indonesian day name
-        $daysInIndonesian = array(
-            1 => 'Senin',
-            2 => 'Selasa',
-            3 => 'Rabu',
-            4 => 'Kamis',
-            5 => 'Jumat',
-            6 => 'Sabtu',
-            7 => 'Minggu'
-        );
-
-        // Get the Indonesian day name based on the day of the week number
-        $dayInIndonesian = $daysInIndonesian[$dayOfWeekNumber];
-
-        // Output the day of the week in Indonesian
-        // echo $dayInIndonesian;
-    ?>
-
     <div class="container">
         <div class="row align-items-start text-center mb-4 mt-4">
             <div class="col-12">
@@ -148,9 +123,7 @@
             <div class="col-12">
                 <p class="large-text">
                     AIPDA Nrp 82080566 Jabatan Kanit 2 SPKT Polres Kota Tidore, pada Kantor kepolisian tersebut diatas, menerangkan dengan sebenarnya bahwa
-                    pada hari ini {{ $dayInIndonesian }} tanggal {{ date('d', strtotime($data->created_at)) }} pukul
-                    {{ date('H:i', strtotime($data->created_at)) }} wit, telah datang
-                    ke SPKT Polres Kota Tidore, seorang laki-laki/ perempuan yang mengaku:
+                    pada hari ini ..... tanggal ..... pukul ..... wit, telah datang ke SPKT Polres Kota Tidore, seorang laki-laki/ perempuan yang mengaku:
                 </p>
                 <table class="ml-4" style="margin-left: 20px;">
                     <tr>
@@ -161,7 +134,7 @@
                             Nama :
                         </td>
                         <td>
-                            {{ $data->nama }}
+                            Muhammad Aditya
                         </td>
                     </tr>
                     <tr>
@@ -172,7 +145,7 @@
                             Tempat, Tanggal Lahir :
                         </td>
                         <td>
-                            {{ $data->tempat_lahir }}, {{ $data->tanggal_lahir }}
+                            Tidore, 12 Mei 2002
                         </td>
                     </tr>
                     <tr>
@@ -183,7 +156,7 @@
                             Jenis Kelamin :
                         </td>
                         <td>
-                            {{ $data->jenis_kelamin }}
+                            Laki-Laki
                         </td>
                     </tr>
                     <tr>
@@ -194,7 +167,7 @@
                             Agama :
                         </td>
                         <td>
-                            {{ $data->agama }}
+                            Islam
                         </td>
                     </tr>
                     <tr>
@@ -205,7 +178,7 @@
                             Kebangsaan :
                         </td>
                         <td>
-                            {{ $data->kebangsaan }}
+                            Indonesia
                         </td>
                     </tr>
                     <tr>
@@ -216,7 +189,7 @@
                             Pekerjaan :
                         </td>
                         <td>
-                            {{ $data->pekerjaan }}
+                            Wiraswasta
                         </td>
                     </tr>
                     <tr>
@@ -227,7 +200,7 @@
                             Alamat :
                         </td>
                         <td>
-                            {{ $data->alamat_saat_ini }}
+                            Mekkah
                         </td>
                     </tr>
                     <tr>
@@ -238,12 +211,12 @@
                             No. Telp :
                         </td>
                         <td>
-                            {{ $data->no_telp }}
+                            08123456789
                         </td>
                     </tr>
                 </table>
                 <p class="mt-4">
-                    Telah melaporkan tentang peristiwa tindak pidana {{ $data->tindak_kriminal }} yang di alami oleh pelapor, yang terjadi pada hari
+                    Telah melaporkan tentang peristiwa tindak pidana .................................. yang di alami oleh pelapor, yang terjadi pada hari
                     ..... tanggal ..... bertempat di .................................. dengan laporan polisi Nomor: LP / / / / / SPKT / Polresta Tidore /
                     Polda Maluku Utara, tanggal .....
                 </p>
@@ -263,7 +236,7 @@
         <div class="row align-items-end text-center mt-4">
             <div class="col-4">
                 <p class="mb-6">PELAPOR</p>
-                <p>{{ $data->nama }}</p>
+                <p>...............................</p>
             </div>
             <div class="col-4">
 
