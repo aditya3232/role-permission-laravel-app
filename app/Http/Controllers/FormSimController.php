@@ -199,19 +199,24 @@ class FormSimController extends Controller
             'praktik_dua' => $request->input('praktik_dua'),
         ]);
     } catch (\Illuminate\Database\QueryException $e) {
-        Alert::error('Gagal menyimpan!');
+        // Alert::error('Gagal menyimpan!');
+        Alert::error($e->getMessage());
         return redirect()->route('dilanpolres.formsim.create');
     } catch (ModelNotFoundException $e) {
-        Alert::error('Gagal menyimpan!');
+        // Alert::error('Gagal menyimpan!');
+        Alert::error($e->getMessage());
         return redirect()->route('dilanpolres.formsim.create');
     } catch (\Exception $e) {
-        Alert::error('Gagal menyimpan!');
+        // Alert::error('Gagal menyimpan!');
+        Alert::error($e->getMessage());
         return redirect()->route('dilanpolres.formsim.create');
     } catch (PDOException $e) {
-        Alert::error('Gagal menyimpan!');
+        // Alert::error('Gagal menyimpan!');
+        Alert::error($e->getMessage());
         return redirect()->route('dilanpolres.formsim.create');
     } catch (Throwable $e) {
-        Alert::error('Gagal menyimpan!');
+        // Alert::error('Gagal menyimpan!');
+        Alert::error($e->getMessage());
         return redirect()->route('dilanpolres.formsim.create');
     }
 

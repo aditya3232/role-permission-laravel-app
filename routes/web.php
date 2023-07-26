@@ -199,5 +199,4 @@ Route::group(['prefix' => 'admin/formskck', 'as' => 'admin.formskck.', 'middlewa
     Route::get('/pdf/{id}', [FormSkckController::class, 'pdf'])->name('pdf');
 });
 
-
 require __DIR__.'/auth.php';
